@@ -1,0 +1,26 @@
+         22961 function calls (22413 primitive calls) in 0.164 seconds
+
+   Ordered by: cumulative time
+   List reduced from 786 to 18 due to restriction <18>
+
+   ncalls  tottime  percall  cumtime  percall filename:lineno(function)
+        1    0.000    0.000    0.164    0.164 C:\Users\natal\Downloads\anaconda\envs\ml_project\Lib\site-packages\imblearn\pipeline.py:605(predict)
+        1    0.000    0.000    0.141    0.141 A08-adaptadores:96(predict)
+        1    0.000    0.000    0.140    0.140 A08-adaptadores:53(predict)
+        1    0.001    0.001    0.140    0.140 A08-adaptadores:34(predict_proba)
+        1    0.000    0.000    0.138    0.138 C:\Users\natal\Downloads\anaconda\envs\ml_project\Lib\site-packages\sklearn\neighbors\_base.py:763(kneighbors)
+        1    0.138    0.138    0.138    0.138 C:\Users\natal\Downloads\anaconda\envs\ml_project\Lib\site-packages\sklearn\metrics\_pairwise_distances_reduction\_dispatcher.py:188(compute)
+      3/1    0.000    0.000    0.015    0.015 C:\Users\natal\Downloads\anaconda\envs\ml_project\Lib\site-packages\sklearn\utils\_set_output.py:317(wrapped)
+        1    0.000    0.000    0.015    0.015 C:\Users\natal\Downloads\anaconda\envs\ml_project\Lib\site-packages\sklearn\compose\_column_transformer.py:1033(transform)
+        1    0.000    0.000    0.015    0.015 C:\Users\natal\Downloads\anaconda\envs\ml_project\Lib\site-packages\sklearn\compose\_column_transformer.py:838(_call_func_on_transformers)
+        1    0.000    0.000    0.013    0.013 C:\Users\natal\Downloads\anaconda\envs\ml_project\Lib\site-packages\sklearn\utils\parallel.py:54(__call__)
+        1    0.000    0.000    0.013    0.013 C:\Users\natal\Downloads\anaconda\envs\ml_project\Lib\site-packages\joblib\parallel.py:1969(__call__)
+        4    0.000    0.000    0.013    0.003 C:\Users\natal\Downloads\anaconda\envs\ml_project\Lib\site-packages\joblib\parallel.py:1888(_get_sequential_output)
+        2    0.000    0.000    0.013    0.006 C:\Users\natal\Downloads\anaconda\envs\ml_project\Lib\site-packages\sklearn\utils\parallel.py:125(__call__)
+        2    0.000    0.000    0.013    0.006 C:\Users\natal\Downloads\anaconda\envs\ml_project\Lib\site-packages\sklearn\pipeline.py:1509(_transform_one)
+        1    0.001    0.001    0.011    0.011 C:\Users\natal\Downloads\anaconda\envs\ml_project\Lib\site-packages\sklearn\preprocessing\_encoders.py:1000(transform)
+        1    0.000    0.000    0.010    0.010 C:\Users\natal\Downloads\anaconda\envs\ml_project\Lib\site-packages\sklearn\preprocessing\_encoders.py:190(_transform)
+        1    0.000    0.000    0.008    0.008 C:\Users\natal\Desktop\Telco_Churn_NEW\.venv-modelado\Lib\site-packages\sklearn\utils\_set_output.py:317(wrapped)
+        1    0.000    0.000    0.008    0.008 A07-transformaciones:20(transform)
+
+

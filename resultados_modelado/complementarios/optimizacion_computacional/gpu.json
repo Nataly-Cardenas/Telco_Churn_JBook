@@ -1,0 +1,8 @@
+{
+  "device": "cuda",
+  "estado": "sin error",
+  "avisos": [
+    "[16:58:45] WARNING: C:\\actions-runner\\_work\\xgboost\\xgboost\\src\\context.cc:49: No visible GPU is found, setting device to CPU.",
+    "[16:58:45] WARNING: C:\\actions-runner\\_work\\xgboost\\xgboost\\src\\context.cc:203: XGBoost is not compiled with CUDA support."
+  ]
+}

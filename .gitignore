@@ -5,4 +5,5 @@ __pycache__/
 .venv/
 .book-env/
 revision_tmp/
-resultados_modelado/
+# Copia comprimida local de los resultados (ya versionados en resultados_modelado/)
+resultados_modelado.zip
