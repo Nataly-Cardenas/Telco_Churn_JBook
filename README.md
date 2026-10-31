@@ -47,11 +47,19 @@ Se necesita Python 3.12. Los pasos siguientes crean un entorno virtual e instala
    conda activate telco
    ```
 
-4. Instalar las dependencias del análisis:
+4. Instalar las dependencias del análisis (versiones exactas):
 
    ```bash
    pip install -r requirements.txt
    ```
+
+5. Verificar el entorno y los resultados guardados:
+
+   ```bash
+   python verificar_reproduccion.py
+   ```
+
+   El script compara las versiones instaladas con `requirements.txt`, las huellas SHA-256 de los datos de entrada con el manifiesto que se guardó al entrenar los modelos y las huellas de todos los artefactos de las 1,680 unidades (modelos, predicciones, checkpoints). Con `--rapida` omite este último paso.
 
 </details>
 
@@ -66,7 +74,8 @@ Telco_Churn_Entregable/
 ├── Imagenes/                    # Logo y favicon del libro
 ├── paper/                       # Paper (PDF) y sus figuras
 ├── style/custom.css             # Estilos del libro
-├── resultados_modelado/         # Artefactos de los experimentos
+├── resultados_modelado/         # Artefactos de los experimentos (ver abajo)
+├── complementos/                # Calibración isotónica, multifidelidad y optimización computacional
 │
 ├── WA_Fn-UseC_-Telco-Customer-Churn.csv   # Datos originales (IBM)
 ├── train_index.csv / test_index.csv       # Partición 80/20
@@ -78,6 +87,8 @@ Telco_Churn_Entregable/
 ├── EDA.ipynb                    # Versión anterior del EDA
 ├── PREPROCESAMIENTO.ipynb       # Preprocesamiento y modelo base
 ├── MODELADO_AVANZADO.ipynb      # Experimentos, resultados e interpretación
+├── CODIGO_EXPERIMENTO.ipynb     # Apéndice: código exacto del entrenamiento de las 112 configuraciones
+├── verificar_reproduccion.py    # Verifica entorno, datos y artefactos guardados
 │
 ├── intro.md                     # Introducción y marco teórico
 ├── paper.md                     # Versión web del paper
@@ -99,9 +110,20 @@ Los notebooks se ejecutan en este orden; cada uno usa los archivos que genera el
 |---|---|---|
 | `EDA_.ipynb` | Carga y limpieza de los datos, partición estratificada 80/20 y análisis exploratorio univariado y bivariado del conjunto de entrenamiento (distribuciones, tasas de abandono, V de Cramér, correlaciones) | `train_index.csv`, `test_index.csv`, `train_test_split.pkl` |
 | `PREPROCESAMIENTO.ipynb` | Imputación, colapso de categorías redundantes, variable `AvgChargePerMonth`, codificación One-Hot, estandarización y modelo base de regresión logística | `X_train_processed.csv`, `X_test_processed.csv`, `y_train.csv`, `y_test.csv` |
-| `MODELADO_AVANZADO.ipynb` | Comparación de las 112 configuraciones con validación cruzada anidada, pruebas de Friedman/Nemenyi y DeLong, calibración, costo computacional, evaluación en test e interpretabilidad con SHAP y LIME | `resultados_modelado/` |
+| `MODELADO_AVANZADO.ipynb` | Comparación de las 112 configuraciones con validación cruzada anidada, pruebas de Friedman/Nemenyi y DeLong con tamaños del efecto (δ de Cliff), calibración Platt e isotónica, Successive Halving, optimizaciones computacionales con aceleración medida, evaluación en test e interpretabilidad con SHAP y LIME | `resultados_modelado/` |
+| `CODIGO_EXPERIMENTO.ipynb` | Código exacto del entrenamiento de las 112 configuraciones (apéndice, no se ejecuta al construir el libro) | — |
 
-> Nota: la carpeta `resultados_modelado/` completa ocupa alrededor de 6 GB. El notebook de modelado consulta esos artefactos para no repetir los experimentos; reejecutarlo desde cero requiere un tiempo de cómputo considerable.
+### Resultados guardados
+
+Todos los resultados que usa el libro están versionados en `resultados_modelado/`, así que el notebook de modelado se ejecuta sobre ellos sin volver a entrenar:
+
+| Carpeta | Contenido |
+|---|---|
+| `oficial/20260920T030103_.../` | El entrenamiento de las 112 configuraciones: `manifest.json` (protocolo, semillas, versiones y huellas de los datos), `splits.json` (particiones), `source_snapshot.json` (código ejecutado) y una carpeta por cada una de las 1,680 unidades con su Pipeline ajustado, el calibrado, predicciones externas, checkpoints de la búsqueda y un `complete.json` con la huella SHA-256 de cada archivo |
+| `analisis_final/` | Tablas derivadas: `unidades.csv` (tabla maestra de las 1,680 unidades), `resumen_112.csv`, trazas *anytime*, diversidad genética, pruebas estadísticas, finalistas e interpretabilidad |
+| `complementarios/` | Calibración isotónica de las 560 unidades principales, Successive Halving dentro de la validación anidada y las mediciones de optimización computacional |
+
+El código de ese entrenamiento está en `CODIGO_EXPERIMENTO.ipynb`; el de los experimentos complementarios, en `complementos/` (cada módulo se puede ejecutar con `python -m complementos.<modulo>`). Reejecutarlo todo desde cero toma varios días en un portátil, por eso el flujo recomendado es verificar los artefactos y ejecutar el notebook sobre ellos.
 
 ---
 
