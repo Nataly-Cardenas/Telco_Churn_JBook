@@ -1,0 +1,190 @@
+{
+  "version": "protocolo-v1",
+  "descripcion": "Espacios de búsqueda del experimento confirmatorio. Los mismos para el problema principal y los 3 conjuntos adicionales. Fijados antes de cualquier corrida confirmatoria.",
+  "optimizador": {
+    "metodo": "optuna.samplers.TPESampler",
+    "evaluaciones_por_modelo_y_pliegue_externo": 30,
+    "arranque_aleatorio": 8,
+    "objetivo": "minimizar el log-loss medio de 3 pliegues internos del pipeline calibrado con Platt",
+    "semilla": "seed_for('optimizer', repeticion, pliegue_externo, indice_modelo)",
+    "primer_ensayo": "se encola el punto de partida de cada modelo (clave 'inicio'); cuenta dentro de las 30 evaluaciones",
+    "pruning": "ninguno",
+    "tipos": {
+      "log": "float muestreado en escala logarítmica entre low y high",
+      "float": "float uniforme entre low y high",
+      "int": "entero uniforme entre low y high (inclusive)",
+      "int_log": "entero en escala logarítmica entre low y high (inclusive)",
+      "categorical": "uno de los valores listados"
+    }
+  },
+  "calibracion": {
+    "metodo": "CalibratedClassifierCV(method='sigmoid', cv=3)",
+    "aplica_a": "todos los benchmarks; el modelo original combina expertos ya calibrados y no se recalibra"
+  },
+  "remuestreo": "ninguno (sin SMOTE, ADASYN ni pesos de clase) para todos los modelos",
+  "benchmarks": {
+    "knn": {
+      "familia": "entregable 3",
+      "espacio": {
+        "n_neighbors": {"tipo": "int_log", "low": 3, "high": 200},
+        "weights": {"tipo": "categorical", "valores": ["uniform", "distance"]},
+        "p": {"tipo": "categorical", "valores": [1, 2]}
+      },
+      "inicio": {"n_neighbors": 5, "weights": "uniform", "p": 2},
+      "fuente_inicio": "valores por defecto de scikit-learn"
+    },
+    "naive_bayes": {
+      "familia": "entregable 3",
+      "espacio": {"var_smoothing": {"tipo": "log", "low": 1e-12, "high": 1e-1}},
+      "inicio": {"var_smoothing": 1e-9},
+      "fuente_inicio": "valor por defecto de scikit-learn"
+    },
+    "logistic": {
+      "familia": "entregable 3",
+      "fijos": {"solver": "liblinear", "max_iter": 3000},
+      "espacio": {
+        "C": {"tipo": "log", "low": 1e-3, "high": 1e3},
+        "penalty": {"tipo": "categorical", "valores": ["l1", "l2"]}
+      },
+      "inicio": {"C": 1.0, "penalty": "l2"},
+      "fuente_inicio": "valores por defecto de scikit-learn"
+    },
+    "decision_tree": {
+      "familia": "entregable 3",
+      "espacio": {
+        "max_depth": {"tipo": "int", "low": 2, "high": 16},
+        "min_samples_leaf": {"tipo": "int_log", "low": 1, "high": 200},
+        "criterion": {"tipo": "categorical", "valores": ["gini", "entropy"]}
+      },
+      "inicio": {"max_depth": 6, "min_samples_leaf": 20, "criterion": "gini"},
+      "fuente_inicio": "configuración regularizada habitual (Hastie et al., 2009, cap. 9)"
+    },
+    "random_forest": {
+      "familia": "entregable 3",
+      "espacio": {
+        "n_estimators": {"tipo": "int", "low": 100, "high": 500},
+        "max_depth": {"tipo": "categorical", "valores": [8, 16, null]},
+        "min_samples_leaf": {"tipo": "int_log", "low": 1, "high": 50},
+        "max_features": {"tipo": "float", "low": 0.1, "high": 1.0}
+      },
+      "inicio": {"n_estimators": 500, "max_depth": null, "min_samples_leaf": 1, "max_features": 0.2},
+      "fuente_inicio": "Probst, Wright y Boulesteix (2019): max_features ≈ sqrt(p)/p; con p ≈ 26 columnas tras one-hot en Telco, ≈ 0.2"
+    },
+    "xgboost": {
+      "familia": "entregable 3",
+      "fijos": {"tree_method": "hist", "objective": "binary:logistic"},
+      "espacio": {
+        "n_estimators": {"tipo": "int", "low": 100, "high": 1000},
+        "max_depth": {"tipo": "int", "low": 2, "high": 8},
+        "learning_rate": {"tipo": "log", "low": 0.01, "high": 0.3},
+        "subsample": {"tipo": "float", "low": 0.5, "high": 1.0},
+        "colsample_bytree": {"tipo": "float", "low": 0.5, "high": 1.0},
+        "min_child_weight": {"tipo": "log", "low": 1.0, "high": 50.0},
+        "reg_lambda": {"tipo": "log", "low": 1e-3, "high": 10.0}
+      },
+      "inicio": {"n_estimators": 100, "max_depth": 6, "learning_rate": 0.3, "subsample": 1.0,
+                 "colsample_bytree": 1.0, "min_child_weight": 1.0, "reg_lambda": 1.0},
+      "fuente_inicio": "valores por defecto de XGBoost (Chen y Guestrin, 2016)"
+    },
+    "svm": {
+      "familia": "entregable 3",
+      "fijos": {"kernel": "rbf"},
+      "espacio": {
+        "C": {"tipo": "log", "low": 0.01, "high": 1000.0},
+        "gamma": {"tipo": "log", "low": 1e-4, "high": 1.0}
+      },
+      "inicio": {"C": 1.0, "gamma": "scale"},
+      "fuente_inicio": "valores por defecto de scikit-learn; 'scale' se traduce a su valor numérico en el pliegue, solo en el ensayo inicial"
+    },
+    "logistic_splines": {
+      "familia": "benchmark adicional (piloto 7)",
+      "fijos": {"degree": 3, "solver": "lbfgs", "penalty": "l2", "max_iter": 5000},
+      "espacio": {
+        "C": {"tipo": "log", "low": 1e-3, "high": 1e2},
+        "n_knots": {"tipo": "int", "low": 3, "high": 20},
+        "knots": {"tipo": "categorical", "valores": ["uniform", "quantile"]}
+      },
+      "inicio": {"C": 1.0, "n_knots": 5, "knots": "uniform"},
+      "fuente_inicio": "valores por defecto de SplineTransformer y LogisticRegression"
+    },
+    "hist_gb": {
+      "familia": "benchmark adicional",
+      "fijos": {"early_stopping": false},
+      "espacio": {
+        "learning_rate": {"tipo": "log", "low": 0.01, "high": 0.3},
+        "max_iter": {"tipo": "int", "low": 100, "high": 1000},
+        "max_leaf_nodes": {"tipo": "int_log", "low": 4, "high": 64},
+        "min_samples_leaf": {"tipo": "int_log", "low": 5, "high": 200},
+        "l2_regularization": {"tipo": "log", "low": 1e-4, "high": 10.0}
+      },
+      "inicio": {"learning_rate": 0.1, "max_iter": 100, "max_leaf_nodes": 31, "min_samples_leaf": 20,
+                 "l2_regularization": 1e-4},
+      "fuente_inicio": "valores por defecto de scikit-learn (l2_regularization=0 se sustituye por el mínimo del rango log)"
+    },
+    "lightgbm": {
+      "familia": "estado del arte (Ke et al., 2017)",
+      "fijos": {"subsample_freq": 1, "verbose": -1},
+      "espacio": {
+        "n_estimators": {"tipo": "int", "low": 100, "high": 1000},
+        "learning_rate": {"tipo": "log", "low": 0.01, "high": 0.3},
+        "num_leaves": {"tipo": "int_log", "low": 4, "high": 128},
+        "min_child_samples": {"tipo": "int_log", "low": 5, "high": 200},
+        "subsample": {"tipo": "float", "low": 0.5, "high": 1.0},
+        "colsample_bytree": {"tipo": "float", "low": 0.5, "high": 1.0},
+        "reg_lambda": {"tipo": "log", "low": 1e-3, "high": 10.0}
+      },
+      "inicio": {"n_estimators": 100, "learning_rate": 0.1, "num_leaves": 31, "min_child_samples": 20,
+                 "subsample": 1.0, "colsample_bytree": 1.0, "reg_lambda": 1e-3},
+      "fuente_inicio": "valores por defecto de LightGBM 4.7.0"
+    },
+    "catboost": {
+      "familia": "estado del arte (Prokhorenkova et al., 2018)",
+      "fijos": {"loss_function": "Logloss", "verbose": 0, "thread_count": 1},
+      "espacio": {
+        "iterations": {"tipo": "int", "low": 100, "high": 1000},
+        "learning_rate": {"tipo": "log", "low": 0.01, "high": 0.3},
+        "depth": {"tipo": "int", "low": 3, "high": 10},
+        "l2_leaf_reg": {"tipo": "log", "low": 1.0, "high": 10.0},
+        "bagging_temperature": {"tipo": "float", "low": 0.0, "high": 1.0}
+      },
+      "inicio": {"iterations": 500, "learning_rate": 0.05, "depth": 6, "l2_leaf_reg": 3.0,
+                 "bagging_temperature": 1.0},
+      "fuente_inicio": "valores por defecto de CatBoost (depth=6, l2_leaf_reg=3) con 500 iteraciones y tasa ajustada"
+    }
+  },
+  "combinadores_estandar": {
+    "promedio_simple": {"espacio": {}, "nota": "sin hiperparámetros; no consume evaluaciones"},
+    "em_global": {"espacio": {}, "nota": "RegionalMAPEM con K=1; sin hiperparámetros"},
+    "stacking_logistico": {
+      "espacio": {"C": {"tipo": "log", "low": 1e-3, "high": 1e3}},
+      "inicio": {"C": 1.0},
+      "entrada": "logit de las predicciones fuera de pliegue de los 11 expertos"
+    }
+  },
+  "modelo_original": {
+    "RegionalMAPEM": {
+      "expertos": "los 11 benchmarks, con los hiperparámetros elegidos en el bucle interno del mismo pliegue externo",
+      "espacio_regiones": "PCA de 2 componentes sobre las variables numéricas continuas (más de 2 valores distintos en el pliegue de ajuste), tras imputar por mediana y transformar cada variable a cuantiles normales (QuantileTransformer, output_distribution='normal', n_quantiles=min(1000, n)); todo ajustado dentro del pliegue",
+      "fijos": {"max_iter_em": 5000, "tol_relativa_em": 1e-9, "max_iter_gmm": 300, "tol_gmm": 1e-6,
+                "reg_covar_gmm": 1e-3, "n_init_gmm": 3, "recorte_probabilidades": 1e-6,
+                "inicio_em": "pesos uniformes 1/M (estrictamente positivos, supuesto S4)"},
+      "nota_valores_fijos": "coinciden con src/original_model.py (GMM_MAX_ITER, GMM_TOL, GMM_REG_COVAR y los valores por defecto de RegionalMAPEM). reg_covar = 1e-3 se aplica sobre componentes estandarizadas",
+      "optimizacion_sin_reentrenar_expertos": "en cada ensayo de K, c y covarianza se usa RegionalMAPEM.fit_from_predictions sobre las predicciones fuera de pliegue de los expertos ya optimizados; los pliegues internos de la búsqueda son los mismos 3 del protocolo",
+      "espacio": {
+        "K": {"tipo": "int", "low": 1, "high": 8},
+        "c": {"tipo": "log", "low": 0.01, "high": 200.0},
+        "covarianza": {"tipo": "categorical", "valores": ["diag", "full"]}
+      },
+      "inicio": {"K": 4, "c": 10.0, "covarianza": "full"},
+      "fuente_inicio": "configuración intermedia del piloto 6 (no hay literatura previa para esta regla)",
+      "nota_c": "c = 0.01 equivale en la práctica a no usar prior; la variante exacta c = 0 se evalúa en la ablación"
+    }
+  },
+  "ablacion": {
+    "mapem_sin_prior": "RegionalMAPEM con c = 0 y el resto de hiperparámetros elegidos para el modelo completo",
+    "mapem_K1": "pesos globales por EM (idéntico a em_global)",
+    "mapem_regiones_duras": "r_k(x) reemplazado por la indicadora de argmax_k r_k(x)",
+    "promedio_simple": "pesos 1/M",
+    "stacking_logistico": "regresión logística sobre los logits de los expertos"
+  }
+}

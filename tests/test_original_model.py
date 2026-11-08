@@ -87,6 +87,45 @@ def test_un_region_equivale_a_pesos_globales(datos):         # K = 1 y c = 0: me
     np.testing.assert_allclose(m.weights_[0], m.global_weights_, atol=1e-4)
 
 
+def test_fit_from_predictions_equivale_a_fit(datos, modelo):  # misma ruta de regiones y pesos
+    X, y = datos
+    Xa, ya = X[:450], y[:450]
+    m2 = RegionalMAPEM(n_regions=3, random_state=0).fit_from_predictions(Xa, ya, modelo.oof_proba_)
+    np.testing.assert_allclose(m2.weights_, modelo.weights_)
+    P_test = modelo.expert_proba(X[450:])
+    np.testing.assert_allclose(m2.predict_proba_from_predictions(X[450:], P_test), modelo.predict_proba(X[450:]))
+    with pytest.raises(ValueError):                          # sin expertos entrenados no hay predict_proba
+        m2.predict_proba(X[450:])
+    with pytest.raises(ValueError):                          # filas que no coinciden
+        RegionalMAPEM().fit_from_predictions(Xa, ya, modelo.oof_proba_[:10])
+
+
+def test_gmm_varias_inicializaciones_no_empeora(datos):      # gmm_n_init conserva la mejor verosimilitud
+    from src.original_model import _gmm_fit_best, _gmm_loglik
+    X, _ = datos
+    Z = (X[:, :2] - X[:, :2].mean(0)) / X[:, :2].std(0)
+    una = _gmm_loglik(Z, *_gmm_fit_best(Z, 4, np.random.default_rng(0), n_init=1))
+    cinco = _gmm_loglik(Z, *_gmm_fit_best(Z, 4, np.random.default_rng(0), n_init=5))
+    assert cinco >= una - 1e-12
+
+
+def test_optimo_global_en_el_borde():                         # (v) supuesto S4: alpha = 1, óptimo con pesos nulos
+    from scipy.optimize import minimize
+    rng = np.random.default_rng(1)
+    n, M = 500, 3
+    y = rng.integers(0, 2, n)
+    p_bueno = np.clip(np.where(y == 1, 0.8, 0.2) + rng.normal(0, 0.05, n), 0.01, 0.99)
+    P = np.column_stack([p_bueno, np.full(n, 0.5), 1 - p_bueno])   # 2.º y 3.º expertos inútiles
+    Lik = np.where(y[:, None] == 1, P, 1 - P)
+    R, alpha = np.ones((n, 1)), np.ones((1, M))
+    pi, _, _ = map_em(Lik, R, alpha, max_iter=20000, tol=1e-14)
+    res = minimize(lambda v: -log_posterior(np.abs(v).reshape(1, M) / np.abs(v).sum(), Lik, R, alpha),
+                   np.full(M, 1 / M), method="Nelder-Mead", options=dict(xatol=1e-10, fatol=1e-12))
+    F_ref = -res.fun
+    assert log_posterior(pi, Lik, R, alpha) >= F_ref - 1e-6  # el EM alcanza el máximo global
+    assert pi[0, 2] < 1e-3                                   # y el experto dañino queda en el borde (peso ~0)
+
+
 def test_variantes_del_protocolo(datos):                      # covarianza diagonal y regiones duras (ablación)
     X, y = datos
     for kw in [dict(covariance="diag"), dict(hard_regions=True)]:

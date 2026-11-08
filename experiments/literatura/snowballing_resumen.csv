@@ -1,0 +1,6 @@
+semilla,encontrada,id_openalex,anio,citas_adelante,referencias_atras,con_churn,fecha
+De Caigny 2018 (logit leaf model),True,W2792328488,2018,558,77,301,2026-11-08
+Soares 2006 (DES-Clustering),True,W2140638728,2006,75,24,0,2026-11-08
+Yan 2001 (MoE en churn),True,W1732973385,2002,38,13,26,2026-11-08
+Sill 2009 (FWLS),True,W1751428553,2009,262,15,2,2026-11-08
+Jordan y Jacobs 1994 (MoE),True,W2025653905,1994,2779,34,1,2026-11-08
