@@ -28,6 +28,7 @@ sphinx:
       - componentes.css
   extra_extensions:
     - sphinx_design
+    - sphinx_proof
 
 favicon: Imagenes/favicon.ico
 

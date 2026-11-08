@@ -1,1 +1,2 @@
 jupyter-book==0.15.1
+sphinx-proof==0.2.0

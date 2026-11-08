@@ -1,0 +1,23 @@
+name: Pruebas del modelo original
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  pytest:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Descargar repositorio
+        uses: actions/checkout@v4
+
+      - name: Configurar Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Instalar dependencias del núcleo
+        run: python -m pip install numpy==2.0.2 scipy==1.15.3 scikit-learn==1.6.1 pandas==2.3.3 pytest==8.3.5
+
+      - name: Ejecutar pruebas unitarias (tests/test_original_model.py)
+        run: python -m pytest -v tests/

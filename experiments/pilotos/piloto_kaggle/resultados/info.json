@@ -1,0 +1,11 @@
+{
+  "dataset": "WA_Fn-UseC_-Telco-Customer-Churn.csv (desarrollo, n=5634; hold-out sin usar)",
+  "mejor_benchmark": "LR_splines",
+  "friedman_p": 2.8104287509554715e-55,
+  "nemenyi_CD": 4.289604706734938,
+  "pliegues_mejor_experto_cambia": 23,
+  "n_pliegues": 25,
+  "convergio_todos": false,
+  "monotono_todos": true,
+  "iter_media": 494.24
+}

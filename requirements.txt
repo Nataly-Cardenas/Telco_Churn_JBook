@@ -105,3 +105,6 @@ wheel==0.48.0
 wrapt==2.4.1
 xgboost==3.0.5
 zipp==4.1.0
+catboost==1.2.10
+lightgbm==4.7.0
+pytest==8.3.5
