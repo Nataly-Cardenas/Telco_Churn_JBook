@@ -7,3 +7,9 @@ __pycache__/
 revision_tmp/
 # Copia comprimida local de los resultados (ya versionados en resultados_modelado/)
 resultados_modelado.zip
+
+# Material obsoleto o local que no se sube
+_archivo_no_subir/
+experiments/pilotos/*/cache/
+.pytest_cache/
+catboost_info/

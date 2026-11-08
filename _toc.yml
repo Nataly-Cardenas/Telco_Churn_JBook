@@ -4,6 +4,7 @@ chapters:
   - file: EDA_
   - file: PREPROCESAMIENTO
   - file: MODELADO_AVANZADO
+  - file: MODELO_PROPIO
   - file: CODIGO_EXPERIMENTO
   - file: paper
   - file: README
