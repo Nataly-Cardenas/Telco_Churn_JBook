@@ -8,6 +8,18 @@ logo: Imagenes/logo.png
 execute:
   execute_notebooks: "off"
 
+# Solo los capítulos del índice: se excluyen entornos, resultados y documentos de trabajo
+exclude_patterns:
+  - ".book-env/*"
+  - ".venv/*"
+  - "_build/*"
+  - "revision_tmp/*"
+  - "experiments/*"
+  - "catboost_info/*"
+  - "_archivo_no_subir/*"
+  - ".pytest_cache/*"
+  - "EDA.ipynb"
+
 html:
   extra_css:
     - style/custom.css
@@ -26,6 +38,7 @@ sphinx:
       - style
     html_css_files:
       - componentes.css
+    bibtex_reference_style: author_year
   extra_extensions:
     - sphinx_design
     - sphinx_proof

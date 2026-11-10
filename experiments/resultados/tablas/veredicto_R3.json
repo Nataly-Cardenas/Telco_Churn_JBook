@@ -1,5 +1,5 @@
 {
- "parcial": true,
+ "parcial": false,
  "mejor_benchmark": {
   "telco": "logistic_splines",
   "uci_563_iranian": "hist_gb",

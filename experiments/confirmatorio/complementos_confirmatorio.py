@@ -119,14 +119,19 @@ def correr_shap(n):
     bp = com["params"]
     mo = mapem(Ztr, y[tr], O, seed_for("model", 0, 0, 100), bp["K"], bp["c"], bp["covarianza"])
     columnas = list(X.columns)
+    # KernelExplainer mezcla variables de clientes distintos: un TotalCharges vacío (tenure 0) junto al tenure de
+    # otro cliente dispara el control del ETL. Se aplica antes la misma conversión del ETL (vacío -> 0), que no
+    # cambia la predicción de ningún cliente real.
+    XS = X.copy()
+    XS["TotalCharges"] = pd.to_numeric(XS["TotalCharges"], errors="coerce").fillna(0.0)
     rng = np.random.default_rng(seed_for("test", 900))
-    fondo = X.iloc[rng.choice(tr, 100, replace=False)]
-    muestra = X.iloc[rng.choice(te, 200, replace=False)]
+    fondo = XS.iloc[rng.choice(tr, 100, replace=False)]
+    muestra = XS.iloc[rng.choice(te, 200, replace=False)]
 
     def como_df(A):
         d = pd.DataFrame(A, columns=columnas)
         for c in columnas:
-            d[c] = d[c].astype(X[c].dtype)
+            d[c] = d[c].astype(XS[c].dtype)
         return d
 
     def f_original(A):

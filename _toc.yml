@@ -1,10 +1,20 @@
 format: jb-book
 root: intro
-chapters:
-  - file: EDA_
-  - file: PREPROCESAMIENTO
-  - file: MODELADO_AVANZADO
-  - file: MODELO_PROPIO
-  - file: CODIGO_EXPERIMENTO
-  - file: paper
-  - file: README
+parts:
+  - caption: Proyecto
+    chapters:
+      - file: 01_correcciones
+      - file: EDA_
+      - file: PREPROCESAMIENTO
+      - file: MODELADO_AVANZADO
+      - file: 04_literatura
+      - file: MODELO_PROPIO
+      - file: 06_validacion
+      - file: 07_evaluacion_ampliada
+      - file: 09_conclusiones
+      - file: 10_reproducibilidad
+  - caption: Apéndices
+    chapters:
+      - file: CODIGO_EXPERIMENTO
+      - file: paper
+      - file: README

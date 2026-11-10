@@ -343,6 +343,7 @@ el capítulo 6 del libro. Los análisis no previstos se reportan como explorator
 | D4 | 2026-11-10 | La escalabilidad se corre con 1 proceso. | Con procesos en paralelo, los tiempos de ajuste dependen de la carga y del tipo de núcleo (el equipo mezcla núcleos de rendimiento y de eficiencia). | Tiempos más comparables entre modelos. Es exploratoria. |
 | D5 | 2026-11-10 | Antes de evaluar el hold-out se guardó la huella SHA-256 de cada tabla del análisis confirmatorio (`resultados/sello_pre_holdout.json`, 00:37) y una copia de esas tablas (`resultados/tablas_pre_holdout/`), registradas en un commit previo al hold-out. | Poder demostrar que el análisis de los cuatro conjuntos no cambió después de ver el hold-out. | Ninguno: agrega trazabilidad. |
 | D6 | 2026-11-08 a 2026-11-10 | Monitor de solo lectura (`experiments/monitor/`) y auditoría de tiempos (`experiments/INFORME_AUDITORIA_TIEMPOS.md`). | Seguir la corrida sin intervenirla. | Ninguno: no escribe en `experiments/resultados/`, nunca abre los checkpoints del hold-out y no calcula métricas de pliegue externo. |
+| D7 | 2026-11-10 | SHAP: antes de explicar, `TotalCharges` vacío se convierte en 0 en el fondo y en la muestra (la misma regla del ETL para clientes con tenure 0). | KernelExplainer combina variables de clientes distintos; un `TotalCharges` vacío junto al tenure de otro cliente activaba el control de integridad del ETL y la corrida falló tres veces. | Ninguno sobre clientes reales: su predicción no cambia. Es exploratorio. |
 
 ## 13. Congelamiento
 

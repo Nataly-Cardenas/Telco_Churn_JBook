@@ -1,0 +1,5 @@
+conjunto,n,p_original,p_preprocesado,churn,celdas_faltantes,repeticiones,pliegues_externos
+telco,5634,19,24,0.2653532126375577,0.0,5,25
+uci_563_iranian,2850,13,13,0.15649122807017543,0.0,5,25
+openml_40701_churn,5000,19,70,0.1414,0.0,5,25
+openml_1112_kddcup09_churn,10000,230,908,0.0734,0.6978491304347825,2,10
