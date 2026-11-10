@@ -335,6 +335,15 @@ ajuste y el de evaluación queda limpio (`experiments/confirmatorio/robustez.py`
 Toda desviación posterior al tag se registra aquí, con fecha, motivo y efecto esperado, y se declara en
 el capítulo 6 del libro. Los análisis no previstos se reportan como exploratorios.
 
+| # | Fecha | Qué cambió | Motivo | Efecto sobre los resultados |
+|---|---|---|---|---|
+| D1 | 2026-11-08 | La corrida de Telco, lanzada a las 16:13 con 16 procesos, se cayó a las 17:17 con `OSError: [WinError 1450]` (recursos del sistema agotados). Se relanzó a las 17:19 con 10 procesos y un reintento automático (`correr_con_reintentos.sh`), que no llegó a usarse. | Con 16 procesos y 7,5 GB de RAM el sistema se quedó sin recursos. | Ninguno esperado. Cada tarea tiene su semilla fija y no depende del número de procesos; las tareas ya guardadas se conservaron. Se repitieron 3 tareas al azar (Telco r0 f0 kNN, Telco r2 f3 árbol, Iranian r1 f4 logística) y coincidieron bit a bit con sus checkpoints. |
+| D2 | 2026-11-08 | `correr_anidado.py`: se silenció el registro de Optuna en los procesos de trabajo. | El registro llenaba el log con una línea por ensayo. | Ninguno: solo cambia lo que se imprime. |
+| D3 | 2026-11-09 y 2026-11-10 | `analizar.py` y `complementos_confirmatorio.py` se escribieron después del tag, siguiendo las secciones 8 a 10. Antes de correrlos se corrigió: número de procesos como argumento (antes 16 fijo, como en D1; en `robustez.py` el valor por defecto pasó de 16 a 10); en las combinaciones del dashboard, los pasos del preprocesador se aplanan dentro del `Pipeline` de imblearn, que no admite un `Pipeline` anidado (el primer intento falló por eso); SHAP con semilla fija por trozo (`seed_for('test', 901, j, i)`), porque KernelExplainer muestrea con `np.random`, y repartido en 10 trozos de 20 clientes; y una expresión redundante en el cálculo de la diferencia de F1 de McNemar. | Reproducibilidad y evitar repetir D1. | Ninguno sobre la familia confirmatoria: las correcciones no cambian qué se calcula. |
+| D4 | 2026-11-10 | La escalabilidad se corre con 1 proceso. | Con procesos en paralelo, los tiempos de ajuste dependen de la carga y del tipo de núcleo (el equipo mezcla núcleos de rendimiento y de eficiencia). | Tiempos más comparables entre modelos. Es exploratoria. |
+| D5 | 2026-11-10 | Antes de evaluar el hold-out se guardó la huella SHA-256 de cada tabla del análisis confirmatorio (`resultados/sello_pre_holdout.json`, 00:37) y una copia de esas tablas (`resultados/tablas_pre_holdout/`), registradas en un commit previo al hold-out. | Poder demostrar que el análisis de los cuatro conjuntos no cambió después de ver el hold-out. | Ninguno: agrega trazabilidad. |
+| D6 | 2026-11-08 a 2026-11-10 | Monitor de solo lectura (`experiments/monitor/`) y auditoría de tiempos (`experiments/INFORME_AUDITORIA_TIEMPOS.md`). | Seguir la corrida sin intervenirla. | Ninguno: no escribe en `experiments/resultados/`, nunca abre los checkpoints del hold-out y no calcula métricas de pliegue externo. |
+
 ## 13. Congelamiento
 
 **Tiempos medidos el 2026-11-08** (`experiments/confirmatorio/tiempos_medidos.csv`). Se midieron 6 evaluaciones al

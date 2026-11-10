@@ -168,7 +168,7 @@ def sensibilidad(f_r):
 
 
 if __name__ == "__main__":
-    n = int(sys.argv[1]) if len(sys.argv) > 1 else 16
+    n = int(sys.argv[1]) if len(sys.argv) > 1 else 10
     Parallel(n_jobs=n, batch_size=1)(delayed(tarea_modelo)(e, f, m) for e in ESCENARIOS for f in range(5) for m in BENCHMARKS)
     Parallel(n_jobs=n, batch_size=1)(delayed(tarea_combinar)(e, f) for e in ESCENARIOS for f in range(5))
     filas = sum(Parallel(n_jobs=n, batch_size=1)(delayed(sensibilidad)((r, f)) for r in range(5) for f in range(5)), [])

@@ -46,6 +46,7 @@ def guardar(destino, obj):
 
 
 def estudio(semilla):
+    optuna.logging.set_verbosity(optuna.logging.ERROR)     # también en los procesos de trabajo
     return optuna.create_study(direction="minimize",
                                sampler=optuna.samplers.TPESampler(seed=semilla % 2**31, n_startup_trials=N_STARTUP))
 

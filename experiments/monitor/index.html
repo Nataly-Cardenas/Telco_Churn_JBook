@@ -1,0 +1,301 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Monitor Telco Churn</title>
+<style>
+:root{color-scheme:dark;--bg:#141516;--panel:#1d1e20;--panel2:#26282b;--line:#303337;--fg:#eef0f2;--muted:#a3a8ae;--dim:#71767c;
+--azul:#2f5aa8;--azul2:#1f3f7e;--azul3:#5b8def;--verde:#5aa638;--oro:#b08a35;--oro2:#e0b64f;--rojo:#c2453a;--rojo2:#f0897f;--gris:#2a2c2f;
+--v:#7fd19b;--d:#8cb8f5;--e:#e6bd62;--nd:#a3a8ae;font-family:"Segoe UI",system-ui,-apple-system,Roboto,sans-serif}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--fg);font-size:14px;line-height:1.45;font-variant-numeric:tabular-nums}
+main{max-width:1500px;margin:0 auto;padding:24px clamp(12px,3vw,48px) 56px;display:flex;flex-direction:column;gap:30px}
+h1,h2,h3{margin:0;text-wrap:balance}
+h1{font-size:clamp(20px,3vw,26px);font-weight:700}
+h2{font-size:17px;font-weight:700;display:flex;flex-wrap:wrap;gap:4px 10px;align-items:baseline}
+h2 small{font-weight:400;color:var(--muted);font-size:13px}
+.sec{display:flex;flex-direction:column;gap:13px;min-width:0}
+header{display:flex;flex-wrap:wrap;gap:12px;justify-content:space-between;align-items:flex-start}
+.sub{color:var(--muted);font-size:13px;margin-top:3px}
+.pill{display:inline-flex;gap:8px;align-items:center;border:2px solid var(--muted);border-radius:99px;padding:6px 17px;font-weight:700;white-space:nowrap}
+.pill i{width:9px;height:9px;border-radius:50%;background:currentColor}
+.pill.ejecutando{border-color:var(--oro2);color:var(--oro2)}.pill.completado{border-color:var(--verde);color:#8fd46e}.pill.error{border-color:var(--rojo);color:var(--rojo2)}
+.detalle{color:var(--muted);font-size:13px;max-width:62ch}
+.aviso{background:#3a1e1b;border:1px solid var(--rojo);color:#ffd2cd;padding:9px 13px;border-radius:7px}
+.grid{display:grid;gap:12px}
+.kpis{grid-template-columns:repeat(auto-fill,minmax(min(205px,100%),1fr))}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:9px;padding:14px 15px;min-width:0}
+.k-t{color:var(--muted);font-size:12.5px;display:flex;flex-wrap:wrap;justify-content:space-between;gap:4px 6px;align-items:flex-start}
+.k-v{font-size:23px;font-weight:700;margin:5px 0 2px;overflow-wrap:anywhere;line-height:1.2}
+.k-n{color:var(--muted);font-size:12px}
+.tag{font-size:10.5px;font-weight:600;border:1px solid currentColor;padding:0 5px;border-radius:4px;white-space:nowrap;flex:none}
+.tag.V{color:var(--v)}.tag.D{color:var(--d)}.tag.E{color:var(--e)}.tag.ND{color:var(--nd)}
+.leyenda{display:flex;flex-wrap:wrap;gap:6px 14px;color:var(--muted);font-size:12.5px;align-items:center}
+.leyenda span{display:inline-flex;gap:5px;align-items:center}
+.leyenda i{font-style:normal}
+.dot{width:12px;height:12px;border-radius:3px;display:inline-block}
+.barra{height:13px;border-radius:7px;background:var(--panel2);overflow:hidden}
+.barra>b{display:block;height:100%;background:var(--azul3);border-radius:7px}
+.barra.ok>b{background:var(--verde)}
+.ds{grid-template-columns:repeat(auto-fill,minmax(min(310px,100%),1fr))}
+.ds .card{display:flex;flex-direction:column;gap:9px}
+.fila{display:flex;justify-content:space-between;gap:10px;align-items:baseline;flex-wrap:wrap}
+.fila h3{font-size:15.5px}
+.est{font-size:11.5px;font-weight:700;border-radius:5px;padding:2px 8px;white-space:nowrap;background:var(--panel2);color:var(--muted)}
+.est.en_ejecucion,.est.en_curso{background:var(--oro);color:#18140a}.est.completado{background:#2f6a21;color:#e6f7dc}.est.error{background:var(--rojo);color:#fff}
+.est.detenido,.est.parcial,.est.por_confirmar{background:#3b3f55;color:#cfd4ee}
+dl{display:grid;grid-template-columns:auto minmax(0,1fr);gap:3px 12px;margin:0;font-size:12.5px}
+dt{color:var(--muted)}dd{margin:0;overflow-wrap:anywhere}
+.chips{display:flex;flex-wrap:wrap;gap:4px}
+.chip{font-size:11px;padding:1px 6px;border-radius:4px;background:var(--panel2);color:var(--muted)}
+.chip.ok{background:#27451f;color:#c6ebb4}
+.tabs{display:flex;flex-wrap:wrap;gap:6px}
+button{font:inherit;color:inherit;cursor:pointer}
+button:focus-visible,.c:focus-visible{outline:2px solid #fff;outline-offset:1px}
+.tabs button{background:var(--panel);border:1px solid var(--line);padding:6px 13px;border-radius:7px}
+.tabs button.on{background:var(--azul);border-color:var(--azul3);font-weight:600}
+.interruptor{display:inline-flex;gap:8px;align-items:center;color:var(--muted);font-size:13px;cursor:pointer}
+.mats{grid-template-columns:repeat(auto-fill,minmax(min(345px,100%),1fr))}
+.mat h3{font-size:15px;display:flex;flex-wrap:wrap;gap:3px 9px;align-items:baseline}
+.mat h3 small{font-weight:400;color:var(--muted);font-size:12.5px}
+.mg{display:grid;grid-template-columns:30px repeat(5,minmax(0,1fr));gap:3px;margin-top:10px}
+.mg .e{color:var(--muted);font-size:11.5px;text-align:center;align-self:center}
+.c{border:0;border-radius:5px;padding:5px 1px;min-height:43px;text-align:center;background:var(--gris);color:var(--dim);font-size:11px;line-height:1.25;overflow:hidden}
+.c strong{display:block;font-size:12.5px;font-weight:600}
+.c.ok{background:var(--azul2);color:#d8e4fb}
+.c.activa{background:var(--oro);color:#17130a}
+.c.fallas,.c.ilegible{background:#7a2c25;color:#ffe0dc}
+.c.leyendo{background:#2a3550;color:#a8b8d8}
+.c.sel{outline:2px solid #fff;outline-offset:1px}
+#detalle{position:sticky;bottom:8px;z-index:5;background:#20242b;border:1px solid var(--azul3);box-shadow:0 6px 24px #0009}
+#detalle .x{background:none;border:0;color:var(--muted);font-size:18px;line-height:1;padding:0 4px}
+.etapas{grid-template-columns:repeat(auto-fill,minmax(min(310px,100%),1fr))}
+.etapa{display:flex;flex-direction:column;gap:7px}
+.etapa h3{font-size:14px}
+.nota{color:var(--muted);font-size:12px}
+table{border-collapse:collapse;width:100%;font-size:13px}
+.tw{overflow-x:auto}
+th{color:var(--muted);text-align:left;font-weight:500;font-size:12px;padding:5px 8px}
+td{border-top:1px solid var(--line);padding:6px 8px}
+footer{color:var(--muted);font-size:12.5px;display:flex;flex-direction:column;gap:5px;border-top:1px solid var(--line);padding-top:14px}
+[hidden]{display:none!important}
+@media (max-width:440px){.mats,.ds,.etapas{grid-template-columns:minmax(0,1fr)}.kpis{grid-template-columns:repeat(2,minmax(0,1fr))}.k-v{font-size:19px}.c{font-size:10px;min-height:40px}.c strong{font-size:11.5px}.mg{grid-template-columns:24px repeat(5,minmax(0,1fr))}}
+@media (prefers-reduced-motion:no-preference){.barra>b{transition:width .4s}}
+</style>
+</head>
+<body>
+<main>
+  <header>
+    <div>
+      <h1>Progreso de los experimentos</h1>
+      <div class="sub" id="sub">Conectando con el monitor…</div>
+      <div class="detalle" id="detalleEstado"></div>
+    </div>
+    <div class="pill" id="pill"><i></i><span id="pillT">Sin datos</span></div>
+  </header>
+  <div class="aviso" id="avisos" hidden></div>
+  <section class="sec">
+    <div class="grid kpis" id="kpis"></div>
+    <div class="leyenda">
+      <span><i class="tag V">Verificado</i> leído de archivos o del sistema</span>
+      <span><i class="tag D">Derivado</i> calculado o inferido de datos verificados</span>
+      <span><i class="tag E">Estimado</i> proyección que puede fallar</span>
+      <span><i class="tag ND">No disponible</i> no se puede saber aún</span>
+    </div>
+    <div class="nota" id="notaEta"></div>
+  </section>
+
+  <section class="sec">
+    <h2>Conjuntos de datos</h2>
+    <div class="grid ds" id="ds"></div>
+  </section>
+
+  <section class="sec" id="secActivos">
+    <h2>Tareas en curso <small>Se deducen de la cola de ejecución. Las evaluaciones de Optuna solo se conocen al terminar cada tarea.</small></h2>
+    <div class="card tw"><table><thead><tr><th>Conjunto</th><th>Modelo</th><th>Repetición</th><th>Pliegue</th><th>En curso desde</th></tr></thead><tbody id="activos"></tbody></table></div>
+  </section>
+
+  <section class="sec">
+    <h2>Validación anidada por modelo <small>Cada celda es un pliegue externo: 30 evaluaciones de TPE, 3 pliegues internos y Platt.</small></h2>
+    <div class="tabs" id="tabs" role="tablist"></div>
+    <div class="leyenda">
+      <span><i class="dot" style="background:var(--gris)"></i>Pendiente</span>
+      <span><i class="dot" style="background:var(--oro)"></i>Activa</span>
+      <span><i class="dot" style="background:var(--azul2)"></i>Completada</span>
+      <span><i class="dot" style="background:#7a2c25"></i>Con evaluaciones fallidas o checkpoint ilegible</span>
+    </div>
+    <label class="interruptor"><input type="checkbox" id="prov"> Ver log-loss del bucle interno (provisional, no confirmatorio)</label>
+    <div class="nota" id="notaProv" hidden>Es el objetivo que optimiza cada búsqueda. No sale del pliegue externo, no es un resultado y no sirve para comparar modelos. No lo uses para decidir nada sobre el experimento.</div>
+    <div class="card" id="detalle" hidden></div>
+    <div class="grid mats" id="mats"></div>
+  </section>
+
+  <section class="sec">
+    <h2>Otras etapas de cómputo <small>Solo cierran con evidencia en disco. Que exista el script no cuenta.</small></h2>
+    <div class="grid etapas" id="etComputo"></div>
+  </section>
+  <section class="sec">
+    <h2>Documentación y desarrollo <small>Un archivo presente no prueba que la tarea esté terminada: el cierre lo confirma el equipo en avance_manual.json.</small></h2>
+    <div class="grid etapas" id="etDoc"></div>
+  </section>
+
+  <footer>
+    <div>Solo lectura: el monitor no escribe en el proyecto, no entrena nada y nunca abre los checkpoints del hold-out. Las métricas de pliegue externo no se calculan aquí y salen solo de <code>analizar.py</code>.</div>
+    <div id="pie"></div>
+  </footer>
+</main>
+<script>
+"use strict";
+const $=id=>document.getElementById(id);
+const esc=s=>String(s??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+const NOMBRES={knn:"KNN",naive_bayes:"Naive Bayes",logistic:"Regresión logística",decision_tree:"Árbol de decisión",random_forest:"Random Forest",xgboost:"XGBoost",svm:"SVM",logistic_splines:"Logística con splines",hist_gb:"HistGB",lightgbm:"LightGBM",catboost:"CatBoost",_combinadores:"RegionalMAPEM y combinadores"};
+const ESTADOS={en_ejecucion:"En ejecución",en_curso:"En curso",completado:"Completado",pendiente:"Pendiente",detenido:"Detenido",error:"Error",parcial:"Parcial",sin_evidencia:"Sin evidencia",por_confirmar:"Por confirmar"};
+const GENERAL={ejecutando:"Ejecutándose",detenido:"Detenido",completado:"Completado",error:"Error",iniciando:"Iniciando"};
+const FIAB={alta:"alta",media:"media",baja:"baja"};
+let F=null,conjunto=null,sel=null,recibido=0,fallo=false;
+function dur(s){if(s==null||!isFinite(s))return"—";s=Math.max(0,s);if(s<60)return Math.round(s)+" s";const m=Math.floor(s/60);if(m<60)return m+" min "+String(Math.round(s%60)).padStart(2,"0")+" s";const h=Math.floor(m/60);if(h<48)return h+" h "+String(m%60).padStart(2,"0")+" min";return Math.floor(h/24)+" d "+(h%24)+" h"}
+function corto(s){if(s==null)return"";if(s<60)return Math.round(s)+"s";if(s<3600)return Math.round(s/60)+"m";return(s/3600).toFixed(1)+"h"}
+function fecha(t){if(!t)return"—";return new Date(t*1000).toLocaleString("es-CO",{day:"2-digit",month:"short",hour:"2-digit",minute:"2-digit",hour12:false})}
+function hora(t){return t?new Date(t*1000).toLocaleTimeString("es-CO",{hour12:false}):"—"}
+const num=(x,d=1)=>x==null?"—":Number(x).toLocaleString("es-CO",{minimumFractionDigits:d,maximumFractionDigits:d});
+const tag=(k,t)=>`<span class="tag ${k}">${t}</span>`;
+const V=tag("V","Verificado"),D=tag("D","Derivado"),E=tag("E","Estimado"),ND=tag("ND","No disponible");
+function kpi(t,v,n,et){return`<div class="card"><div class="k-t"><span>${t}</span>${et}</div><div class="k-v">${v}</div><div class="k-n">${n||""}</div></div>`}
+function ahoraAj(){return F?F.ahora+(Date.now()-recibido)/1000:0}
+
+function pintarKpis(){
+  const f=F,a=ahoraAj(),t=f.tiempos||{},eta=f.eta||{},s=f.sistema||{},ta=f.tareas||{},act=f.actual||{};
+  const r=[];
+  r.push(kpi("Estado general",GENERAL[f.estado_general.codigo]||f.estado_general.codigo,esc(f.estado_general.detalle),V));
+  r.push(kpi("En ejecución ahora",act.conjunto?esc(act.conjunto):(act.proceso?esc(act.proceso):"Nada"),act.etapa?esc(act.etapa):"",act.conjunto?D:V));
+  r.push(kpi("Tareas de validación anidada",`${ta.hechas} / ${ta.total}`,`${num(ta.pct)} % de las tareas`,V));
+  r.push(kpi("Avance por cómputo",ta.pct_computo==null?"—":`≈ ${num(ta.pct_computo,0)} %`,"Pesa cada tarea por su costo. Es más honesto que contar tareas.",E));
+  r.push(kpi("Tiempo transcurrido",dur(t.inicio?a-t.inicio:null),`Desde ${fecha(t.inicio)}. Intento vigente: ${dur(t.inicio_intento?a-t.inicio_intento:null)}`,V));
+  if(eta.anidada){
+    const m=eta.restante_anidada;
+    r.push(kpi("Restante de validación anidada",`≈ ${dur(m.medio)}`,`Entre ${dur(m.bajo)} y ${dur(m.alto)}. Fiabilidad ${FIAB[eta.fiabilidad]}.`,E));
+    r.push(kpi("Fin de validación anidada",fecha(eta.anidada.medio),`Entre ${fecha(eta.anidada.bajo)} y ${fecha(eta.anidada.alto)}`,E));
+  }else r.push(kpi("Validación anidada","Terminada","Todas las tareas tienen checkpoint",V));
+  if(eta.todo)r.push(kpi("Fin de todo el cómputo",fecha(eta.todo.medio),`Entre ${fecha(eta.todo.bajo)} y ${fecha(eta.todo.alto)}, si cada paso se lanza sin espera`,E));
+  r.push(kpi("Procesos activos",s.procesos||0,s.rss_trabajadores_gb?`Usan ${num(s.rss_trabajadores_gb,2)} GB en RAM. ≈ ${num(eta.efectivos)} efectivos.`:"",V));
+  r.push(kpi("RAM disponible",`${num(s.ram_disp_gb,2)} GB`,`De ${num(s.ram_total_gb,1)} GB. Por debajo de 0,3 GB salta una alarma.`,V));
+  r.push(kpi("CPU del sistema",`${num(s.cpu_pct,0)} %`,"Promedio de todo el equipo durante el último ciclo",V));
+  r.push(kpi("Último checkpoint",t.ultimo_ckpt?`hace ${dur(a-t.ultimo_ckpt)}`:"—",t.ultimo_ckpt?`A las ${hora(t.ultimo_ckpt)}. Una tarea larga puede tardar más de 1 h.`:"",V));
+  r.push(kpi("Evaluaciones de la tarea en curso","—","Optuna no las registra durante la tarea. Se conocen al guardar el checkpoint.",ND));
+  $("kpis").innerHTML=r.join("");
+  const partes=[];
+  if(eta.por_leer)partes.push(`Primera lectura en curso: faltan ${eta.por_leer} checkpoints por leer, poco a poco para no cargar el equipo. Hasta entonces los tiempos y la estimación están incompletos.`);
+  if(eta.anidada)partes.push(`La estimación usa los tiempos reales por modelo y conjunto. Si un conjunto aún no tiene datos, parte de la medición previa al congelamiento, corregida con lo observado en los demás. Fiabilidad actual: ${FIAB[eta.fiabilidad]}.`);
+  if(eta.fiabilidad==="baja")partes.push("KDDCup09 domina lo que falta y todavía no tiene tiempos reales, así que el rango es amplio. No considera una posible reducción de procesos por falta de RAM.");
+  partes.push("El total no incluye escalabilidad ni análisis estadístico, que no tienen medición.");
+  $("notaEta").textContent=partes.join(" ");
+}
+function pintarDs(){
+  $("ds").innerHTML=F.conjuntos.map(c=>{
+    const ok=c.estado==="completado";
+    const rest=c.restante?`≈ ${dur(c.restante.medio)} ${tag("E","Estimado")}`:(ok?"0":"—");
+    const fin=c.fin?`${fecha(c.fin.medio)} ${tag("E","Estimado")}`:(ok?hora(c.ult):"—");
+    const listos=c.modelos_listos.length?c.modelos_listos.map(m=>`<span class="chip ok">${esc(NOMBRES[m]||m)}</span>`).join(""):'<span class="chip">Ninguno</span>';
+    const pend=c.modelos_pendientes.length?c.modelos_pendientes.map(m=>`<span class="chip">${esc(NOMBRES[m]||m)}</span>`).join(""):'<span class="chip">Ninguno</span>';
+    return`<div class="card"><div class="fila"><h3>${esc(c.nombre)}</h3><span class="est ${c.estado}">${ESTADOS[c.estado]||c.estado}</span></div>
+    <div class="barra ${ok?"ok":""}"><b style="width:${c.pct.toFixed(1)}%"></b></div>
+    <div class="fila"><span>${c.hechas} / ${c.total} tareas</span><span class="nota">${c.reps} × 5 pliegues, ${num(c.pct)} %</span></div>
+    <dl><dt>Horas-proceso</dt><dd>${num(c.horas_proceso)} h ${tag("D","Derivado")}</dd>
+    <dt>Entre checkpoints</dt><dd>${c.inicio?dur(c.reloj):"—"} de reloj ${tag("V","Verificado")}</dd>
+    <dt>Restante</dt><dd>${rest}</dd><dt>${ok?"Terminó":"Fin"}</dt><dd>${fin}</dd>
+    ${c.fiabilidad?`<dt>Fiabilidad</dt><dd>${FIAB[c.fiabilidad]}</dd>`:""}</dl>
+    <div><div class="nota">Modelos terminados</div><div class="chips">${listos}</div></div>
+    <div><div class="nota">Modelos pendientes</div><div class="chips">${pend}</div></div></div>`}).join("");
+}
+function pintarActivos(){
+  const a=F.activos||[];
+  $("secActivos").hidden=!a.length;
+  const t=ahoraAj();
+  $("activos").innerHTML=a.map(x=>`<tr><td>${esc(x.ds_nombre)}</td><td>${esc(NOMBRES[x.modelo]||x.modelo)}</td><td>${x.r}</td><td>${x.f}</td><td>${dur(t-x.desde)} ${tag("D","Derivado")}</td></tr>`).join("");
+}
+function pintarTabs(){
+  if(!conjunto){const e=F.conjuntos.find(c=>c.estado==="en_ejecucion")||F.conjuntos.find(c=>c.estado!=="completado")||F.conjuntos[0];conjunto=e.id}
+  $("tabs").innerHTML=F.conjuntos.map(c=>`<button type="button" role="tab" aria-selected="${c.id===conjunto}" class="${c.id===conjunto?"on":""}" data-ds="${c.id}">${esc(c.nombre)} · ${c.hechas}/${c.total}</button>`).join("");
+}
+function celda(c,m,prov){
+  const clave=`${m}|${c.r}|${c.f}`,s=sel===clave?" sel":"";
+  let tx="",st="";
+  if(c.e==="ok"||c.e==="fallas"){st=c.e==="fallas"?"!":"✓";tx=prov&&c.ll!=null?c.ll.toFixed(3):corto(c.seg)}
+  else if(c.e==="activa"){st="▶";tx=corto(ahoraAj()-c.desde)}
+  else if(c.e==="leyendo"){st="…"}
+  else if(c.e==="ilegible"){st="?"}
+  else st="·";
+  return`<button type="button" class="c ${c.e}${s}" data-k="${clave}" aria-label="${esc(NOMBRES[m]||m)}, repetición ${c.r}, pliegue ${c.f}"><strong>${st}</strong>${tx}</button>`;
+}
+function pintarMats(){
+  const prov=$("prov").checked,mats=F.celdas[conjunto]||[];
+  $("mats").innerHTML=mats.map(m=>{
+    const cab=[0,1,2,3,4].map(f=>`<div class="e">P${f}</div>`).join("");
+    const filas=m.filas.map((fi,r)=>`<div class="e">R${r}</div>`+fi.map(c=>celda(c,m.modelo,prov)).join("")).join("");
+    const med=m.seg_medio?` · media ${dur(m.seg_medio)}`:"";
+    const fa=m.fallos?` · ${m.fallos} evaluaciones fallidas`:"";
+    return`<div class="card mat"><h3>${esc(NOMBRES[m.modelo]||m.nombre)} <small>${m.hechas} / ${m.total}${med}${fa}</small></h3><div class="mg"><div></div>${cab}${filas}</div></div>`}).join("");
+  pintarDetalle();
+}
+function pintarDetalle(){
+  const d=$("detalle");
+  if(!sel||!F){d.hidden=true;return}
+  const [m,r,f]=sel.split("|"),mat=(F.celdas[conjunto]||[]).find(x=>x.modelo===m);
+  if(!mat){d.hidden=true;return}
+  const c=mat.filas[+r][+f],nom=F.conjuntos.find(x=>x.id===conjunto).nombre,prov=$("prov").checked;
+  const et={ok:"Completada",fallas:"Completada con evaluaciones fallidas",activa:"Activa",pendiente:"Pendiente",leyendo:"Checkpoint por leer",ilegible:"Checkpoint ilegible"}[c.e];
+  const x=[["Conjunto",esc(nom)],["Estado",et]];
+  if(c.ev!=null)x.push(["Evaluaciones de Optuna",`${c.ev} (${c.fa||0} fallidas)`]);
+  else x.push(["Evaluaciones de Optuna",c.e==="activa"?"No disponible hasta terminar":"—"]);
+  if(c.seg!=null)x.push(["Tiempo de ejecución",dur(c.seg)]);
+  if(c.desde)x.push(["En curso desde",`${dur(ahoraAj()-c.desde)} (deducido)`]);
+  if(c.fin)x.push(["Terminó",fecha(c.fin)]);
+  if(c.iter!=null)x.push(["EM del modelo final",`${c.iter} iteraciones, ${c.conv?"convergió":"sin alcanzar la tolerancia"}`]);
+  if(c.abl!=null)x.push(["Variantes de ablación",`${c.abl} de 5`]);
+  if(prov&&c.ll!=null)x.push(["Log-loss interno",`${c.ll.toFixed(4)} (provisional, no confirmatorio)`]);
+  x.push(["Métricas de pliegue externo","No se calculan aquí"]);
+  x.push(["Checkpoint",`<code>${esc(c.ckpt)}</code>${c.e==="ok"||c.e==="fallas"?"":" (aún no existe)"}`]);
+  d.hidden=false;
+  d.innerHTML=`<div class="fila"><h3>${esc(NOMBRES[m]||m)}, repetición ${r}, pliegue ${f}</h3><button type="button" class="x" id="cerrar" aria-label="Cerrar">×</button></div><dl>${x.map(([a,b])=>`<dt>${a}</dt><dd>${b}</dd>`).join("")}</dl>`;
+}
+function tarjetaEtapa(e){
+  const p=e.progreso||{},pct=p.total?100*p.hechas/p.total:0,ok=e.estado==="completado";
+  const es=e.estim_seg!=null?`<div class="nota">Duración prevista: ≈ ${dur(e.estim_seg)} ${tag("E","Estimado")}</div>`:(e.estim_seg===null?`<div class="nota">Duración prevista: ${tag("ND","No disponible")}</div>`:"");
+  return`<div class="card etapa"><div class="fila"><h3>${esc(e.nombre)}</h3><span class="est ${e.estado}">${ESTADOS[e.estado]||e.estado}</span></div>
+  <div class="barra ${ok?"ok":""}"><b style="width:${pct.toFixed(1)}%"></b></div><div class="nota">${esc(e.evidencia)}</div>${es}${e.nota?`<div class="nota">${esc(e.nota)}</div>`:""}</div>`;
+}
+function pintarEtapas(){
+  $("etComputo").innerHTML=F.etapas.filter(e=>e.clase==="computo").map(tarjetaEtapa).join("");
+  $("etDoc").innerHTML=F.etapas.filter(e=>e.clase!=="computo").map(tarjetaEtapa).join("");
+}
+function encabezado(){
+  const g=F.estado_general,p=$("pill");
+  p.className="pill "+g.codigo;$("pillT").textContent=GENERAL[g.codigo]||g.codigo;
+  $("detalleEstado").textContent=g.codigo==="error"?g.detalle:"";
+  const seg=Math.round((Date.now()-recibido)/1000);
+  $("sub").textContent=(F.ahora?`Actualizado ${hora(F.ahora)} (hace ${seg} s) · se refresca cada ${F.periodo} s`:"Primera lectura en curso. La página se actualizará sola en unos segundos.")+(fallo?" · sin conexión con el servidor local: estos datos pueden estar viejos":"");
+  const av=[...(F.alarmas||[])];if(F.error_monitor)av.push("Error del monitor: "+F.error_monitor);
+  $("avisos").hidden=!av.length;$("avisos").innerHTML=av.map(esc).join("<br>");
+  const m=F.monitor;
+  if(m)$("pie").textContent=`Costo del monitor: ${num(m.ms_ciclo,0)} ms por ciclo, ${m.lecturas_nuevas} checkpoints leídos en el último, ${num(m.ram_mb,0)} MB de RAM y ${num(m.cpu_seg,1)} s de CPU acumulados. Checkpoints en caché: ${m.en_cache}.`;
+}
+function pintar(){if(!F||!F.conjuntos){encabezado();return}encabezado();pintarKpis();pintarDs();pintarActivos();pintarTabs();pintarMats();pintarEtapas()}
+async function consultar(){
+  try{
+    const r=await fetch("/api/estado",{cache:"no-store"});
+    if(!r.ok)throw new Error(r.status);
+    const n=await r.json();
+    fallo=false;
+    if(!F||n.ahora!==F.ahora||!n.ahora){F=n;recibido=Date.now();pintar()}
+  }catch(e){fallo=true;if(F)encabezado();else $("sub").textContent="No hay conexión con el servidor local. Ejecuta iniciar_monitor.bat."}
+}
+$("tabs").addEventListener("click",e=>{const b=e.target.closest("button");if(b){conjunto=b.dataset.ds;sel=null;pintarTabs();pintarMats()}});
+$("mats").addEventListener("click",e=>{const b=e.target.closest(".c");if(b){sel=b.dataset.k;pintarMats()}});
+$("detalle").addEventListener("click",e=>{if(e.target.id==="cerrar"){sel=null;pintarMats()}});
+$("prov").addEventListener("change",e=>{$("notaProv").hidden=!e.target.checked;pintarMats()});
+consultar();setInterval(consultar,25000);
+setInterval(()=>{if(F&&F.conjuntos){encabezado();pintarKpis();pintarActivos()}},5000);
+</script>
+</body>
+</html>
