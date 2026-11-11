@@ -45,6 +45,9 @@ sphinx:
   extra_extensions:
     - sphinx_design
     - sphinx_proof
+  # Corrige el </div> de más que docutils 0.18 deja tras la bibliografía (ver _ext/arreglo_citas.py)
+  local_extensions:
+    arreglo_citas: _ext
 
 favicon: Imagenes/favicon.ico
 
