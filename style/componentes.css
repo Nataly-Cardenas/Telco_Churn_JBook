@@ -692,38 +692,3 @@
     grid-template-columns: 1fr;
   }
 }
-
-
-/* ---------- Tablas escritas en Markdown ----------
-   Encabezados en una sola línea, celdas alineadas arriba y rutas
-   de código que se parten para no desbordar la columna. */
-
-.bd-article table.table th p,
-.bd-article table.table td p {
-
-  margin: 0;
-}
-
-.bd-article table.table th {
-
-  white-space: nowrap;
-
-  vertical-align: bottom;
-}
-
-.bd-article table.table td {
-
-  vertical-align: top;
-}
-
-.bd-article table.table code {
-
-  white-space: normal;
-
-  overflow-wrap: anywhere;
-}
-
-.bd-article table.table code span.pre {
-
-  white-space: normal;
-}
