@@ -100,7 +100,4 @@ resultados numéricos salen de la ejecución del código del repositorio, no de 
 se escribió sin verificarla contra las tablas versionadas. La herramienta no tuvo acceso al hold-out antes de su
 evaluación única, que se hizo después de sellar el análisis confirmatorio.
 
-| Autora | Firma | Fecha |
-|---|---|---|
-| Laura S. Rivera Figueredo | | |
-| Natalý A. Cárdenas Izaquita | | |
+La declaración firmada por el equipo está al final del capítulo 10.

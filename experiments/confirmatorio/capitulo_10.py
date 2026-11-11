@@ -157,7 +157,22 @@ preprocesamiento encarecen sobre todo a Random Forest, CatBoost y HistGB.
 | Código de los experimentos | `experiments/confirmatorio/` |
 | Resultados | `experiments/resultados/tablas/` y `tablas_pre_holdout/` con su sello SHA-256 |
 | Tiempo de cómputo | Tablas 6.1, 7.8 y 10.5 |
-| Repositorio | [github.com/Nataly-Cardenas/Telco_Churn_Entregable](https://github.com/Nataly-Cardenas/Telco_Churn_Entregable) |
+| Repositorio | [github.com/Nataly-Cardenas/Telco_Churn_JBook](https://github.com/Nataly-Cardenas/Telco_Churn_JBook), licencia MIT |
+
+## Declaración de autoría y uso de herramientas
+
+Laura S. Rivera Figueredo y Natalý A. Cárdenas Izaquita somos las autoras de este proyecto. Decidimos el problema,
+la hipótesis, el modelo, el protocolo y las conclusiones, y respondemos por todo su contenido.
+
+Durante el proyecto usamos Claude (Anthropic), a través de Claude Code, como asistente de programación y redacción. Lo
+usamos para escribir y revisar código de los scripts de experimentación y análisis estadístico, la clase del modelo y
+sus pruebas, para auditar tiempos de cómputo y la coherencia entre el protocolo y lo ejecutado, y para redactar
+borradores de varios capítulos a partir de los resultados. Todas sus propuestas pasaron por nuestra revisión. Los
+resultados numéricos salen de la ejecución del código del repositorio, no de la herramienta, y ninguna cifra del libro
+se escribió sin verificarla contra las tablas versionadas. La herramienta no tuvo acceso al hold-out antes de su
+evaluación única, que se hizo después de sellar el análisis confirmatorio.
+
+Firmado por el equipo: **Laura S. Rivera Figueredo** y **Natalý A. Cárdenas Izaquita**.
 
 ## Referencias
 
