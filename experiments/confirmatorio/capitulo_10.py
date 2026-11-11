@@ -15,15 +15,36 @@ verificación. Los notebooks del libro no reentrenan modelos: leen resultados ve
 md(r"""
 ## Cómo reproducir los resultados
 
-| Paso | Comando | Produce | Tiempo de reloj medido |
-|---|---|---|---|
-| 1. Validación anidada de los 4 conjuntos | `bash experiments/confirmatorio/correr_con_reintentos.sh 10` | `resultados/crudos/` (1020 checkpoints) | ≈ 31 h, incluida la caída de D1 |
-| 2. Combinaciones del dashboard, robustez y tenure | `bash experiments/confirmatorio/correr_etapas_post.sh 10` | `tablas/combinaciones_dashboard.csv`, `resultados/robustez/`, `crudos/telco_tenure/` | 1 min, 53 min y 20 min |
-| 3. Análisis confirmatorio y sello | `python experiments/confirmatorio/analizar.py` y `sellar_pre_holdout.py` | `tablas/*.csv`, `sello_pre_holdout.json` | 2,5 min |
-| 4. Hold-out, análisis final, escalabilidad y SHAP | `bash experiments/confirmatorio/correr_etapas_post.sh 10 final` | `crudos/telco_holdout/`, `tablas/` completas | 18, 2,5, 4 y 24 min |
-| 5. Tablas livianas del libro | `python experiments/confirmatorio/derivar_tablas_libro.py` (y `conjuntos`) | `tablas/libro/` | 5 min |
-| 6. Capítulos 6, 7 y 10 | `python experiments/confirmatorio/construir_capitulos.py` | notebooks con sus salidas | 2 min |
-| 7. Libro | `jupyter-book build .` | `_build/html` | 2 min |
+Los comandos se corren desde la raíz del repositorio, en este orden:
+
+```bash
+# 1. Validación anidada de los 4 conjuntos
+bash experiments/confirmatorio/correr_con_reintentos.sh 10
+# 2. Combinaciones del dashboard, robustez y tenure
+bash experiments/confirmatorio/correr_etapas_post.sh 10
+# 3. Análisis confirmatorio y sello
+python experiments/confirmatorio/analizar.py
+python experiments/confirmatorio/sellar_pre_holdout.py
+# 4. Hold-out, análisis final, escalabilidad y SHAP
+bash experiments/confirmatorio/correr_etapas_post.sh 10 final
+# 5. Tablas livianas del libro
+python experiments/confirmatorio/derivar_tablas_libro.py
+python experiments/confirmatorio/derivar_tablas_libro.py conjuntos
+# 6. Capítulos 6, 7 y 10
+python experiments/confirmatorio/construir_capitulos.py
+# 7. Libro
+jupyter-book build .
+```
+
+| Paso | Qué produce | Tiempo de reloj |
+|---|---|---|
+| 1. Validación anidada de los 4 conjuntos | `resultados/crudos/` (1020 checkpoints) | ≈ 31 h, incluida la caída de D1 |
+| 2. Combinaciones del dashboard, robustez y tenure | `tablas/combinaciones_dashboard.csv`, `resultados/robustez/`, `crudos/telco_tenure/` | 1 min, 53 min y 20 min |
+| 3. Análisis confirmatorio y sello | `tablas/*.csv`, `sello_pre_holdout.json` | 2,5 min |
+| 4. Hold-out, análisis final, escalabilidad y SHAP | `crudos/telco_holdout/`, `tablas/` completas | 18, 2,5, 4 y 24 min |
+| 5. Tablas livianas del libro | `tablas/libro/` | 5 min |
+| 6. Capítulos 6, 7 y 10 | notebooks con sus salidas | 2 min |
+| 7. Libro | `_build/html` | 2 min |
 
 Los checkpoints crudos (unos 115 MB) no se versionan; todo lo demás sí. Cada tarea guarda su checkpoint al terminar,
 así que una corrida interrumpida se reanuda sin repetir trabajo. Con las semillas fijas, una corrida nueva produce los
