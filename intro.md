@@ -26,6 +26,8 @@ EDA · Modelado avanzado · Modelo original · Validación estadística
 
 ::::
 
+**Dashboard desplegado:** [https://dash-telco-churn.onrender.com/](https://dash-telco-churn.onrender.com/)
+
 ## Resumen ejecutivo
 
 Este libro predice qué clientes de una empresa de telecomunicaciones van a abandonar el servicio y, en su última etapa,

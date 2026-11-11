@@ -19,6 +19,8 @@ exclude_patterns:
   - "_archivo_no_subir/*"
   - ".pytest_cache/*"
   - "EDA.ipynb"
+  - "MODEL_CARD.md"
+  - "DATA_STATEMENT.md"
 
 html:
   extra_css:

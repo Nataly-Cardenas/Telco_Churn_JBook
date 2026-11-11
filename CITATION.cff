@@ -1,0 +1,14 @@
+cff-version: 1.2.0
+message: "Si usas este trabajo, por favor cítalo así."
+title: "Predicción de abandono de clientes en Telco Customer Churn y modelo RegionalMAPEM"
+type: software
+authors:
+  - family-names: "Rivera Figueredo"
+    given-names: "Laura S."
+    affiliation: "Universidad del Norte"
+  - family-names: "Cárdenas Izaquita"
+    given-names: "Natalý A."
+    affiliation: "Universidad del Norte"
+repository-code: "https://github.com/Nataly-Cardenas/Telco_Churn_JBook"
+url: "https://nataly-cardenas.github.io/Telco_Churn_JBook/"
+date-released: 2026-11-15

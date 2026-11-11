@@ -4,7 +4,7 @@ El dashboard pone el proyecto en manos de alguien que no va a leer el libro: exp
 y usa los doce modelos finales para predecir el riesgo de abandono de un cliente. Está construido con Dash y Plotly, se
 publica en Render y su código está en [Dash_Telco_Churn](https://github.com/Nataly-Cardenas/Dash_Telco_Churn).
 
-- **URL pública:** *pendiente: se completa cuando el servicio de Render quede creado*
+- **URL pública:** [https://dash-telco-churn.onrender.com/](https://dash-telco-churn.onrender.com/)
 - **Repositorio:** [https://github.com/Nataly-Cardenas/Dash_Telco_Churn](https://github.com/Nataly-Cardenas/Dash_Telco_Churn)
 - **Ejecución local:** `pip install -r requirements.txt` y `python app.py` (http://localhost:8050)
 

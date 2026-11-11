@@ -18,7 +18,7 @@ sys.path.insert(0, str(RAIZ))
 from src.presentacion import NOMBRES, numero, tabla_html  # noqa: E402
 
 DASH_REPO = "https://github.com/Nataly-Cardenas/Dash_Telco_Churn"
-URL_RENDER = None          # se completa cuando el servicio de Render esté creado
+URL_RENDER = "https://dash-telco-churn.onrender.com/"
 COPIA = RAIZ / "experiments" / "resultados" / "tablas" / "libro" / "artefactos_dashboard.csv"
 ORDEN = ["RegionalMAPEM", "logistic_splines", "lightgbm", "hist_gb", "logistic", "xgboost", "catboost", "random_forest",
          "svm", "knn", "decision_tree", "naive_bayes"]
