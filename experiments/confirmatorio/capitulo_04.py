@@ -57,8 +57,8 @@ print(f"Trabajos sobre churn encontrados por citación: {len(C)}")
 md(r"""
 ## Los trabajos más cercanos
 
-La guía de admisibilidad pide comparar por familia algorítmica, no solo por aplicación. La tabla 4.3 reúne once
-trabajos de siete familias y precisa, para cada uno, qué conserva nuestra propuesta y qué cambia.
+Comparar solo por aplicación dejaría por fuera a los métodos más parecidos, así que comparamos por familia algorítmica. La
+tabla 4.3 reúne once trabajos de siete familias y precisa, para cada uno, qué conserva nuestra propuesta y qué cambia.
 
 | Trabajo | Familia | ¿Churn? | Qué conserva la propuesta | Qué cambia |
 |---|---|---|---|---|

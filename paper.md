@@ -449,29 +449,29 @@ El experimento identificó a Random Forest con SMOTE como uno de los dos modelos
 
 Entre las limitaciones destacan el uso de un único conjunto de datos, de modo que los folds solapados no son bloques independientes y las pruebas de Friedman y Nemenyi son exploratorias; que el test histórico ya estaba expuesto y es evidencia suplementaria; que los intervalos de confianza son condicionales a los modelos y no incluyen la incertidumbre de selección entre 112 configuraciones; y que las variables describen el estado del cliente en un corte y no necesariamente anticipan el abandono futuro. Tampoco se dispone de costes de intervención, por lo que el Recall obtenido, acompañado de falsas alertas, no puede traducirse en beneficio económico. Como trabajo futuro se propone una evaluación prospectiva e independiente con estabilidad temporal, la incorporación de costes explícitos de retención para elegir el umbral de decisión, y la comparación prospectiva con una variante que busque superar simultáneamente a estas referencias en desempeño y tiempo de cómputo.
 
-## 5. Modelo propuesto: trabajo en curso
+## 5. Modelo propuesto
 
-Los resultados presentados en la Sección 3 corresponden a la comparación de siete modelos de referencia bajo un protocolo experimental controlado. La siguiente etapa consiste en diseñar y evaluar un modelo propio a partir de los hallazgos obtenidos en esta comparación. En esta versión del manuscrito, la arquitectura, formulación matemática, estrategia de entrenamiento y justificación del modelo propuesto permanecen pendientes de definición.
+Los ensambles de churn suelen combinar sus modelos con un único vector de pesos, lo que supone que la fiabilidad relativa de cada modelo es la misma para todos los clientes. RegionalMAPEM relaja ese supuesto: combina $M$ clasificadores calibrados con pesos que dependen de la región del cliente,
+
+$$p(y=1\mid x)=\sum_{k=1}^{K} r_k(x)\sum_{m=1}^{M}\pi_{km}\,p_m(x),\qquad \pi_k\sim\mathrm{Dirichlet}(1+c\,g).$$
+
+Las pertenencias suaves $r_k(x)$ salen de un GMM sobre dos componentes principales de las variables continuas, y $g$ son los pesos globales. Los expertos no se reentrenan por región. Con las regiones fijas, la log-posterior es cóncava sobre un producto de símplex, de modo que el MAP-EM asciende en cada iteración y converge al óptimo global. La novedad está en esta regla de combinación: integrar clasificadores por zonas del espacio de clientes ya tiene antecedentes en churn. La formulación, la demostración y las pruebas unitarias están en el capítulo 5 del libro, y la revisión de literatura en el capítulo 4.
 
 ## 6. Configuración experimental del modelo propuesto
 
-```{admonition} En construcción
-:class: note
-Esta sección se completará en la siguiente versión del manuscrito.
-```
+El diseño se congeló antes de los experimentos definitivos (tag `protocolo-v1`). Se usó validación anidada 5 × 5 con 3 pliegues internos en Telco (5634 clientes de desarrollo) y en dos conjuntos adicionales, Iranian Churn y OpenML 40701, y 2 × 5 en una submuestra de 10 000 clientes de KDDCup09. RegionalMAPEM y 11 benchmarks, incluidos HistGB, LightGBM, CatBoost y una logística con splines, recibieron 30 evaluaciones de TPE por pliegue externo, el mismo preprocesamiento y calibración de Platt en el bucle interno, sin SMOTE. La métrica principal es el log-loss, elegida después de los pilotos y así declarada; F1 y AUC son secundarias. Se aplicaron las pruebas de Nadeau-Bengio, permutación pareada, Friedman con Nemenyi y Wilcoxon, con corrección de Holm sobre una familia de 223 comparaciones, y el δ de Cliff. El hold-out de 1409 clientes se evaluó una sola vez, después de sellar el análisis.
 
 ## 7. Resultados del modelo propuesto
 
-```{admonition} En construcción
-:class: note
-Esta sección se completará en la siguiente versión del manuscrito.
-```
+En Telco, RegionalMAPEM obtuvo un log-loss de 0,41127 frente a 0,41130 de la logística con splines, el mejor benchmark. Ninguna prueba rechaza la igualdad después de Holm y el δ de Cliff es −0,008, un efecto despreciable. El modelo supera con al menos tres pruebas a 7 de los 11 benchmarks. En el hold-out, sus diferencias con la logística con splines tampoco son significativas (log-loss −0,0013; F1 +0,008; AUC +0,0019). Solo es mejor en media que el mejor benchmark en uno de los tres conjuntos adicionales, Iranian, y no es significativamente peor en ninguno. La condición de superioridad, por tanto, no se cumple.
+
+La ablación explica el resultado: quitar las regiones no empeora el modelo (los pesos globales obtienen 0,41094), mientras que quitar el prior sí, y el estudio de sensibilidad muestra que el log-loss empeora al agregar regiones con un prior débil. En Telco, la fiabilidad relativa de los expertos casi no cambia entre tipos de cliente. El detalle está en los capítulos 6, 7 y 9 del libro.
 
 ## Declaraciones
 
 - Disponibilidad de datos: el conjunto Telco Customer Churn es público y puede descargarse desde [Kaggle](https://www.kaggle.com/datasets/blastchar/telco-customer-churn).
 - Disponibilidad de código: los notebooks de EDA, preprocesamiento y modelamiento avanzado están disponibles en [GitHub](https://github.com/Nataly-Cardenas/Telco_Churn_Entregable).
-- Disponibilidad de JBOOK: los notebooks de EDA, preprocesamiento y modelamiento avanzado están disponibles en este [Jupyter Book](https://nataly-cardenas.github.io/Telco_Churn_Entregable/intro.html).
+- Disponibilidad de JBOOK: los notebooks de EDA, preprocesamiento y modelamiento avanzado están disponibles en este [Jupyter Book](https://nataly-cardenas.github.io/Telco_Churn_JBook/intro.html).
 - Contribución de las autoras: N. Cárdenas y L. Rivera participaron conjuntamente en el ETL, el análisis exploratorio, el modelado y los experimentos, así como en la redacción del manuscrito.
 - Conflicto de intereses: las autoras declaran no tener conflictos de interés.
 

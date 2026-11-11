@@ -96,8 +96,9 @@ md(r"""
 
 La tabla maestra reúne, para cada conjunto y cada modelo, cuántas veces se ajustó, con qué presupuesto, cuánto costó y
 qué resultado dio, como media y desviación estándar sobre los pliegues externos. Se guarda también como
-`experiments/resultados/tablas/tabla_maestra_experimentos.csv`. Las 112 configuraciones del entregable anterior (modelo,
-balanceo y optimizador) siguen en `resultados_modelado/analisis_final/unidades.csv` con el mismo formato por unidad.
+`experiments/resultados/tablas/tabla_maestra_experimentos.csv`, que además incluye las 112 configuraciones del entregable
+anterior (modelo, balanceo y optimizador) con sus métricas externas y tiempos; el detalle por pliegue y las semillas de cada
+una están en `resultados_modelado/analisis_final/unidades.csv`.
 """),
 code(r"""
 # Tabla maestra: una fila por conjunto y modelo
@@ -110,7 +111,13 @@ co = COSTOS.groupby(["conjunto", "modelo"]).agg(evaluaciones_totales=("ensayos",
         horas_busqueda=("seg_busqueda", lambda s: s.sum() / 3600), seg_ajuste_medio=("seg_ajuste", "mean")).reset_index()
 M = ag.merge(co, on=["conjunto", "modelo"], how="left")
 M["pliegues_internos"] = 3; M["semilla_raiz"] = 42; M["calibracion"] = "Platt (CV = 3)"
-M.to_csv(TAB / "tabla_maestra_experimentos.csv", index=False)
+# Archivo completo: este protocolo más las 112 configuraciones del entregable anterior (realización principal)
+U = pd.read_csv(ROOT / "resultados_modelado" / "analisis_final" / "unidades.csv"); U = U[U.replicate == 0]
+E3 = U.groupby(["model", "balance", "optimizer"]).agg(pliegues=("outer_fold", "size"), f1_media=("f1_positive", "mean"), f1_de=("f1_positive", "std"),
+        auc_media=("roc_auc", "mean"), auc_de=("roc_auc", "std"), brier_media=("brier", "mean"), ece_media=("ece", "mean"), evaluaciones_totales=("evaluations", "sum"),
+        horas_busqueda=("search_seconds", lambda s: s.sum() / 3600), seg_ajuste_medio=("refit_seconds", "mean")).reset_index().rename(columns={"model": "modelo", "balance": "balanceo", "optimizer": "optimizador"})
+E3 = E3.assign(etapa="entregable anterior (112 configuraciones)", conjunto="telco", repeticiones=1, pliegues_internos=3, semilla_raiz=42, calibracion="sin calibrar")
+pd.concat([M.assign(etapa="protocolo confirmatorio", balanceo="none", optimizador="bayesian_tpe"), E3], ignore_index=True).to_csv(TAB / "tabla_maestra_experimentos.csv", index=False)
 vista = pd.DataFrame({"Conjunto": M.conjunto.map(CONJUNTOS), "Modelo": M.modelo.map(NOMBRES), "Pliegues externos": M.pliegues,
                       "Evaluaciones de hiperparámetros": M.evaluaciones_totales, "Fallidas": M.evaluaciones_fallidas,
                       "Horas de búsqueda": M.horas_busqueda,
