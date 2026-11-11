@@ -19,6 +19,7 @@ espacio de clientes) ya existe en churn, y que lo nuevo es la regla con la que n
 | Mapa de modelos usados en churn | 2026-10-30 | Web of Science, Scopus, IEEE Xplore y arXiv | Dos conjuntos por base: A, clasificación con ML con *novel*, *improved*, *enhanced* o *hybrid* en el título, y B, churn con ML, ambos sin redes neuronales; además B2, churn amplio, como control. En Web of Science y Scopus suman 27 313 registros. De ahí salieron ocho modelos candidatos, verificados después en Google Académico y arXiv |
 | Búsqueda del mecanismo propio | 2026-11-03 | Web of Science, Scopus, Scopus AI y Google Académico | Cadenas que combinan la definición de churn con cada familia afín: mezcla de expertos, selección dinámica, stacking local y ensambles ponderados, EM y agregación de probabilidades, y calibración. También se repitieron A, B y B2 en Web of Science |
 | Índices abiertos y citación | 2026-11-08 | OpenAlex y arXiv | Cadenas adicionales, una de ellas en español, y búsqueda por citación hacia atrás y hacia adelante desde cinco trabajos semilla |
+| Repositorios de código | 2026-11-10 | GitHub | Búsqueda por nombre, descripción, README y contenido del código, con lectura de los repositorios más cercanos |
 
 La definición de churn combina el término en inglés con sus sinónimos en inglés y, en Web of Science, en español: *customer
 defection*, *customer attrition*, "fuga de clientes", "abandono de clientes" y "deserción de clientes". Las cadenas exactas,
@@ -136,5 +137,29 @@ tabla(B[["ID", "Base", "Conjunto", "Cadena exacta", "Fecha", "Resultados", "Regi
 C = N[~N["Modelo candidato"].str.contains("propio")]
 tabla(C[["Fecha", "Base de datos", "Modelo candidato", "Cadena de búsqueda", "Resultados", "Revisados", "Relevantes", "Observación"]],
       "Tabla 4.5. Verificación de los modelos candidatos de la primera etapa", decimales=0)
+"""),
+md(r"""
+## Repositorios de código afines
+
+Un mecanismo puede estar implementado sin haberse publicado, así que también revisamos GitHub. Las búsquedas cubren el nombre,
+la descripción, el README y el contenido de los archivos de Python, y se hacen con y sin la palabra churn.
+"""),
+code(r"""
+# Búsqueda en GitHub y repositorios más cercanos, revisados uno por uno
+RC, RR, RV = leer("repositorios_cadenas.csv"), leer("repositorios_resultados.csv"), leer("repositorios_revision.csv")
+tabla(pd.DataFrame({"Fecha": RC.fecha, "Búsqueda": RC.base, "Cadena": RC.cadena, "Resultados": RC.resultados, "Devueltos": RC.revisados}),
+      f"Tabla 4.6. Búsquedas en GitHub ({RR.repositorio.nunique()} repositorios distintos devueltos)", decimales=0,
+      nota="Devueltos: repositorios o archivos descargados, hasta 30 por cadena, ordenados por relevancia.")
+tabla(pd.DataFrame({"Repositorio": RV.repositorio, "Archivo": RV.archivo_revisado, "Revisión": RV.tipo_de_revision, "Familia": RV.familia, "¿Churn?": RV.churn,
+                    "Qué hace": RV.que_hace, "Diferencia con la propuesta": RV.diferencia}),
+      "Tabla 4.7. Repositorios más cercanos", decimales=0)
+"""),
+md(r"""
+Casi todos los resultados son ruido: "mixture of experts" aparece sobre todo en modelos de lenguaje, y *churn* también nombra
+la rotación de código. Ningún repositorio de la tabla 4.7 implementa la regla propuesta. El más cercano divide a los clientes
+en regímenes con reglas de negocio, entrena un XGBoost por régimen y los combina con una regresión logística; como los
+indicadores de régimen entran de forma aditiva, el coeficiente de cada experto es el mismo en todos los regímenes. La
+Dirichlet aparece en varios proyectos de churn, pero como generador de pesos globales candidatos y no como prior. Esta
+revisión se limita a GitHub y a los primeros 30 resultados de cada cadena; de esos, se leyeron con detalle los de la tabla 4.7.
 """),
 ]

@@ -1,0 +1,27 @@
+fecha,base,cadena,resultados,revisados
+2026-11-10,GitHub,"""mixture of experts"" churn",267,30
+2026-11-10,GitHub,"""dynamic ensemble selection"" churn",2,2
+2026-11-10,GitHub,"""dynamic classifier selection"" churn",0,0
+2026-11-10,GitHub,"stacking ""local weights"" churn",13,13
+2026-11-10,GitHub,"""weighted ensemble"" churn",171,30
+2026-11-10,GitHub,"ensemble ""expectation maximization"" churn",76,30
+2026-11-10,GitHub,ensemble dirichlet churn,204,30
+2026-11-10,GitHub,"""gaussian mixture"" ensemble churn",245,30
+2026-11-10,GitHub,cluster ensemble weights churn,1514,30
+2026-11-10,GitHub,segment ensemble weights churn,1361,30
+2026-11-10,GitHub,"""abandono de clientes"" ensamble",51,30
+2026-11-10,GitHub,"""mixture of experts"" ""fixed experts""",37,30
+2026-11-10,GitHub,"""regional"" ensemble weights ""expectation maximization""",64,30
+2026-11-10,GitHub,"""local weights"" ensemble classifiers ""EM""",8,8
+2026-11-10,GitHub,MAP-EM ensemble weights dirichlet prior,1,1
+2026-11-10,GitHub,region-dependent ensemble weights classifiers,4,4
+2026-11-10,GitHub,"""feature-weighted linear stacking""",20,20
+2026-11-10,GitHub,"""linear pool"" classifier probabilities",95,30
+2026-11-10,GitHub (código),"churn ""mixture of experts"" language:Python",61,30
+2026-11-10,GitHub (código),"churn ""gating"" ""experts"" ""predict_proba"" language:Python",11,11
+2026-11-10,GitHub (código),"churn ""dynamic ensemble selection"" language:Python",0,0
+2026-11-10,GitHub (código),"churn ""KNORA"" language:Python",5,5
+2026-11-10,GitHub (código),churn deslib language:Python,2,2
+2026-11-10,GitHub (código),"churn ""GaussianMixture"" ""predict_proba"" ""weights"" ensemble language:Python",12,12
+2026-11-10,GitHub (código),"churn dirichlet ""predict_proba"" ensemble weights language:Python",15,15
+2026-11-10,GitHub (código),"""responsibilities"" ""predict_proba"" ""dirichlet"" ""experts"" language:Python",9,9
