@@ -13,3 +13,9 @@ _archivo_no_subir/
 experiments/pilotos/*/cache/
 .pytest_cache/
 catboost_info/
+
+# Datos y resultados pesados del experimento (se regeneran con experiments/)
+experiments/datos/_cache_openml/
+experiments/datos/*_completo.csv.gz
+experiments/resultados/crudos/
+experiments/resultados/robustez/*/

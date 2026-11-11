@@ -1,0 +1,27 @@
+{
+ "F_F": 139.6845061381689,
+ "p": 5.956692316404104e-149,
+ "chi2": 341.3505882352941,
+ "N": 25,
+ "k": 17,
+ "rangos": {
+  "knn": 15.0,
+  "naive_bayes": 16.96,
+  "logistic": 10.48,
+  "decision_tree": 15.48,
+  "random_forest": 11.92,
+  "xgboost": 11.0,
+  "svm": 14.4,
+  "logistic_splines": 4.88,
+  "hist_gb": 6.36,
+  "lightgbm": 5.52,
+  "catboost": 11.44,
+  "RegionalMAPEM": 3.9,
+  "mapem_sin_prior": 5.38,
+  "mapem_K1": 3.54,
+  "mapem_regiones_duras": 4.22,
+  "promedio_simple": 8.92,
+  "stacking_logistico": 3.6
+ },
+ "CD": 4.939618504605032
+}

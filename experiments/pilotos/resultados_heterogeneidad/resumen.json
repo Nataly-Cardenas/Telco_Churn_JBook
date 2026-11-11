@@ -1,0 +1,19 @@
+{
+  "B": 200,
+  "K": 4,
+  "pliegues": 25,
+  "T_media": 0.0013370562771888239,
+  "T_null_media": 0.0006928832779808852,
+  "exceso_sobre_azar_media": 0.0006441729992079387,
+  "pliegues_p_menor_0_05": 15,
+  "p_mediana": 0.03980099502487562,
+  "p_rep0": [
+    0.1443,
+    0.2736,
+    0.0945,
+    0.005,
+    0.2637
+  ],
+  "pliegues_mejor_cambia_real": 24,
+  "frac_mejor_cambia_bajo_H0_media": 0.7626000000000001
+}

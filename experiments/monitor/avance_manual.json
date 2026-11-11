@@ -1,0 +1,10 @@
+{
+  "descripcion": "Cierre manual de tareas de documentación y desarrollo. Una tarea solo aparece como completada con completado=true y una evidencia concreta (commit, URL o ruta). El monitor solo lee este archivo.",
+  "tareas": {
+    "protocolo12": {"completado": false, "evidencia": ""},
+    "libro": {"completado": false, "evidencia": ""},
+    "archivos": {"completado": false, "evidencia": ""},
+    "dash": {"completado": false, "evidencia": ""},
+    "auditoria": {"completado": false, "evidencia": ""}
+  }
+}

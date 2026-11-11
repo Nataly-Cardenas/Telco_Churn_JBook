@@ -1,0 +1,463 @@
+=== Tue Nov 10 00:28:16 HPS 2026 complementos_confirmatorio.py dashboard 10 (intento 1)
+joblib.externals.loky.process_executor._RemoteTraceback: 
+"""
+Traceback (most recent call last):
+  File "C:\Users\natal\Downloads\anaconda\envs\ml_project\Lib\site-packages\joblib\externals\loky\process_executor.py", line 490, in _process_worker
+    r = call_item()
+        ^^^^^^^^^^^
+  File "C:\Users\natal\Downloads\anaconda\envs\ml_project\Lib\site-packages\joblib\externals\loky\process_executor.py", line 291, in __call__
+    return self.fn(*self.args, **self.kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\natal\Downloads\anaconda\envs\ml_project\Lib\site-packages\joblib\parallel.py", line 607, in __call__
+    return [func(*args, **kwargs) for func, args, kwargs in self.items]
+            ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\natal\Desktop\Telco_Churn_Entregable\experiments\confirmatorio\complementos_confirmatorio.py", line 59, in una_combinacion
+    prob = PipeI(pasos).fit(X.iloc[tr], y[tr]).predict_proba(X.iloc[te])[:, 1]
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\natal\Downloads\anaconda\envs\ml_project\Lib\site-packages\sklearn\base.py", line 1389, in wrapper
+    return fit_method(estimator, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\natal\Downloads\anaconda\envs\ml_project\Lib\site-packages\imblearn\pipeline.py", line 518, in fit
+    Xt, yt = self._fit(X, y, routed_params, raw_params=params)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\natal\Downloads\anaconda\envs\ml_project\Lib\site-packages\imblearn\pipeline.py", line 400, in _fit
+    self._validate_steps()
+  File "C:\Users\natal\Downloads\anaconda\envs\ml_project\Lib\site-packages\imblearn\pipeline.py", line 289, in _validate_steps
+    raise TypeError(
+TypeError: All intermediate steps of the chain should not be Pipelines
+"""
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\natal\Desktop\Telco_Churn_Entregable\experiments\confirmatorio\complementos_confirmatorio.py", line 159, in <module>
+    filas = Parallel(n_jobs=n, batch_size=1)(delayed(una_combinacion)(m, r, f) for m in COMBINACIONES for r in range(5) for f in range(5))
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\natal\Downloads\anaconda\envs\ml_project\Lib\site-packages\joblib\parallel.py", line 2072, in __call__
+    return output if self.return_generator else list(output)
+                                                ^^^^^^^^^^^^
+  File "C:\Users\natal\Downloads\anaconda\envs\ml_project\Lib\site-packages\joblib\parallel.py", line 1682, in _get_outputs
+    yield from self._retrieve()
+  File "C:\Users\natal\Downloads\anaconda\envs\ml_project\Lib\site-packages\joblib\parallel.py", line 1784, in _retrieve
+    self._raise_error_fast()
+  File "C:\Users\natal\Downloads\anaconda\envs\ml_project\Lib\site-packages\joblib\parallel.py", line 1859, in _raise_error_fast
+    error_job.get_result(self.timeout)
+  File "C:\Users\natal\Downloads\anaconda\envs\ml_project\Lib\site-packages\joblib\parallel.py", line 758, in get_result
+    return self._return_or_raise()
+           ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\natal\Downloads\anaconda\envs\ml_project\Lib\site-packages\joblib\parallel.py", line 773, in _return_or_raise
+    raise self._result
+TypeError: All intermediate steps of the chain should not be Pipelines
+=== Tue Nov 10 00:29:28 HPS 2026 complementos_confirmatorio.py dashboard 10 (intento 2)
+joblib.externals.loky.process_executor._RemoteTraceback: 
+"""
+Traceback (most recent call last):
+  File "C:\Users\natal\Downloads\anaconda\envs\ml_project\Lib\site-packages\joblib\externals\loky\process_executor.py", line 490, in _process_worker
+    r = call_item()
+        ^^^^^^^^^^^
+  File "C:\Users\natal\Downloads\anaconda\envs\ml_project\Lib\site-packages\joblib\externals\loky\process_executor.py", line 291, in __call__
+    return self.fn(*self.args, **self.kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\natal\Downloads\anaconda\envs\ml_project\Lib\site-packages\joblib\parallel.py", line 607, in __call__
+    return [func(*args, **kwargs) for func, args, kwargs in self.items]
+            ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\natal\Desktop\Telco_Churn_Entregable\experiments\confirmatorio\complementos_confirmatorio.py", line 59, in una_combinacion
+    prob = PipeI(pasos).fit(X.iloc[tr], y[tr]).predict_proba(X.iloc[te])[:, 1]
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\natal\Downloads\anaconda\envs\ml_project\Lib\site-packages\sklearn\base.py", line 1389, in wrapper
+    return fit_method(estimator, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\natal\Downloads\anaconda\envs\ml_project\Lib\site-packages\imblearn\pipeline.py", line 518, in fit
+    Xt, yt = self._fit(X, y, routed_params, raw_params=params)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\natal\Downloads\anaconda\envs\ml_project\Lib\site-packages\imblearn\pipeline.py", line 400, in _fit
+    self._validate_steps()
+  File "C:\Users\natal\Downloads\anaconda\envs\ml_project\Lib\site-packages\imblearn\pipeline.py", line 289, in _validate_steps
+    raise TypeError(
+TypeError: All intermediate steps of the chain should not be Pipelines
+"""
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\natal\Desktop\Telco_Churn_Entregable\experiments\confirmatorio\complementos_confirmatorio.py", line 159, in <module>
+    filas = Parallel(n_jobs=n, batch_size=1)(delayed(una_combinacion)(m, r, f) for m in COMBINACIONES for r in range(5) for f in range(5))
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\natal\Downloads\anaconda\envs\ml_project\Lib\site-packages\joblib\parallel.py", line 2072, in __call__
+    return output if self.return_generator else list(output)
+                                                ^^^^^^^^^^^^
+  File "C:\Users\natal\Downloads\anaconda\envs\ml_project\Lib\site-packages\joblib\parallel.py", line 1682, in _get_outputs
+    yield from self._retrieve()
+  File "C:\Users\natal\Downloads\anaconda\envs\ml_project\Lib\site-packages\joblib\parallel.py", line 1784, in _retrieve
+    self._raise_error_fast()
+  File "C:\Users\natal\Downloads\anaconda\envs\ml_project\Lib\site-packages\joblib\parallel.py", line 1859, in _raise_error_fast
+    error_job.get_result(self.timeout)
+  File "C:\Users\natal\Downloads\anaconda\envs\ml_project\Lib\site-packages\joblib\parallel.py", line 758, in get_result
+    return self._return_or_raise()
+           ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\natal\Downloads\anaconda\envs\ml_project\Lib\site-packages\joblib\parallel.py", line 773, in _return_or_raise
+    raise self._result
+TypeError: All intermediate steps of the chain should not be Pipelines
+=== Tue Nov 10 00:30:36 HPS 2026 complementos_confirmatorio.py dashboard 10 (intento 3)
+joblib.externals.loky.process_executor._RemoteTraceback: 
+"""
+Traceback (most recent call last):
+  File "C:\Users\natal\Downloads\anaconda\envs\ml_project\Lib\site-packages\joblib\externals\loky\process_executor.py", line 490, in _process_worker
+    r = call_item()
+        ^^^^^^^^^^^
+  File "C:\Users\natal\Downloads\anaconda\envs\ml_project\Lib\site-packages\joblib\externals\loky\process_executor.py", line 291, in __call__
+    return self.fn(*self.args, **self.kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\natal\Downloads\anaconda\envs\ml_project\Lib\site-packages\joblib\parallel.py", line 607, in __call__
+    return [func(*args, **kwargs) for func, args, kwargs in self.items]
+            ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\natal\Desktop\Telco_Churn_Entregable\experiments\confirmatorio\complementos_confirmatorio.py", line 59, in una_combinacion
+    prob = PipeI(pasos).fit(X.iloc[tr], y[tr]).predict_proba(X.iloc[te])[:, 1]
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\natal\Downloads\anaconda\envs\ml_project\Lib\site-packages\sklearn\base.py", line 1389, in wrapper
+    return fit_method(estimator, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\natal\Downloads\anaconda\envs\ml_project\Lib\site-packages\imblearn\pipeline.py", line 518, in fit
+    Xt, yt = self._fit(X, y, routed_params, raw_params=params)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\natal\Downloads\anaconda\envs\ml_project\Lib\site-packages\imblearn\pipeline.py", line 400, in _fit
+    self._validate_steps()
+  File "C:\Users\natal\Downloads\anaconda\envs\ml_project\Lib\site-packages\imblearn\pipeline.py", line 289, in _validate_steps
+    raise TypeError(
+TypeError: All intermediate steps of the chain should not be Pipelines
+"""
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\natal\Desktop\Telco_Churn_Entregable\experiments\confirmatorio\complementos_confirmatorio.py", line 159, in <module>
+    filas = Parallel(n_jobs=n, batch_size=1)(delayed(una_combinacion)(m, r, f) for m in COMBINACIONES for r in range(5) for f in range(5))
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\natal\Downloads\anaconda\envs\ml_project\Lib\site-packages\joblib\parallel.py", line 2072, in __call__
+    return output if self.return_generator else list(output)
+                                                ^^^^^^^^^^^^
+  File "C:\Users\natal\Downloads\anaconda\envs\ml_project\Lib\site-packages\joblib\parallel.py", line 1682, in _get_outputs
+    yield from self._retrieve()
+  File "C:\Users\natal\Downloads\anaconda\envs\ml_project\Lib\site-packages\joblib\parallel.py", line 1784, in _retrieve
+    self._raise_error_fast()
+  File "C:\Users\natal\Downloads\anaconda\envs\ml_project\Lib\site-packages\joblib\parallel.py", line 1859, in _raise_error_fast
+    error_job.get_result(self.timeout)
+  File "C:\Users\natal\Downloads\anaconda\envs\ml_project\Lib\site-packages\joblib\parallel.py", line 758, in get_result
+    return self._return_or_raise()
+           ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\natal\Downloads\anaconda\envs\ml_project\Lib\site-packages\joblib\parallel.py", line 773, in _return_or_raise
+    raise self._result
+TypeError: All intermediate steps of the chain should not be Pipelines
+=== Tue Nov 10 00:30:44 HPS 2026 fallo definitivo: complementos_confirmatorio.py dashboard 10
+=== Tue Nov 10 00:41:56 HPS 2026 complementos_confirmatorio.py dashboard 10 (intento 1)
+listo dashboard
+=== Tue Nov 10 00:42:51 HPS 2026 robustez.py 10 (intento 1)
+robustez terminada
+=== Tue Nov 10 01:35:50 HPS 2026 correr_finales.py tenure 10 (intento 1)
+tenure naive_bayes
+tenure decision_tree
+tenure logistic_splines
+tenure knn
+tenure logistic
+tenure xgboost
+tenure lightgbm
+tenure svm
+tenure hist_gb
+tenure random_forest
+tenure catboost
+listo tenure
+=== Tue Nov 10 01:56:15 HPS 2026 fin de etapas post
+=== Tue Nov 10 11:27:55 HPS 2026 complementos_confirmatorio.py dashboard 10 (intento 1)
+listo dashboard
+=== Tue Nov 10 11:28:40 HPS 2026 robustez.py 10 (intento 1)
+robustez terminada
+=== Tue Nov 10 12:03:43 HPS 2026 correr_finales.py tenure 10 (intento 1)
+listo tenure
+=== Tue Nov 10 12:03:52 HPS 2026 correr_finales.py holdout 10 (intento 1)
+holdout naive_bayes
+holdout decision_tree
+holdout logistic_splines
+holdout logistic
+holdout knn
+holdout xgboost
+holdout lightgbm
+holdout svm
+holdout hist_gb
+holdout random_forest
+holdout catboost
+listo holdout
+=== Tue Nov 10 12:21:37 HPS 2026 analizar.py (intento 1)
+conjuntos completos: ['telco', 'uci_563_iranian', 'openml_40701_churn', 'openml_1112_kddcup09_churn']
+comparaciones calculadas: 223 de 223
+{
+ "parcial": false,
+ "mejor_benchmark": {
+  "telco": "logistic_splines",
+  "uci_563_iranian": "hist_gb",
+  "openml_40701_churn": "catboost",
+  "openml_1112_kddcup09_churn": "hist_gb"
+ },
+ "log_loss_original": 0.4112727580631369,
+ "log_loss_mejor_benchmark": 0.4113032295268883,
+ "diferencia": -3.0471463751402528e-05,
+ "rechazos": {
+  "T1": false,
+  "T2": false,
+  "T4": false,
+  "T3_nemenyi": false
+ },
+ "cliff": -0.008,
+ "condicion_1": true,
+ "condicion_2": false,
+ "condicion_3": false,
+ "condicion_4": false,
+ "H2": {
+  "uci_563_iranian": {
+   "mejor_benchmark": "hist_gb",
+   "log_loss_original": 0.10115979327630181,
+   "log_loss_mejor": 0.10487885782500939,
+   "mejor_en_media": true,
+   "significativamente_peor": false
+  },
+  "openml_40701_churn": {
+   "mejor_benchmark": "catboost",
+   "log_loss_original": 0.13704614310244914,
+   "log_loss_mejor": 0.13669190885928204,
+   "mejor_en_media": false,
+   "significativamente_peor": false
+  },
+  "openml_1112_kddcup09_churn": {
+   "mejor_benchmark": "hist_gb",
+   "log_loss_original": 0.24158628706519583,
+   "log_loss_mejor": 0.24138584594656884,
+   "mejor_en_media": false,
+   "significativamente_peor": false
+  }
+ },
+ "R3": false
+}
+=== Tue Nov 10 12:24:08 HPS 2026 complementos_confirmatorio.py escalabilidad 1 (intento 1)
+listo escalabilidad
+=== Tue Nov 10 12:28:25 HPS 2026 complementos_confirmatorio.py shap 10 (intento 1)
+joblib.externals.loky.process_executor._RemoteTraceback: 
+"""
+Traceback (most recent call last):
+  File "C:\Users\natal\Downloads\anaconda\envs\ml_project\Lib\site-packages\joblib\externals\loky\process_executor.py", line 490, in _process_worker
+    r = call_item()
+        ^^^^^^^^^^^
+  File "C:\Users\natal\Downloads\anaconda\envs\ml_project\Lib\site-packages\joblib\externals\loky\process_executor.py", line 291, in __call__
+    return self.fn(*self.args, **self.kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\natal\Downloads\anaconda\envs\ml_project\Lib\site-packages\joblib\parallel.py", line 607, in __call__
+    return [func(*args, **kwargs) for func, args, kwargs in self.items]
+            ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\natal\Desktop\Telco_Churn_Entregable\experiments\confirmatorio\complementos_confirmatorio.py", line 105, in _shap_trozo
+    return shap.KernelExplainer(f, fondo, link="identity").shap_values(trozo, nsamples=300, silent=True)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\natal\Downloads\anaconda\envs\ml_project\Lib\site-packages\shap\explainers\_kernel.py", line 275, in shap_values
+    explanations.append(self.explain(data, **kwargs))
+                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\natal\Downloads\anaconda\envs\ml_project\Lib\site-packages\shap\explainers\_kernel.py", line 479, in explain
+    self.run()
+  File "C:\Users\natal\Downloads\anaconda\envs\ml_project\Lib\site-packages\shap\explainers\_kernel.py", line 624, in run
+    modelOut = self.model.f(data)
+               ^^^^^^^^^^^^^^^^^^
+  File "C:\Users\natal\Desktop\Telco_Churn_Entregable\experiments\confirmatorio\complementos_confirmatorio.py", line 134, in f_original
+    T = np.column_stack([e.predict_proba(d)[:, 1] for e in finales])
+                         ^^^^^^^^^^^^^^^^^^
+  File "C:\Users\natal\Downloads\anaconda\envs\ml_project\Lib\site-packages\sklearn\calibration.py", line 501, in predict_proba
+    proba = calibrated_classifier.predict_proba(X)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\natal\Downloads\anaconda\envs\ml_project\Lib\site-packages\sklearn\calibration.py", line 725, in predict_proba
+    predictions, _ = _get_response_values(
+                     ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\natal\Downloads\anaconda\envs\ml_project\Lib\site-packages\sklearn\utils\_response.py", line 214, in _get_response_values
+    y_pred = prediction_method(X)
+             ^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\natal\Downloads\anaconda\envs\ml_project\Lib\site-packages\sklearn\pipeline.py", line 903, in predict_proba
+    Xt = transform.transform(Xt)
+         ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\natal\Downloads\anaconda\envs\ml_project\Lib\site-packages\sklearn\pipeline.py", line 1092, in transform
+    Xt = transform.transform(Xt, **routed_params[name].transform)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\natal\Downloads\anaconda\envs\ml_project\Lib\site-packages\sklearn\utils\_set_output.py", line 319, in wrapped
+    data_to_wrap = f(self, X, *args, **kwargs)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\natal\Desktop\Telco_Churn_Entregable\experiments\confirmatorio\comun.py", line 64, in transform
+    raise ValueError("TotalCharges ausente con tenure != 0")
+ValueError: TotalCharges ausente con tenure != 0
+"""
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\natal\Desktop\Telco_Churn_Entregable\experiments\confirmatorio\complementos_confirmatorio.py", line 173, in <module>
+    correr_shap(n)
+  File "C:\Users\natal\Desktop\Telco_Churn_Entregable\experiments\confirmatorio\complementos_confirmatorio.py", line 144, in correr_shap
+    partes = Parallel(n_jobs=n, batch_size=1)(delayed(_shap_trozo)(f, F, M[t], seed_for("test", 901, j, i) % 2**32)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\natal\Downloads\anaconda\envs\ml_project\Lib\site-packages\joblib\parallel.py", line 2072, in __call__
+    return output if self.return_generator else list(output)
+                                                ^^^^^^^^^^^^
+  File "C:\Users\natal\Downloads\anaconda\envs\ml_project\Lib\site-packages\joblib\parallel.py", line 1682, in _get_outputs
+    yield from self._retrieve()
+  File "C:\Users\natal\Downloads\anaconda\envs\ml_project\Lib\site-packages\joblib\parallel.py", line 1784, in _retrieve
+    self._raise_error_fast()
+  File "C:\Users\natal\Downloads\anaconda\envs\ml_project\Lib\site-packages\joblib\parallel.py", line 1859, in _raise_error_fast
+    error_job.get_result(self.timeout)
+  File "C:\Users\natal\Downloads\anaconda\envs\ml_project\Lib\site-packages\joblib\parallel.py", line 758, in get_result
+    return self._return_or_raise()
+           ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\natal\Downloads\anaconda\envs\ml_project\Lib\site-packages\joblib\parallel.py", line 773, in _return_or_raise
+    raise self._result
+ValueError: TotalCharges ausente con tenure != 0
+=== Tue Nov 10 12:29:50 HPS 2026 complementos_confirmatorio.py shap 10 (intento 2)
+joblib.externals.loky.process_executor._RemoteTraceback: 
+"""
+Traceback (most recent call last):
+  File "C:\Users\natal\Downloads\anaconda\envs\ml_project\Lib\site-packages\joblib\externals\loky\process_executor.py", line 490, in _process_worker
+    r = call_item()
+        ^^^^^^^^^^^
+  File "C:\Users\natal\Downloads\anaconda\envs\ml_project\Lib\site-packages\joblib\externals\loky\process_executor.py", line 291, in __call__
+    return self.fn(*self.args, **self.kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\natal\Downloads\anaconda\envs\ml_project\Lib\site-packages\joblib\parallel.py", line 607, in __call__
+    return [func(*args, **kwargs) for func, args, kwargs in self.items]
+            ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\natal\Desktop\Telco_Churn_Entregable\experiments\confirmatorio\complementos_confirmatorio.py", line 105, in _shap_trozo
+    return shap.KernelExplainer(f, fondo, link="identity").shap_values(trozo, nsamples=300, silent=True)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\natal\Downloads\anaconda\envs\ml_project\Lib\site-packages\shap\explainers\_kernel.py", line 275, in shap_values
+    explanations.append(self.explain(data, **kwargs))
+                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\natal\Downloads\anaconda\envs\ml_project\Lib\site-packages\shap\explainers\_kernel.py", line 479, in explain
+    self.run()
+  File "C:\Users\natal\Downloads\anaconda\envs\ml_project\Lib\site-packages\shap\explainers\_kernel.py", line 624, in run
+    modelOut = self.model.f(data)
+               ^^^^^^^^^^^^^^^^^^
+  File "C:\Users\natal\Desktop\Telco_Churn_Entregable\experiments\confirmatorio\complementos_confirmatorio.py", line 134, in f_original
+    T = np.column_stack([e.predict_proba(d)[:, 1] for e in finales])
+                         ^^^^^^^^^^^^^^^^^^
+  File "C:\Users\natal\Downloads\anaconda\envs\ml_project\Lib\site-packages\sklearn\calibration.py", line 501, in predict_proba
+    proba = calibrated_classifier.predict_proba(X)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\natal\Downloads\anaconda\envs\ml_project\Lib\site-packages\sklearn\calibration.py", line 725, in predict_proba
+    predictions, _ = _get_response_values(
+                     ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\natal\Downloads\anaconda\envs\ml_project\Lib\site-packages\sklearn\utils\_response.py", line 214, in _get_response_values
+    y_pred = prediction_method(X)
+             ^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\natal\Downloads\anaconda\envs\ml_project\Lib\site-packages\sklearn\pipeline.py", line 903, in predict_proba
+    Xt = transform.transform(Xt)
+         ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\natal\Downloads\anaconda\envs\ml_project\Lib\site-packages\sklearn\pipeline.py", line 1092, in transform
+    Xt = transform.transform(Xt, **routed_params[name].transform)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\natal\Downloads\anaconda\envs\ml_project\Lib\site-packages\sklearn\utils\_set_output.py", line 319, in wrapped
+    data_to_wrap = f(self, X, *args, **kwargs)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\natal\Desktop\Telco_Churn_Entregable\experiments\confirmatorio\comun.py", line 64, in transform
+    raise ValueError("TotalCharges ausente con tenure != 0")
+ValueError: TotalCharges ausente con tenure != 0
+"""
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\natal\Desktop\Telco_Churn_Entregable\experiments\confirmatorio\complementos_confirmatorio.py", line 173, in <module>
+    correr_shap(n)
+  File "C:\Users\natal\Desktop\Telco_Churn_Entregable\experiments\confirmatorio\complementos_confirmatorio.py", line 144, in correr_shap
+    partes = Parallel(n_jobs=n, batch_size=1)(delayed(_shap_trozo)(f, F, M[t], seed_for("test", 901, j, i) % 2**32)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\natal\Downloads\anaconda\envs\ml_project\Lib\site-packages\joblib\parallel.py", line 2072, in __call__
+    return output if self.return_generator else list(output)
+                                                ^^^^^^^^^^^^
+  File "C:\Users\natal\Downloads\anaconda\envs\ml_project\Lib\site-packages\joblib\parallel.py", line 1682, in _get_outputs
+    yield from self._retrieve()
+  File "C:\Users\natal\Downloads\anaconda\envs\ml_project\Lib\site-packages\joblib\parallel.py", line 1784, in _retrieve
+    self._raise_error_fast()
+  File "C:\Users\natal\Downloads\anaconda\envs\ml_project\Lib\site-packages\joblib\parallel.py", line 1859, in _raise_error_fast
+    error_job.get_result(self.timeout)
+  File "C:\Users\natal\Downloads\anaconda\envs\ml_project\Lib\site-packages\joblib\parallel.py", line 758, in get_result
+    return self._return_or_raise()
+           ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\natal\Downloads\anaconda\envs\ml_project\Lib\site-packages\joblib\parallel.py", line 773, in _return_or_raise
+    raise self._result
+ValueError: TotalCharges ausente con tenure != 0
+=== Tue Nov 10 12:31:11 HPS 2026 complementos_confirmatorio.py shap 10 (intento 3)
+joblib.externals.loky.process_executor._RemoteTraceback: 
+"""
+Traceback (most recent call last):
+  File "C:\Users\natal\Downloads\anaconda\envs\ml_project\Lib\site-packages\joblib\externals\loky\process_executor.py", line 490, in _process_worker
+    r = call_item()
+        ^^^^^^^^^^^
+  File "C:\Users\natal\Downloads\anaconda\envs\ml_project\Lib\site-packages\joblib\externals\loky\process_executor.py", line 291, in __call__
+    return self.fn(*self.args, **self.kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\natal\Downloads\anaconda\envs\ml_project\Lib\site-packages\joblib\parallel.py", line 607, in __call__
+    return [func(*args, **kwargs) for func, args, kwargs in self.items]
+            ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\natal\Desktop\Telco_Churn_Entregable\experiments\confirmatorio\complementos_confirmatorio.py", line 105, in _shap_trozo
+    return shap.KernelExplainer(f, fondo, link="identity").shap_values(trozo, nsamples=300, silent=True)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\natal\Downloads\anaconda\envs\ml_project\Lib\site-packages\shap\explainers\_kernel.py", line 275, in shap_values
+    explanations.append(self.explain(data, **kwargs))
+                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\natal\Downloads\anaconda\envs\ml_project\Lib\site-packages\shap\explainers\_kernel.py", line 479, in explain
+    self.run()
+  File "C:\Users\natal\Downloads\anaconda\envs\ml_project\Lib\site-packages\shap\explainers\_kernel.py", line 624, in run
+    modelOut = self.model.f(data)
+               ^^^^^^^^^^^^^^^^^^
+  File "C:\Users\natal\Desktop\Telco_Churn_Entregable\experiments\confirmatorio\complementos_confirmatorio.py", line 134, in f_original
+    T = np.column_stack([e.predict_proba(d)[:, 1] for e in finales])
+                         ^^^^^^^^^^^^^^^^^^
+  File "C:\Users\natal\Downloads\anaconda\envs\ml_project\Lib\site-packages\sklearn\calibration.py", line 501, in predict_proba
+    proba = calibrated_classifier.predict_proba(X)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\natal\Downloads\anaconda\envs\ml_project\Lib\site-packages\sklearn\calibration.py", line 725, in predict_proba
+    predictions, _ = _get_response_values(
+                     ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\natal\Downloads\anaconda\envs\ml_project\Lib\site-packages\sklearn\utils\_response.py", line 214, in _get_response_values
+    y_pred = prediction_method(X)
+             ^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\natal\Downloads\anaconda\envs\ml_project\Lib\site-packages\sklearn\pipeline.py", line 903, in predict_proba
+    Xt = transform.transform(Xt)
+         ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\natal\Downloads\anaconda\envs\ml_project\Lib\site-packages\sklearn\pipeline.py", line 1092, in transform
+    Xt = transform.transform(Xt, **routed_params[name].transform)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\natal\Downloads\anaconda\envs\ml_project\Lib\site-packages\sklearn\utils\_set_output.py", line 319, in wrapped
+    data_to_wrap = f(self, X, *args, **kwargs)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\natal\Desktop\Telco_Churn_Entregable\experiments\confirmatorio\comun.py", line 64, in transform
+    raise ValueError("TotalCharges ausente con tenure != 0")
+ValueError: TotalCharges ausente con tenure != 0
+"""
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\natal\Desktop\Telco_Churn_Entregable\experiments\confirmatorio\complementos_confirmatorio.py", line 173, in <module>
+    correr_shap(n)
+  File "C:\Users\natal\Desktop\Telco_Churn_Entregable\experiments\confirmatorio\complementos_confirmatorio.py", line 144, in correr_shap
+    partes = Parallel(n_jobs=n, batch_size=1)(delayed(_shap_trozo)(f, F, M[t], seed_for("test", 901, j, i) % 2**32)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\natal\Downloads\anaconda\envs\ml_project\Lib\site-packages\joblib\parallel.py", line 2072, in __call__
+    return output if self.return_generator else list(output)
+                                                ^^^^^^^^^^^^
+  File "C:\Users\natal\Downloads\anaconda\envs\ml_project\Lib\site-packages\joblib\parallel.py", line 1682, in _get_outputs
+    yield from self._retrieve()
+  File "C:\Users\natal\Downloads\anaconda\envs\ml_project\Lib\site-packages\joblib\parallel.py", line 1784, in _retrieve
+    self._raise_error_fast()
+  File "C:\Users\natal\Downloads\anaconda\envs\ml_project\Lib\site-packages\joblib\parallel.py", line 1859, in _raise_error_fast
+    error_job.get_result(self.timeout)
+  File "C:\Users\natal\Downloads\anaconda\envs\ml_project\Lib\site-packages\joblib\parallel.py", line 758, in get_result
+    return self._return_or_raise()
+           ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\natal\Downloads\anaconda\envs\ml_project\Lib\site-packages\joblib\parallel.py", line 773, in _return_or_raise
+    raise self._result
+ValueError: TotalCharges ausente con tenure != 0
+=== Tue Nov 10 12:31:33 HPS 2026 fallo definitivo: complementos_confirmatorio.py shap 10
+=== Tue Nov 10 12:32:22 HPS 2026 complementos_confirmatorio.py shap 10 (tras corregir TotalCharges)
+shap listo logistic_splines
+listo shap

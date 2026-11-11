@@ -21,10 +21,35 @@ Telco Customer Churn (IBM) · 7,043 clientes · 26.5 % de abandono
 
 :::{grid-item-card} Metodología
 :class-card: meta-card
-EDA · Preprocesamiento · Modelado Avanzado · Interpretación
+EDA · Modelado avanzado · Modelo original · Validación estadística
 :::
 
 ::::
+
+## Resumen ejecutivo
+
+Este libro predice qué clientes de una empresa de telecomunicaciones van a abandonar el servicio y, en su última etapa,
+pone a prueba un modelo propio. La hipótesis era que los ensambles de churn pierden información al combinar sus modelos
+con un único vector de pesos: si la fiabilidad de cada modelo cambia según el tipo de cliente, convendría darle pesos
+distintos a cada región del espacio de clientes. Para probarlo diseñamos RegionalMAPEM y lo comparamos con 11 benchmarks
+bajo un protocolo congelado antes de correr los experimentos definitivos, en Telco y en tres conjuntos adicionales.
+
+El resultado es negativo y claro. RegionalMAPEM empata con el mejor benchmark, la logística con splines (log-loss de
+0,41127 frente a 0,41130), le gana a 7 de los 11 benchmarks y no cumple la definición de superioridad. La ablación y la
+sensibilidad muestran por qué: en Telco, las regiones no aportan y el prior de Dirichlet hace bien su trabajo al llevar
+los pesos de cada región hacia los globales.
+
+**Contribuciones.**
+
+1. RegionalMAPEM, una regla de combinación de clasificadores calibrados con pesos por región, estimados por MAP-EM con un
+   prior de Dirichlet hacia los pesos globales, con demostración de concavidad y convergencia al óptimo global
+   (capítulo 5).
+2. Una implementación propia en numpy y scipy, compatible con scikit-learn y con 12 pruebas unitarias (capítulo 5).
+3. Una evaluación pre-registrada con validación anidada 5 × 5, 223 comparaciones con corrección de Holm y un hold-out
+   abierto una sola vez después de sellar el análisis (capítulo 6).
+4. Una evaluación ampliada en cuatro conjuntos de churn, con estudios de sensibilidad, estabilidad, ruido, tamaño de
+   muestra, cambio de distribución, calibración, predicción conforme, análisis de errores e interpretabilidad (capítulo 7).
+5. Un análisis honesto de por qué el modelo no supera al mejor benchmark (capítulos 7 y 9).
 
 ## Introducción
 La pérdida de clientes (*churn*) es uno de los principales riesgos financieros de las empresas de telecomunicaciones: cada cancelación supone la pérdida de ingresos recurrentes, y retener a un cliente existente suele ser considerablemente más económico que adquirir uno nuevo. Anticipar qué clientes tienen mayor probabilidad de abandonar el servicio permite dirigir ofertas, mejoras de servicio y acciones de retención de forma selectiva, en lugar de aplicarlas a toda la base de clientes.
@@ -53,6 +78,7 @@ Identificar a los clientes de una empresa de telecomunicaciones con mayor riesgo
 6. Comparar alternativas de forma controlada, evaluando 112 configuraciones (7 modelos × 4 técnicas de balanceo × 4 métodos de optimización de hiperparámetros) con validación cruzada anidada y el F1 de la clase de abandono como métrica principal, contrastando estadísticamente sus diferencias, la calibración de probabilidades y el costo computacional.
 7. Explicar las predicciones, identificando con SHAP y LIME las variables que más influyen en el riesgo de abandono, sin atribuirles un efecto causal.
 8. Poner los resultados a disposición, presentando el análisis en un Jupyter Book, un paper y un tablero interactivo que permitan consultar los hallazgos sin necesidad de ejecutar el código.
+9. Proponer un modelo original y evaluarlo con rigor, formulando una regla de combinación nueva, demostrando su propiedad teórica, implementándola desde cero y comparándola con los benchmarks bajo un protocolo pre-registrado, con el mismo presupuesto y en cuatro conjuntos de datos.
 
 ## Marco teórico
 
@@ -132,38 +158,59 @@ El identificador no representa una característica explicativa. Los demás campo
 ::::{grid} 1 1 2 2
 :gutter: 2
 
-:::{grid-item-card} 1. Análisis Exploratorio (EDA)
+:::{grid-item-card} 1. Trazabilidad de correcciones
+:class-card: step-card
+Qué se corrigió del entregable anterior, dónde está en el libro y con qué se comprueba, más la auditoría de fuga de información.
+:::
+
+:::{grid-item-card} 2. Análisis exploratorio
 :class-card: step-card
 Calidad de los datos, distribuciones, tasas de abandono por segmento y asociación entre variables.
 :::
 
 :::{grid-item-card} 2. Preprocesamiento
 :class-card: step-card
-Imputación, codificación de variables categóricas, escalado y modelo base, ajustados exclusivamente con los datos de entrenamiento.
+Imputación, codificación, escalado y modelo base, ajustados solo con los datos de entrenamiento.
 :::
 
-:::{grid-item-card} 3. Modelado Avanzado
+:::{grid-item-card} 3. Modelado avanzado
 :class-card: step-card
-Comparación de 112 configuraciones con validación cruzada anidada, evaluación en test e interpretación de los modelos.
+Las 112 configuraciones del entregable anterior con validación cruzada anidada, calibración y comparación estadística.
 :::
 
-:::{grid-item-card} 4. Paper
+:::{grid-item-card} 4. Literatura y novedad
 :class-card: step-card
-Versión web y PDF del artículo con la metodología y los resultados del proyecto.
+Búsqueda en bases institucionales y abiertas, búsqueda por citación, tabla de diferenciación y declaración de novedad.
 :::
 
-:::{grid-item-card} 5. Guía del Repositorio
+:::{grid-item-card} 5. Modelo original
 :class-card: step-card
-Estructura del repositorio, requisitos, orden de ejecución de los notebooks y construcción del libro.
+Motivación, formulación, derivación del EM, demostración, pseudocódigo, complejidad, implementación y pruebas.
+:::
+
+:::{grid-item-card} 6. Validación estadística
+:class-card: step-card
+Protocolo pre-registrado, equidad, pruebas de hipótesis con Holm, ablación y veredicto sobre R3.
+:::
+
+:::{grid-item-card} 7. Evaluación ampliada
+:class-card: step-card
+Conjuntos adicionales, sensibilidad, estabilidad, ruido, escalabilidad, cambio de distribución, calibración, incertidumbre, errores y SHAP.
+:::
+
+:::{grid-item-card} 9. Conclusiones
+:class-card: step-card
+Hallazgos, veredicto sobre R1, R2 y R3, limitaciones, riesgos, trabajo futuro y declaración de uso de IA.
+:::
+
+:::{grid-item-card} 10. Reproducibilidad
+:class-card: step-card
+Entorno, semillas, espacios de búsqueda, tabla maestra de experimentos, tiempos y referencias.
+:::
+
+:::{grid-item-card} Apéndices
+:class-card: step-card
+Código del experimento del entregable anterior, paper y guía del repositorio.
 :::
 
 ::::
-
-:::{seealso} Enlaces de interés
-Conjunto de datos
-- [Kaggle — Telco Customer Churn](https://www.kaggle.com/datasets/blastchar/telco-customer-churn)
-
-Repositorios del proyecto
-- [GitHub — Jupyter Book y notebooks](https://github.com/Nataly-Cardenas/Telco_Churn_Entregable)
-- [GitHub — Dashboard interactivo](https://github.com/Nataly-Cardenas/Dash_Telco_Churn)
-:::

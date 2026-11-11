@@ -1,0 +1,47 @@
+{
+ "parcial": false,
+ "mejor_benchmark": {
+  "telco": "logistic_splines",
+  "uci_563_iranian": "hist_gb",
+  "openml_40701_churn": "catboost",
+  "openml_1112_kddcup09_churn": "hist_gb"
+ },
+ "log_loss_original": 0.4112727580631369,
+ "log_loss_mejor_benchmark": 0.4113032295268883,
+ "diferencia": -3.0471463751402528e-05,
+ "rechazos": {
+  "T1": false,
+  "T2": false,
+  "T4": false,
+  "T3_nemenyi": false
+ },
+ "cliff": -0.008,
+ "condicion_1": true,
+ "condicion_2": false,
+ "condicion_3": false,
+ "condicion_4": false,
+ "H2": {
+  "uci_563_iranian": {
+   "mejor_benchmark": "hist_gb",
+   "log_loss_original": 0.10115979327630181,
+   "log_loss_mejor": 0.10487885782500939,
+   "mejor_en_media": true,
+   "significativamente_peor": false
+  },
+  "openml_40701_churn": {
+   "mejor_benchmark": "catboost",
+   "log_loss_original": 0.13704614310244914,
+   "log_loss_mejor": 0.13669190885928204,
+   "mejor_en_media": false,
+   "significativamente_peor": false
+  },
+  "openml_1112_kddcup09_churn": {
+   "mejor_benchmark": "hist_gb",
+   "log_loss_original": 0.24158628706519583,
+   "log_loss_mejor": 0.24138584594656884,
+   "mejor_en_media": false,
+   "significativamente_peor": false
+  }
+ },
+ "R3": false
+}

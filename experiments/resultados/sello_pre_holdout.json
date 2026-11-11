@@ -1,0 +1,14 @@
+{
+ "fecha": "2026-11-10T00:37:20-05:00",
+ "nota": "análisis confirmatorio sobre los 4 conjuntos, antes de evaluar el hold-out",
+ "archivos": {
+  "bayesiana_rope.csv": "4a2d32d8fa2f9af690e28cf31848f5d7207b1fb3535e7905de7eac0263813d2b",
+  "costos_por_pliegue.csv": "656dea00d1f18ce409515280d0359728ef0108e67b9a272db16062ffa1b78217",
+  "familia_resultados.csv": "f3a39f30e5a49fb192e7e0b03e1d9c965bafc5f9065c3449b26f9a7b575b514e",
+  "friedman_telco.json": "5a0e6d1b419190bf6e05e1e8f2e1363370bc620cadd9d7c21d2757db9b8b7812",
+  "logloss_medio_por_conjunto.csv": "f26ccab09675a13c418e58b6606dbd17ce27011b9364256e6974bb35e3f8eccc",
+  "metricas_por_pliegue.csv": "8f774eb4faebc58021abd633efce96dae593653699ea86d139271e90060ad90f",
+  "resumen_modelos.csv": "4b83229da5ece84c62cadf06f68610278e7cbae338f85f185cc388e55637da1b",
+  "veredicto_R3.json": "f84f8f484b6a3322d81b7d4ebf0714f77d619a0b66ea8ba6ad2c32fed8d25b54"
+ }
+}

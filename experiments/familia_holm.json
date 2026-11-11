@@ -1,0 +1,2252 @@
+{
+ "version": "protocolo-v1",
+ "correccion": "Holm-Bonferroni sobre la familia completa, alfa = 0.05; se reportan p crudo y ajustado",
+ "total_comparaciones": 223,
+ "umbral_minimo_holm": 0.0002242152466367713,
+ "conteo_por_bloque": {
+  "A1_principal_benchmarks": 33,
+  "A2_principal_ablacion": 15,
+  "A3_principal_friedman": 17,
+  "B_principal_secundarias": 44,
+  "C_holdout": 3,
+  "D_adicionales": 99,
+  "E_entre_conjuntos": 12
+ },
+ "no_incluidas": [
+  "prueba bayesiana de rangos con signo (ROPE ±0.001): exploratoria, no produce p-valor",
+  "estudios de robustez de la sección 10 del protocolo: exploratorios"
+ ],
+ "nota_resolucion": "con 100 000 permutaciones el p mínimo de T2 es ~1e-5, por debajo del umbral mínimo de Holm",
+ "comparaciones": [
+  {
+   "id": 1,
+   "bloque": "A1_principal_benchmarks",
+   "dataset": "telco",
+   "metrica": "log_loss",
+   "prueba": "T1",
+   "modelo_a": "RegionalMAPEM",
+   "modelo_b": "knn",
+   "descripcion": "t corregida de Nadeau-Bengio sobre las diferencias por pliegue (25; 10 en KDDCup09)"
+  },
+  {
+   "id": 2,
+   "bloque": "A1_principal_benchmarks",
+   "dataset": "telco",
+   "metrica": "log_loss",
+   "prueba": "T2",
+   "modelo_a": "RegionalMAPEM",
+   "modelo_b": "knn",
+   "descripcion": "permutación pareada de signos sobre pérdidas por instancia (100 000 permutaciones)"
+  },
+  {
+   "id": 3,
+   "bloque": "A1_principal_benchmarks",
+   "dataset": "telco",
+   "metrica": "log_loss",
+   "prueba": "T4",
+   "modelo_a": "RegionalMAPEM",
+   "modelo_b": "knn",
+   "descripcion": "Wilcoxon de rangos con signo sobre las diferencias por pliegue (25; 10 en KDDCup09)"
+  },
+  {
+   "id": 4,
+   "bloque": "A1_principal_benchmarks",
+   "dataset": "telco",
+   "metrica": "log_loss",
+   "prueba": "T1",
+   "modelo_a": "RegionalMAPEM",
+   "modelo_b": "naive_bayes",
+   "descripcion": "t corregida de Nadeau-Bengio sobre las diferencias por pliegue (25; 10 en KDDCup09)"
+  },
+  {
+   "id": 5,
+   "bloque": "A1_principal_benchmarks",
+   "dataset": "telco",
+   "metrica": "log_loss",
+   "prueba": "T2",
+   "modelo_a": "RegionalMAPEM",
+   "modelo_b": "naive_bayes",
+   "descripcion": "permutación pareada de signos sobre pérdidas por instancia (100 000 permutaciones)"
+  },
+  {
+   "id": 6,
+   "bloque": "A1_principal_benchmarks",
+   "dataset": "telco",
+   "metrica": "log_loss",
+   "prueba": "T4",
+   "modelo_a": "RegionalMAPEM",
+   "modelo_b": "naive_bayes",
+   "descripcion": "Wilcoxon de rangos con signo sobre las diferencias por pliegue (25; 10 en KDDCup09)"
+  },
+  {
+   "id": 7,
+   "bloque": "A1_principal_benchmarks",
+   "dataset": "telco",
+   "metrica": "log_loss",
+   "prueba": "T1",
+   "modelo_a": "RegionalMAPEM",
+   "modelo_b": "logistic",
+   "descripcion": "t corregida de Nadeau-Bengio sobre las diferencias por pliegue (25; 10 en KDDCup09)"
+  },
+  {
+   "id": 8,
+   "bloque": "A1_principal_benchmarks",
+   "dataset": "telco",
+   "metrica": "log_loss",
+   "prueba": "T2",
+   "modelo_a": "RegionalMAPEM",
+   "modelo_b": "logistic",
+   "descripcion": "permutación pareada de signos sobre pérdidas por instancia (100 000 permutaciones)"
+  },
+  {
+   "id": 9,
+   "bloque": "A1_principal_benchmarks",
+   "dataset": "telco",
+   "metrica": "log_loss",
+   "prueba": "T4",
+   "modelo_a": "RegionalMAPEM",
+   "modelo_b": "logistic",
+   "descripcion": "Wilcoxon de rangos con signo sobre las diferencias por pliegue (25; 10 en KDDCup09)"
+  },
+  {
+   "id": 10,
+   "bloque": "A1_principal_benchmarks",
+   "dataset": "telco",
+   "metrica": "log_loss",
+   "prueba": "T1",
+   "modelo_a": "RegionalMAPEM",
+   "modelo_b": "decision_tree",
+   "descripcion": "t corregida de Nadeau-Bengio sobre las diferencias por pliegue (25; 10 en KDDCup09)"
+  },
+  {
+   "id": 11,
+   "bloque": "A1_principal_benchmarks",
+   "dataset": "telco",
+   "metrica": "log_loss",
+   "prueba": "T2",
+   "modelo_a": "RegionalMAPEM",
+   "modelo_b": "decision_tree",
+   "descripcion": "permutación pareada de signos sobre pérdidas por instancia (100 000 permutaciones)"
+  },
+  {
+   "id": 12,
+   "bloque": "A1_principal_benchmarks",
+   "dataset": "telco",
+   "metrica": "log_loss",
+   "prueba": "T4",
+   "modelo_a": "RegionalMAPEM",
+   "modelo_b": "decision_tree",
+   "descripcion": "Wilcoxon de rangos con signo sobre las diferencias por pliegue (25; 10 en KDDCup09)"
+  },
+  {
+   "id": 13,
+   "bloque": "A1_principal_benchmarks",
+   "dataset": "telco",
+   "metrica": "log_loss",
+   "prueba": "T1",
+   "modelo_a": "RegionalMAPEM",
+   "modelo_b": "random_forest",
+   "descripcion": "t corregida de Nadeau-Bengio sobre las diferencias por pliegue (25; 10 en KDDCup09)"
+  },
+  {
+   "id": 14,
+   "bloque": "A1_principal_benchmarks",
+   "dataset": "telco",
+   "metrica": "log_loss",
+   "prueba": "T2",
+   "modelo_a": "RegionalMAPEM",
+   "modelo_b": "random_forest",
+   "descripcion": "permutación pareada de signos sobre pérdidas por instancia (100 000 permutaciones)"
+  },
+  {
+   "id": 15,
+   "bloque": "A1_principal_benchmarks",
+   "dataset": "telco",
+   "metrica": "log_loss",
+   "prueba": "T4",
+   "modelo_a": "RegionalMAPEM",
+   "modelo_b": "random_forest",
+   "descripcion": "Wilcoxon de rangos con signo sobre las diferencias por pliegue (25; 10 en KDDCup09)"
+  },
+  {
+   "id": 16,
+   "bloque": "A1_principal_benchmarks",
+   "dataset": "telco",
+   "metrica": "log_loss",
+   "prueba": "T1",
+   "modelo_a": "RegionalMAPEM",
+   "modelo_b": "xgboost",
+   "descripcion": "t corregida de Nadeau-Bengio sobre las diferencias por pliegue (25; 10 en KDDCup09)"
+  },
+  {
+   "id": 17,
+   "bloque": "A1_principal_benchmarks",
+   "dataset": "telco",
+   "metrica": "log_loss",
+   "prueba": "T2",
+   "modelo_a": "RegionalMAPEM",
+   "modelo_b": "xgboost",
+   "descripcion": "permutación pareada de signos sobre pérdidas por instancia (100 000 permutaciones)"
+  },
+  {
+   "id": 18,
+   "bloque": "A1_principal_benchmarks",
+   "dataset": "telco",
+   "metrica": "log_loss",
+   "prueba": "T4",
+   "modelo_a": "RegionalMAPEM",
+   "modelo_b": "xgboost",
+   "descripcion": "Wilcoxon de rangos con signo sobre las diferencias por pliegue (25; 10 en KDDCup09)"
+  },
+  {
+   "id": 19,
+   "bloque": "A1_principal_benchmarks",
+   "dataset": "telco",
+   "metrica": "log_loss",
+   "prueba": "T1",
+   "modelo_a": "RegionalMAPEM",
+   "modelo_b": "svm",
+   "descripcion": "t corregida de Nadeau-Bengio sobre las diferencias por pliegue (25; 10 en KDDCup09)"
+  },
+  {
+   "id": 20,
+   "bloque": "A1_principal_benchmarks",
+   "dataset": "telco",
+   "metrica": "log_loss",
+   "prueba": "T2",
+   "modelo_a": "RegionalMAPEM",
+   "modelo_b": "svm",
+   "descripcion": "permutación pareada de signos sobre pérdidas por instancia (100 000 permutaciones)"
+  },
+  {
+   "id": 21,
+   "bloque": "A1_principal_benchmarks",
+   "dataset": "telco",
+   "metrica": "log_loss",
+   "prueba": "T4",
+   "modelo_a": "RegionalMAPEM",
+   "modelo_b": "svm",
+   "descripcion": "Wilcoxon de rangos con signo sobre las diferencias por pliegue (25; 10 en KDDCup09)"
+  },
+  {
+   "id": 22,
+   "bloque": "A1_principal_benchmarks",
+   "dataset": "telco",
+   "metrica": "log_loss",
+   "prueba": "T1",
+   "modelo_a": "RegionalMAPEM",
+   "modelo_b": "logistic_splines",
+   "descripcion": "t corregida de Nadeau-Bengio sobre las diferencias por pliegue (25; 10 en KDDCup09)"
+  },
+  {
+   "id": 23,
+   "bloque": "A1_principal_benchmarks",
+   "dataset": "telco",
+   "metrica": "log_loss",
+   "prueba": "T2",
+   "modelo_a": "RegionalMAPEM",
+   "modelo_b": "logistic_splines",
+   "descripcion": "permutación pareada de signos sobre pérdidas por instancia (100 000 permutaciones)"
+  },
+  {
+   "id": 24,
+   "bloque": "A1_principal_benchmarks",
+   "dataset": "telco",
+   "metrica": "log_loss",
+   "prueba": "T4",
+   "modelo_a": "RegionalMAPEM",
+   "modelo_b": "logistic_splines",
+   "descripcion": "Wilcoxon de rangos con signo sobre las diferencias por pliegue (25; 10 en KDDCup09)"
+  },
+  {
+   "id": 25,
+   "bloque": "A1_principal_benchmarks",
+   "dataset": "telco",
+   "metrica": "log_loss",
+   "prueba": "T1",
+   "modelo_a": "RegionalMAPEM",
+   "modelo_b": "hist_gb",
+   "descripcion": "t corregida de Nadeau-Bengio sobre las diferencias por pliegue (25; 10 en KDDCup09)"
+  },
+  {
+   "id": 26,
+   "bloque": "A1_principal_benchmarks",
+   "dataset": "telco",
+   "metrica": "log_loss",
+   "prueba": "T2",
+   "modelo_a": "RegionalMAPEM",
+   "modelo_b": "hist_gb",
+   "descripcion": "permutación pareada de signos sobre pérdidas por instancia (100 000 permutaciones)"
+  },
+  {
+   "id": 27,
+   "bloque": "A1_principal_benchmarks",
+   "dataset": "telco",
+   "metrica": "log_loss",
+   "prueba": "T4",
+   "modelo_a": "RegionalMAPEM",
+   "modelo_b": "hist_gb",
+   "descripcion": "Wilcoxon de rangos con signo sobre las diferencias por pliegue (25; 10 en KDDCup09)"
+  },
+  {
+   "id": 28,
+   "bloque": "A1_principal_benchmarks",
+   "dataset": "telco",
+   "metrica": "log_loss",
+   "prueba": "T1",
+   "modelo_a": "RegionalMAPEM",
+   "modelo_b": "lightgbm",
+   "descripcion": "t corregida de Nadeau-Bengio sobre las diferencias por pliegue (25; 10 en KDDCup09)"
+  },
+  {
+   "id": 29,
+   "bloque": "A1_principal_benchmarks",
+   "dataset": "telco",
+   "metrica": "log_loss",
+   "prueba": "T2",
+   "modelo_a": "RegionalMAPEM",
+   "modelo_b": "lightgbm",
+   "descripcion": "permutación pareada de signos sobre pérdidas por instancia (100 000 permutaciones)"
+  },
+  {
+   "id": 30,
+   "bloque": "A1_principal_benchmarks",
+   "dataset": "telco",
+   "metrica": "log_loss",
+   "prueba": "T4",
+   "modelo_a": "RegionalMAPEM",
+   "modelo_b": "lightgbm",
+   "descripcion": "Wilcoxon de rangos con signo sobre las diferencias por pliegue (25; 10 en KDDCup09)"
+  },
+  {
+   "id": 31,
+   "bloque": "A1_principal_benchmarks",
+   "dataset": "telco",
+   "metrica": "log_loss",
+   "prueba": "T1",
+   "modelo_a": "RegionalMAPEM",
+   "modelo_b": "catboost",
+   "descripcion": "t corregida de Nadeau-Bengio sobre las diferencias por pliegue (25; 10 en KDDCup09)"
+  },
+  {
+   "id": 32,
+   "bloque": "A1_principal_benchmarks",
+   "dataset": "telco",
+   "metrica": "log_loss",
+   "prueba": "T2",
+   "modelo_a": "RegionalMAPEM",
+   "modelo_b": "catboost",
+   "descripcion": "permutación pareada de signos sobre pérdidas por instancia (100 000 permutaciones)"
+  },
+  {
+   "id": 33,
+   "bloque": "A1_principal_benchmarks",
+   "dataset": "telco",
+   "metrica": "log_loss",
+   "prueba": "T4",
+   "modelo_a": "RegionalMAPEM",
+   "modelo_b": "catboost",
+   "descripcion": "Wilcoxon de rangos con signo sobre las diferencias por pliegue (25; 10 en KDDCup09)"
+  },
+  {
+   "id": 34,
+   "bloque": "A2_principal_ablacion",
+   "dataset": "telco",
+   "metrica": "log_loss",
+   "prueba": "T1",
+   "modelo_a": "RegionalMAPEM",
+   "modelo_b": "mapem_sin_prior",
+   "descripcion": "t corregida de Nadeau-Bengio sobre las diferencias por pliegue (25; 10 en KDDCup09)"
+  },
+  {
+   "id": 35,
+   "bloque": "A2_principal_ablacion",
+   "dataset": "telco",
+   "metrica": "log_loss",
+   "prueba": "T2",
+   "modelo_a": "RegionalMAPEM",
+   "modelo_b": "mapem_sin_prior",
+   "descripcion": "permutación pareada de signos sobre pérdidas por instancia (100 000 permutaciones)"
+  },
+  {
+   "id": 36,
+   "bloque": "A2_principal_ablacion",
+   "dataset": "telco",
+   "metrica": "log_loss",
+   "prueba": "T4",
+   "modelo_a": "RegionalMAPEM",
+   "modelo_b": "mapem_sin_prior",
+   "descripcion": "Wilcoxon de rangos con signo sobre las diferencias por pliegue (25; 10 en KDDCup09)"
+  },
+  {
+   "id": 37,
+   "bloque": "A2_principal_ablacion",
+   "dataset": "telco",
+   "metrica": "log_loss",
+   "prueba": "T1",
+   "modelo_a": "RegionalMAPEM",
+   "modelo_b": "mapem_K1",
+   "descripcion": "t corregida de Nadeau-Bengio sobre las diferencias por pliegue (25; 10 en KDDCup09)"
+  },
+  {
+   "id": 38,
+   "bloque": "A2_principal_ablacion",
+   "dataset": "telco",
+   "metrica": "log_loss",
+   "prueba": "T2",
+   "modelo_a": "RegionalMAPEM",
+   "modelo_b": "mapem_K1",
+   "descripcion": "permutación pareada de signos sobre pérdidas por instancia (100 000 permutaciones)"
+  },
+  {
+   "id": 39,
+   "bloque": "A2_principal_ablacion",
+   "dataset": "telco",
+   "metrica": "log_loss",
+   "prueba": "T4",
+   "modelo_a": "RegionalMAPEM",
+   "modelo_b": "mapem_K1",
+   "descripcion": "Wilcoxon de rangos con signo sobre las diferencias por pliegue (25; 10 en KDDCup09)"
+  },
+  {
+   "id": 40,
+   "bloque": "A2_principal_ablacion",
+   "dataset": "telco",
+   "metrica": "log_loss",
+   "prueba": "T1",
+   "modelo_a": "RegionalMAPEM",
+   "modelo_b": "mapem_regiones_duras",
+   "descripcion": "t corregida de Nadeau-Bengio sobre las diferencias por pliegue (25; 10 en KDDCup09)"
+  },
+  {
+   "id": 41,
+   "bloque": "A2_principal_ablacion",
+   "dataset": "telco",
+   "metrica": "log_loss",
+   "prueba": "T2",
+   "modelo_a": "RegionalMAPEM",
+   "modelo_b": "mapem_regiones_duras",
+   "descripcion": "permutación pareada de signos sobre pérdidas por instancia (100 000 permutaciones)"
+  },
+  {
+   "id": 42,
+   "bloque": "A2_principal_ablacion",
+   "dataset": "telco",
+   "metrica": "log_loss",
+   "prueba": "T4",
+   "modelo_a": "RegionalMAPEM",
+   "modelo_b": "mapem_regiones_duras",
+   "descripcion": "Wilcoxon de rangos con signo sobre las diferencias por pliegue (25; 10 en KDDCup09)"
+  },
+  {
+   "id": 43,
+   "bloque": "A2_principal_ablacion",
+   "dataset": "telco",
+   "metrica": "log_loss",
+   "prueba": "T1",
+   "modelo_a": "RegionalMAPEM",
+   "modelo_b": "promedio_simple",
+   "descripcion": "t corregida de Nadeau-Bengio sobre las diferencias por pliegue (25; 10 en KDDCup09)"
+  },
+  {
+   "id": 44,
+   "bloque": "A2_principal_ablacion",
+   "dataset": "telco",
+   "metrica": "log_loss",
+   "prueba": "T2",
+   "modelo_a": "RegionalMAPEM",
+   "modelo_b": "promedio_simple",
+   "descripcion": "permutación pareada de signos sobre pérdidas por instancia (100 000 permutaciones)"
+  },
+  {
+   "id": 45,
+   "bloque": "A2_principal_ablacion",
+   "dataset": "telco",
+   "metrica": "log_loss",
+   "prueba": "T4",
+   "modelo_a": "RegionalMAPEM",
+   "modelo_b": "promedio_simple",
+   "descripcion": "Wilcoxon de rangos con signo sobre las diferencias por pliegue (25; 10 en KDDCup09)"
+  },
+  {
+   "id": 46,
+   "bloque": "A2_principal_ablacion",
+   "dataset": "telco",
+   "metrica": "log_loss",
+   "prueba": "T1",
+   "modelo_a": "RegionalMAPEM",
+   "modelo_b": "stacking_logistico",
+   "descripcion": "t corregida de Nadeau-Bengio sobre las diferencias por pliegue (25; 10 en KDDCup09)"
+  },
+  {
+   "id": 47,
+   "bloque": "A2_principal_ablacion",
+   "dataset": "telco",
+   "metrica": "log_loss",
+   "prueba": "T2",
+   "modelo_a": "RegionalMAPEM",
+   "modelo_b": "stacking_logistico",
+   "descripcion": "permutación pareada de signos sobre pérdidas por instancia (100 000 permutaciones)"
+  },
+  {
+   "id": 48,
+   "bloque": "A2_principal_ablacion",
+   "dataset": "telco",
+   "metrica": "log_loss",
+   "prueba": "T4",
+   "modelo_a": "RegionalMAPEM",
+   "modelo_b": "stacking_logistico",
+   "descripcion": "Wilcoxon de rangos con signo sobre las diferencias por pliegue (25; 10 en KDDCup09)"
+  },
+  {
+   "id": 49,
+   "bloque": "A3_principal_friedman",
+   "dataset": "telco",
+   "metrica": "log_loss",
+   "prueba": "T3_friedman",
+   "modelo_a": "todos",
+   "modelo_b": "todos",
+   "descripcion": "Friedman con corrección de Iman-Davenport sobre 17 modelos x 25 pliegues"
+  },
+  {
+   "id": 50,
+   "bloque": "A3_principal_friedman",
+   "dataset": "telco",
+   "metrica": "log_loss",
+   "prueba": "T3_nemenyi",
+   "modelo_a": "RegionalMAPEM",
+   "modelo_b": "knn",
+   "descripcion": "comparación post hoc de Nemenyi (p del par)"
+  },
+  {
+   "id": 51,
+   "bloque": "A3_principal_friedman",
+   "dataset": "telco",
+   "metrica": "log_loss",
+   "prueba": "T3_nemenyi",
+   "modelo_a": "RegionalMAPEM",
+   "modelo_b": "naive_bayes",
+   "descripcion": "comparación post hoc de Nemenyi (p del par)"
+  },
+  {
+   "id": 52,
+   "bloque": "A3_principal_friedman",
+   "dataset": "telco",
+   "metrica": "log_loss",
+   "prueba": "T3_nemenyi",
+   "modelo_a": "RegionalMAPEM",
+   "modelo_b": "logistic",
+   "descripcion": "comparación post hoc de Nemenyi (p del par)"
+  },
+  {
+   "id": 53,
+   "bloque": "A3_principal_friedman",
+   "dataset": "telco",
+   "metrica": "log_loss",
+   "prueba": "T3_nemenyi",
+   "modelo_a": "RegionalMAPEM",
+   "modelo_b": "decision_tree",
+   "descripcion": "comparación post hoc de Nemenyi (p del par)"
+  },
+  {
+   "id": 54,
+   "bloque": "A3_principal_friedman",
+   "dataset": "telco",
+   "metrica": "log_loss",
+   "prueba": "T3_nemenyi",
+   "modelo_a": "RegionalMAPEM",
+   "modelo_b": "random_forest",
+   "descripcion": "comparación post hoc de Nemenyi (p del par)"
+  },
+  {
+   "id": 55,
+   "bloque": "A3_principal_friedman",
+   "dataset": "telco",
+   "metrica": "log_loss",
+   "prueba": "T3_nemenyi",
+   "modelo_a": "RegionalMAPEM",
+   "modelo_b": "xgboost",
+   "descripcion": "comparación post hoc de Nemenyi (p del par)"
+  },
+  {
+   "id": 56,
+   "bloque": "A3_principal_friedman",
+   "dataset": "telco",
+   "metrica": "log_loss",
+   "prueba": "T3_nemenyi",
+   "modelo_a": "RegionalMAPEM",
+   "modelo_b": "svm",
+   "descripcion": "comparación post hoc de Nemenyi (p del par)"
+  },
+  {
+   "id": 57,
+   "bloque": "A3_principal_friedman",
+   "dataset": "telco",
+   "metrica": "log_loss",
+   "prueba": "T3_nemenyi",
+   "modelo_a": "RegionalMAPEM",
+   "modelo_b": "logistic_splines",
+   "descripcion": "comparación post hoc de Nemenyi (p del par)"
+  },
+  {
+   "id": 58,
+   "bloque": "A3_principal_friedman",
+   "dataset": "telco",
+   "metrica": "log_loss",
+   "prueba": "T3_nemenyi",
+   "modelo_a": "RegionalMAPEM",
+   "modelo_b": "hist_gb",
+   "descripcion": "comparación post hoc de Nemenyi (p del par)"
+  },
+  {
+   "id": 59,
+   "bloque": "A3_principal_friedman",
+   "dataset": "telco",
+   "metrica": "log_loss",
+   "prueba": "T3_nemenyi",
+   "modelo_a": "RegionalMAPEM",
+   "modelo_b": "lightgbm",
+   "descripcion": "comparación post hoc de Nemenyi (p del par)"
+  },
+  {
+   "id": 60,
+   "bloque": "A3_principal_friedman",
+   "dataset": "telco",
+   "metrica": "log_loss",
+   "prueba": "T3_nemenyi",
+   "modelo_a": "RegionalMAPEM",
+   "modelo_b": "catboost",
+   "descripcion": "comparación post hoc de Nemenyi (p del par)"
+  },
+  {
+   "id": 61,
+   "bloque": "A3_principal_friedman",
+   "dataset": "telco",
+   "metrica": "log_loss",
+   "prueba": "T3_nemenyi",
+   "modelo_a": "RegionalMAPEM",
+   "modelo_b": "mapem_sin_prior",
+   "descripcion": "comparación post hoc de Nemenyi (p del par)"
+  },
+  {
+   "id": 62,
+   "bloque": "A3_principal_friedman",
+   "dataset": "telco",
+   "metrica": "log_loss",
+   "prueba": "T3_nemenyi",
+   "modelo_a": "RegionalMAPEM",
+   "modelo_b": "mapem_K1",
+   "descripcion": "comparación post hoc de Nemenyi (p del par)"
+  },
+  {
+   "id": 63,
+   "bloque": "A3_principal_friedman",
+   "dataset": "telco",
+   "metrica": "log_loss",
+   "prueba": "T3_nemenyi",
+   "modelo_a": "RegionalMAPEM",
+   "modelo_b": "mapem_regiones_duras",
+   "descripcion": "comparación post hoc de Nemenyi (p del par)"
+  },
+  {
+   "id": 64,
+   "bloque": "A3_principal_friedman",
+   "dataset": "telco",
+   "metrica": "log_loss",
+   "prueba": "T3_nemenyi",
+   "modelo_a": "RegionalMAPEM",
+   "modelo_b": "promedio_simple",
+   "descripcion": "comparación post hoc de Nemenyi (p del par)"
+  },
+  {
+   "id": 65,
+   "bloque": "A3_principal_friedman",
+   "dataset": "telco",
+   "metrica": "log_loss",
+   "prueba": "T3_nemenyi",
+   "modelo_a": "RegionalMAPEM",
+   "modelo_b": "stacking_logistico",
+   "descripcion": "comparación post hoc de Nemenyi (p del par)"
+  },
+  {
+   "id": 66,
+   "bloque": "B_principal_secundarias",
+   "dataset": "telco",
+   "metrica": "f1_positivo",
+   "prueba": "T1",
+   "modelo_a": "RegionalMAPEM",
+   "modelo_b": "knn",
+   "descripcion": "t corregida de Nadeau-Bengio sobre las diferencias por pliegue (25; 10 en KDDCup09)"
+  },
+  {
+   "id": 67,
+   "bloque": "B_principal_secundarias",
+   "dataset": "telco",
+   "metrica": "f1_positivo",
+   "prueba": "T4",
+   "modelo_a": "RegionalMAPEM",
+   "modelo_b": "knn",
+   "descripcion": "Wilcoxon de rangos con signo sobre las diferencias por pliegue (25; 10 en KDDCup09)"
+  },
+  {
+   "id": 68,
+   "bloque": "B_principal_secundarias",
+   "dataset": "telco",
+   "metrica": "f1_positivo",
+   "prueba": "T1",
+   "modelo_a": "RegionalMAPEM",
+   "modelo_b": "naive_bayes",
+   "descripcion": "t corregida de Nadeau-Bengio sobre las diferencias por pliegue (25; 10 en KDDCup09)"
+  },
+  {
+   "id": 69,
+   "bloque": "B_principal_secundarias",
+   "dataset": "telco",
+   "metrica": "f1_positivo",
+   "prueba": "T4",
+   "modelo_a": "RegionalMAPEM",
+   "modelo_b": "naive_bayes",
+   "descripcion": "Wilcoxon de rangos con signo sobre las diferencias por pliegue (25; 10 en KDDCup09)"
+  },
+  {
+   "id": 70,
+   "bloque": "B_principal_secundarias",
+   "dataset": "telco",
+   "metrica": "f1_positivo",
+   "prueba": "T1",
+   "modelo_a": "RegionalMAPEM",
+   "modelo_b": "logistic",
+   "descripcion": "t corregida de Nadeau-Bengio sobre las diferencias por pliegue (25; 10 en KDDCup09)"
+  },
+  {
+   "id": 71,
+   "bloque": "B_principal_secundarias",
+   "dataset": "telco",
+   "metrica": "f1_positivo",
+   "prueba": "T4",
+   "modelo_a": "RegionalMAPEM",
+   "modelo_b": "logistic",
+   "descripcion": "Wilcoxon de rangos con signo sobre las diferencias por pliegue (25; 10 en KDDCup09)"
+  },
+  {
+   "id": 72,
+   "bloque": "B_principal_secundarias",
+   "dataset": "telco",
+   "metrica": "f1_positivo",
+   "prueba": "T1",
+   "modelo_a": "RegionalMAPEM",
+   "modelo_b": "decision_tree",
+   "descripcion": "t corregida de Nadeau-Bengio sobre las diferencias por pliegue (25; 10 en KDDCup09)"
+  },
+  {
+   "id": 73,
+   "bloque": "B_principal_secundarias",
+   "dataset": "telco",
+   "metrica": "f1_positivo",
+   "prueba": "T4",
+   "modelo_a": "RegionalMAPEM",
+   "modelo_b": "decision_tree",
+   "descripcion": "Wilcoxon de rangos con signo sobre las diferencias por pliegue (25; 10 en KDDCup09)"
+  },
+  {
+   "id": 74,
+   "bloque": "B_principal_secundarias",
+   "dataset": "telco",
+   "metrica": "f1_positivo",
+   "prueba": "T1",
+   "modelo_a": "RegionalMAPEM",
+   "modelo_b": "random_forest",
+   "descripcion": "t corregida de Nadeau-Bengio sobre las diferencias por pliegue (25; 10 en KDDCup09)"
+  },
+  {
+   "id": 75,
+   "bloque": "B_principal_secundarias",
+   "dataset": "telco",
+   "metrica": "f1_positivo",
+   "prueba": "T4",
+   "modelo_a": "RegionalMAPEM",
+   "modelo_b": "random_forest",
+   "descripcion": "Wilcoxon de rangos con signo sobre las diferencias por pliegue (25; 10 en KDDCup09)"
+  },
+  {
+   "id": 76,
+   "bloque": "B_principal_secundarias",
+   "dataset": "telco",
+   "metrica": "f1_positivo",
+   "prueba": "T1",
+   "modelo_a": "RegionalMAPEM",
+   "modelo_b": "xgboost",
+   "descripcion": "t corregida de Nadeau-Bengio sobre las diferencias por pliegue (25; 10 en KDDCup09)"
+  },
+  {
+   "id": 77,
+   "bloque": "B_principal_secundarias",
+   "dataset": "telco",
+   "metrica": "f1_positivo",
+   "prueba": "T4",
+   "modelo_a": "RegionalMAPEM",
+   "modelo_b": "xgboost",
+   "descripcion": "Wilcoxon de rangos con signo sobre las diferencias por pliegue (25; 10 en KDDCup09)"
+  },
+  {
+   "id": 78,
+   "bloque": "B_principal_secundarias",
+   "dataset": "telco",
+   "metrica": "f1_positivo",
+   "prueba": "T1",
+   "modelo_a": "RegionalMAPEM",
+   "modelo_b": "svm",
+   "descripcion": "t corregida de Nadeau-Bengio sobre las diferencias por pliegue (25; 10 en KDDCup09)"
+  },
+  {
+   "id": 79,
+   "bloque": "B_principal_secundarias",
+   "dataset": "telco",
+   "metrica": "f1_positivo",
+   "prueba": "T4",
+   "modelo_a": "RegionalMAPEM",
+   "modelo_b": "svm",
+   "descripcion": "Wilcoxon de rangos con signo sobre las diferencias por pliegue (25; 10 en KDDCup09)"
+  },
+  {
+   "id": 80,
+   "bloque": "B_principal_secundarias",
+   "dataset": "telco",
+   "metrica": "f1_positivo",
+   "prueba": "T1",
+   "modelo_a": "RegionalMAPEM",
+   "modelo_b": "logistic_splines",
+   "descripcion": "t corregida de Nadeau-Bengio sobre las diferencias por pliegue (25; 10 en KDDCup09)"
+  },
+  {
+   "id": 81,
+   "bloque": "B_principal_secundarias",
+   "dataset": "telco",
+   "metrica": "f1_positivo",
+   "prueba": "T4",
+   "modelo_a": "RegionalMAPEM",
+   "modelo_b": "logistic_splines",
+   "descripcion": "Wilcoxon de rangos con signo sobre las diferencias por pliegue (25; 10 en KDDCup09)"
+  },
+  {
+   "id": 82,
+   "bloque": "B_principal_secundarias",
+   "dataset": "telco",
+   "metrica": "f1_positivo",
+   "prueba": "T1",
+   "modelo_a": "RegionalMAPEM",
+   "modelo_b": "hist_gb",
+   "descripcion": "t corregida de Nadeau-Bengio sobre las diferencias por pliegue (25; 10 en KDDCup09)"
+  },
+  {
+   "id": 83,
+   "bloque": "B_principal_secundarias",
+   "dataset": "telco",
+   "metrica": "f1_positivo",
+   "prueba": "T4",
+   "modelo_a": "RegionalMAPEM",
+   "modelo_b": "hist_gb",
+   "descripcion": "Wilcoxon de rangos con signo sobre las diferencias por pliegue (25; 10 en KDDCup09)"
+  },
+  {
+   "id": 84,
+   "bloque": "B_principal_secundarias",
+   "dataset": "telco",
+   "metrica": "f1_positivo",
+   "prueba": "T1",
+   "modelo_a": "RegionalMAPEM",
+   "modelo_b": "lightgbm",
+   "descripcion": "t corregida de Nadeau-Bengio sobre las diferencias por pliegue (25; 10 en KDDCup09)"
+  },
+  {
+   "id": 85,
+   "bloque": "B_principal_secundarias",
+   "dataset": "telco",
+   "metrica": "f1_positivo",
+   "prueba": "T4",
+   "modelo_a": "RegionalMAPEM",
+   "modelo_b": "lightgbm",
+   "descripcion": "Wilcoxon de rangos con signo sobre las diferencias por pliegue (25; 10 en KDDCup09)"
+  },
+  {
+   "id": 86,
+   "bloque": "B_principal_secundarias",
+   "dataset": "telco",
+   "metrica": "f1_positivo",
+   "prueba": "T1",
+   "modelo_a": "RegionalMAPEM",
+   "modelo_b": "catboost",
+   "descripcion": "t corregida de Nadeau-Bengio sobre las diferencias por pliegue (25; 10 en KDDCup09)"
+  },
+  {
+   "id": 87,
+   "bloque": "B_principal_secundarias",
+   "dataset": "telco",
+   "metrica": "f1_positivo",
+   "prueba": "T4",
+   "modelo_a": "RegionalMAPEM",
+   "modelo_b": "catboost",
+   "descripcion": "Wilcoxon de rangos con signo sobre las diferencias por pliegue (25; 10 en KDDCup09)"
+  },
+  {
+   "id": 88,
+   "bloque": "B_principal_secundarias",
+   "dataset": "telco",
+   "metrica": "auc_roc",
+   "prueba": "T1",
+   "modelo_a": "RegionalMAPEM",
+   "modelo_b": "knn",
+   "descripcion": "t corregida de Nadeau-Bengio sobre las diferencias por pliegue (25; 10 en KDDCup09)"
+  },
+  {
+   "id": 89,
+   "bloque": "B_principal_secundarias",
+   "dataset": "telco",
+   "metrica": "auc_roc",
+   "prueba": "T4",
+   "modelo_a": "RegionalMAPEM",
+   "modelo_b": "knn",
+   "descripcion": "Wilcoxon de rangos con signo sobre las diferencias por pliegue (25; 10 en KDDCup09)"
+  },
+  {
+   "id": 90,
+   "bloque": "B_principal_secundarias",
+   "dataset": "telco",
+   "metrica": "auc_roc",
+   "prueba": "T1",
+   "modelo_a": "RegionalMAPEM",
+   "modelo_b": "naive_bayes",
+   "descripcion": "t corregida de Nadeau-Bengio sobre las diferencias por pliegue (25; 10 en KDDCup09)"
+  },
+  {
+   "id": 91,
+   "bloque": "B_principal_secundarias",
+   "dataset": "telco",
+   "metrica": "auc_roc",
+   "prueba": "T4",
+   "modelo_a": "RegionalMAPEM",
+   "modelo_b": "naive_bayes",
+   "descripcion": "Wilcoxon de rangos con signo sobre las diferencias por pliegue (25; 10 en KDDCup09)"
+  },
+  {
+   "id": 92,
+   "bloque": "B_principal_secundarias",
+   "dataset": "telco",
+   "metrica": "auc_roc",
+   "prueba": "T1",
+   "modelo_a": "RegionalMAPEM",
+   "modelo_b": "logistic",
+   "descripcion": "t corregida de Nadeau-Bengio sobre las diferencias por pliegue (25; 10 en KDDCup09)"
+  },
+  {
+   "id": 93,
+   "bloque": "B_principal_secundarias",
+   "dataset": "telco",
+   "metrica": "auc_roc",
+   "prueba": "T4",
+   "modelo_a": "RegionalMAPEM",
+   "modelo_b": "logistic",
+   "descripcion": "Wilcoxon de rangos con signo sobre las diferencias por pliegue (25; 10 en KDDCup09)"
+  },
+  {
+   "id": 94,
+   "bloque": "B_principal_secundarias",
+   "dataset": "telco",
+   "metrica": "auc_roc",
+   "prueba": "T1",
+   "modelo_a": "RegionalMAPEM",
+   "modelo_b": "decision_tree",
+   "descripcion": "t corregida de Nadeau-Bengio sobre las diferencias por pliegue (25; 10 en KDDCup09)"
+  },
+  {
+   "id": 95,
+   "bloque": "B_principal_secundarias",
+   "dataset": "telco",
+   "metrica": "auc_roc",
+   "prueba": "T4",
+   "modelo_a": "RegionalMAPEM",
+   "modelo_b": "decision_tree",
+   "descripcion": "Wilcoxon de rangos con signo sobre las diferencias por pliegue (25; 10 en KDDCup09)"
+  },
+  {
+   "id": 96,
+   "bloque": "B_principal_secundarias",
+   "dataset": "telco",
+   "metrica": "auc_roc",
+   "prueba": "T1",
+   "modelo_a": "RegionalMAPEM",
+   "modelo_b": "random_forest",
+   "descripcion": "t corregida de Nadeau-Bengio sobre las diferencias por pliegue (25; 10 en KDDCup09)"
+  },
+  {
+   "id": 97,
+   "bloque": "B_principal_secundarias",
+   "dataset": "telco",
+   "metrica": "auc_roc",
+   "prueba": "T4",
+   "modelo_a": "RegionalMAPEM",
+   "modelo_b": "random_forest",
+   "descripcion": "Wilcoxon de rangos con signo sobre las diferencias por pliegue (25; 10 en KDDCup09)"
+  },
+  {
+   "id": 98,
+   "bloque": "B_principal_secundarias",
+   "dataset": "telco",
+   "metrica": "auc_roc",
+   "prueba": "T1",
+   "modelo_a": "RegionalMAPEM",
+   "modelo_b": "xgboost",
+   "descripcion": "t corregida de Nadeau-Bengio sobre las diferencias por pliegue (25; 10 en KDDCup09)"
+  },
+  {
+   "id": 99,
+   "bloque": "B_principal_secundarias",
+   "dataset": "telco",
+   "metrica": "auc_roc",
+   "prueba": "T4",
+   "modelo_a": "RegionalMAPEM",
+   "modelo_b": "xgboost",
+   "descripcion": "Wilcoxon de rangos con signo sobre las diferencias por pliegue (25; 10 en KDDCup09)"
+  },
+  {
+   "id": 100,
+   "bloque": "B_principal_secundarias",
+   "dataset": "telco",
+   "metrica": "auc_roc",
+   "prueba": "T1",
+   "modelo_a": "RegionalMAPEM",
+   "modelo_b": "svm",
+   "descripcion": "t corregida de Nadeau-Bengio sobre las diferencias por pliegue (25; 10 en KDDCup09)"
+  },
+  {
+   "id": 101,
+   "bloque": "B_principal_secundarias",
+   "dataset": "telco",
+   "metrica": "auc_roc",
+   "prueba": "T4",
+   "modelo_a": "RegionalMAPEM",
+   "modelo_b": "svm",
+   "descripcion": "Wilcoxon de rangos con signo sobre las diferencias por pliegue (25; 10 en KDDCup09)"
+  },
+  {
+   "id": 102,
+   "bloque": "B_principal_secundarias",
+   "dataset": "telco",
+   "metrica": "auc_roc",
+   "prueba": "T1",
+   "modelo_a": "RegionalMAPEM",
+   "modelo_b": "logistic_splines",
+   "descripcion": "t corregida de Nadeau-Bengio sobre las diferencias por pliegue (25; 10 en KDDCup09)"
+  },
+  {
+   "id": 103,
+   "bloque": "B_principal_secundarias",
+   "dataset": "telco",
+   "metrica": "auc_roc",
+   "prueba": "T4",
+   "modelo_a": "RegionalMAPEM",
+   "modelo_b": "logistic_splines",
+   "descripcion": "Wilcoxon de rangos con signo sobre las diferencias por pliegue (25; 10 en KDDCup09)"
+  },
+  {
+   "id": 104,
+   "bloque": "B_principal_secundarias",
+   "dataset": "telco",
+   "metrica": "auc_roc",
+   "prueba": "T1",
+   "modelo_a": "RegionalMAPEM",
+   "modelo_b": "hist_gb",
+   "descripcion": "t corregida de Nadeau-Bengio sobre las diferencias por pliegue (25; 10 en KDDCup09)"
+  },
+  {
+   "id": 105,
+   "bloque": "B_principal_secundarias",
+   "dataset": "telco",
+   "metrica": "auc_roc",
+   "prueba": "T4",
+   "modelo_a": "RegionalMAPEM",
+   "modelo_b": "hist_gb",
+   "descripcion": "Wilcoxon de rangos con signo sobre las diferencias por pliegue (25; 10 en KDDCup09)"
+  },
+  {
+   "id": 106,
+   "bloque": "B_principal_secundarias",
+   "dataset": "telco",
+   "metrica": "auc_roc",
+   "prueba": "T1",
+   "modelo_a": "RegionalMAPEM",
+   "modelo_b": "lightgbm",
+   "descripcion": "t corregida de Nadeau-Bengio sobre las diferencias por pliegue (25; 10 en KDDCup09)"
+  },
+  {
+   "id": 107,
+   "bloque": "B_principal_secundarias",
+   "dataset": "telco",
+   "metrica": "auc_roc",
+   "prueba": "T4",
+   "modelo_a": "RegionalMAPEM",
+   "modelo_b": "lightgbm",
+   "descripcion": "Wilcoxon de rangos con signo sobre las diferencias por pliegue (25; 10 en KDDCup09)"
+  },
+  {
+   "id": 108,
+   "bloque": "B_principal_secundarias",
+   "dataset": "telco",
+   "metrica": "auc_roc",
+   "prueba": "T1",
+   "modelo_a": "RegionalMAPEM",
+   "modelo_b": "catboost",
+   "descripcion": "t corregida de Nadeau-Bengio sobre las diferencias por pliegue (25; 10 en KDDCup09)"
+  },
+  {
+   "id": 109,
+   "bloque": "B_principal_secundarias",
+   "dataset": "telco",
+   "metrica": "auc_roc",
+   "prueba": "T4",
+   "modelo_a": "RegionalMAPEM",
+   "modelo_b": "catboost",
+   "descripcion": "Wilcoxon de rangos con signo sobre las diferencias por pliegue (25; 10 en KDDCup09)"
+  },
+  {
+   "id": 110,
+   "bloque": "C_holdout",
+   "dataset": "telco_holdout",
+   "metrica": "log_loss",
+   "prueba": "permutacion",
+   "modelo_a": "RegionalMAPEM",
+   "modelo_b": "mejor_benchmark",
+   "descripcion": "permutación pareada sobre pérdidas por cliente del hold-out (1409)"
+  },
+  {
+   "id": 111,
+   "bloque": "C_holdout",
+   "dataset": "telco_holdout",
+   "metrica": "f1_positivo",
+   "prueba": "mcnemar",
+   "modelo_a": "RegionalMAPEM",
+   "modelo_b": "mejor_benchmark",
+   "descripcion": "McNemar exacto sobre aciertos con el umbral del bucle interno"
+  },
+  {
+   "id": 112,
+   "bloque": "C_holdout",
+   "dataset": "telco_holdout",
+   "metrica": "auc_roc",
+   "prueba": "delong",
+   "modelo_a": "RegionalMAPEM",
+   "modelo_b": "mejor_benchmark",
+   "descripcion": "DeLong para AUC correlacionadas (válido: observaciones independientes del hold-out)"
+  },
+  {
+   "id": 113,
+   "bloque": "D_adicionales",
+   "dataset": "openml_40701_churn",
+   "metrica": "log_loss",
+   "prueba": "T1",
+   "modelo_a": "RegionalMAPEM",
+   "modelo_b": "knn",
+   "descripcion": "t corregida de Nadeau-Bengio sobre las diferencias por pliegue (25; 10 en KDDCup09)"
+  },
+  {
+   "id": 114,
+   "bloque": "D_adicionales",
+   "dataset": "openml_40701_churn",
+   "metrica": "log_loss",
+   "prueba": "T2",
+   "modelo_a": "RegionalMAPEM",
+   "modelo_b": "knn",
+   "descripcion": "permutación pareada de signos sobre pérdidas por instancia (100 000 permutaciones)"
+  },
+  {
+   "id": 115,
+   "bloque": "D_adicionales",
+   "dataset": "openml_40701_churn",
+   "metrica": "log_loss",
+   "prueba": "T4",
+   "modelo_a": "RegionalMAPEM",
+   "modelo_b": "knn",
+   "descripcion": "Wilcoxon de rangos con signo sobre las diferencias por pliegue (25; 10 en KDDCup09)"
+  },
+  {
+   "id": 116,
+   "bloque": "D_adicionales",
+   "dataset": "openml_40701_churn",
+   "metrica": "log_loss",
+   "prueba": "T1",
+   "modelo_a": "RegionalMAPEM",
+   "modelo_b": "naive_bayes",
+   "descripcion": "t corregida de Nadeau-Bengio sobre las diferencias por pliegue (25; 10 en KDDCup09)"
+  },
+  {
+   "id": 117,
+   "bloque": "D_adicionales",
+   "dataset": "openml_40701_churn",
+   "metrica": "log_loss",
+   "prueba": "T2",
+   "modelo_a": "RegionalMAPEM",
+   "modelo_b": "naive_bayes",
+   "descripcion": "permutación pareada de signos sobre pérdidas por instancia (100 000 permutaciones)"
+  },
+  {
+   "id": 118,
+   "bloque": "D_adicionales",
+   "dataset": "openml_40701_churn",
+   "metrica": "log_loss",
+   "prueba": "T4",
+   "modelo_a": "RegionalMAPEM",
+   "modelo_b": "naive_bayes",
+   "descripcion": "Wilcoxon de rangos con signo sobre las diferencias por pliegue (25; 10 en KDDCup09)"
+  },
+  {
+   "id": 119,
+   "bloque": "D_adicionales",
+   "dataset": "openml_40701_churn",
+   "metrica": "log_loss",
+   "prueba": "T1",
+   "modelo_a": "RegionalMAPEM",
+   "modelo_b": "logistic",
+   "descripcion": "t corregida de Nadeau-Bengio sobre las diferencias por pliegue (25; 10 en KDDCup09)"
+  },
+  {
+   "id": 120,
+   "bloque": "D_adicionales",
+   "dataset": "openml_40701_churn",
+   "metrica": "log_loss",
+   "prueba": "T2",
+   "modelo_a": "RegionalMAPEM",
+   "modelo_b": "logistic",
+   "descripcion": "permutación pareada de signos sobre pérdidas por instancia (100 000 permutaciones)"
+  },
+  {
+   "id": 121,
+   "bloque": "D_adicionales",
+   "dataset": "openml_40701_churn",
+   "metrica": "log_loss",
+   "prueba": "T4",
+   "modelo_a": "RegionalMAPEM",
+   "modelo_b": "logistic",
+   "descripcion": "Wilcoxon de rangos con signo sobre las diferencias por pliegue (25; 10 en KDDCup09)"
+  },
+  {
+   "id": 122,
+   "bloque": "D_adicionales",
+   "dataset": "openml_40701_churn",
+   "metrica": "log_loss",
+   "prueba": "T1",
+   "modelo_a": "RegionalMAPEM",
+   "modelo_b": "decision_tree",
+   "descripcion": "t corregida de Nadeau-Bengio sobre las diferencias por pliegue (25; 10 en KDDCup09)"
+  },
+  {
+   "id": 123,
+   "bloque": "D_adicionales",
+   "dataset": "openml_40701_churn",
+   "metrica": "log_loss",
+   "prueba": "T2",
+   "modelo_a": "RegionalMAPEM",
+   "modelo_b": "decision_tree",
+   "descripcion": "permutación pareada de signos sobre pérdidas por instancia (100 000 permutaciones)"
+  },
+  {
+   "id": 124,
+   "bloque": "D_adicionales",
+   "dataset": "openml_40701_churn",
+   "metrica": "log_loss",
+   "prueba": "T4",
+   "modelo_a": "RegionalMAPEM",
+   "modelo_b": "decision_tree",
+   "descripcion": "Wilcoxon de rangos con signo sobre las diferencias por pliegue (25; 10 en KDDCup09)"
+  },
+  {
+   "id": 125,
+   "bloque": "D_adicionales",
+   "dataset": "openml_40701_churn",
+   "metrica": "log_loss",
+   "prueba": "T1",
+   "modelo_a": "RegionalMAPEM",
+   "modelo_b": "random_forest",
+   "descripcion": "t corregida de Nadeau-Bengio sobre las diferencias por pliegue (25; 10 en KDDCup09)"
+  },
+  {
+   "id": 126,
+   "bloque": "D_adicionales",
+   "dataset": "openml_40701_churn",
+   "metrica": "log_loss",
+   "prueba": "T2",
+   "modelo_a": "RegionalMAPEM",
+   "modelo_b": "random_forest",
+   "descripcion": "permutación pareada de signos sobre pérdidas por instancia (100 000 permutaciones)"
+  },
+  {
+   "id": 127,
+   "bloque": "D_adicionales",
+   "dataset": "openml_40701_churn",
+   "metrica": "log_loss",
+   "prueba": "T4",
+   "modelo_a": "RegionalMAPEM",
+   "modelo_b": "random_forest",
+   "descripcion": "Wilcoxon de rangos con signo sobre las diferencias por pliegue (25; 10 en KDDCup09)"
+  },
+  {
+   "id": 128,
+   "bloque": "D_adicionales",
+   "dataset": "openml_40701_churn",
+   "metrica": "log_loss",
+   "prueba": "T1",
+   "modelo_a": "RegionalMAPEM",
+   "modelo_b": "xgboost",
+   "descripcion": "t corregida de Nadeau-Bengio sobre las diferencias por pliegue (25; 10 en KDDCup09)"
+  },
+  {
+   "id": 129,
+   "bloque": "D_adicionales",
+   "dataset": "openml_40701_churn",
+   "metrica": "log_loss",
+   "prueba": "T2",
+   "modelo_a": "RegionalMAPEM",
+   "modelo_b": "xgboost",
+   "descripcion": "permutación pareada de signos sobre pérdidas por instancia (100 000 permutaciones)"
+  },
+  {
+   "id": 130,
+   "bloque": "D_adicionales",
+   "dataset": "openml_40701_churn",
+   "metrica": "log_loss",
+   "prueba": "T4",
+   "modelo_a": "RegionalMAPEM",
+   "modelo_b": "xgboost",
+   "descripcion": "Wilcoxon de rangos con signo sobre las diferencias por pliegue (25; 10 en KDDCup09)"
+  },
+  {
+   "id": 131,
+   "bloque": "D_adicionales",
+   "dataset": "openml_40701_churn",
+   "metrica": "log_loss",
+   "prueba": "T1",
+   "modelo_a": "RegionalMAPEM",
+   "modelo_b": "svm",
+   "descripcion": "t corregida de Nadeau-Bengio sobre las diferencias por pliegue (25; 10 en KDDCup09)"
+  },
+  {
+   "id": 132,
+   "bloque": "D_adicionales",
+   "dataset": "openml_40701_churn",
+   "metrica": "log_loss",
+   "prueba": "T2",
+   "modelo_a": "RegionalMAPEM",
+   "modelo_b": "svm",
+   "descripcion": "permutación pareada de signos sobre pérdidas por instancia (100 000 permutaciones)"
+  },
+  {
+   "id": 133,
+   "bloque": "D_adicionales",
+   "dataset": "openml_40701_churn",
+   "metrica": "log_loss",
+   "prueba": "T4",
+   "modelo_a": "RegionalMAPEM",
+   "modelo_b": "svm",
+   "descripcion": "Wilcoxon de rangos con signo sobre las diferencias por pliegue (25; 10 en KDDCup09)"
+  },
+  {
+   "id": 134,
+   "bloque": "D_adicionales",
+   "dataset": "openml_40701_churn",
+   "metrica": "log_loss",
+   "prueba": "T1",
+   "modelo_a": "RegionalMAPEM",
+   "modelo_b": "logistic_splines",
+   "descripcion": "t corregida de Nadeau-Bengio sobre las diferencias por pliegue (25; 10 en KDDCup09)"
+  },
+  {
+   "id": 135,
+   "bloque": "D_adicionales",
+   "dataset": "openml_40701_churn",
+   "metrica": "log_loss",
+   "prueba": "T2",
+   "modelo_a": "RegionalMAPEM",
+   "modelo_b": "logistic_splines",
+   "descripcion": "permutación pareada de signos sobre pérdidas por instancia (100 000 permutaciones)"
+  },
+  {
+   "id": 136,
+   "bloque": "D_adicionales",
+   "dataset": "openml_40701_churn",
+   "metrica": "log_loss",
+   "prueba": "T4",
+   "modelo_a": "RegionalMAPEM",
+   "modelo_b": "logistic_splines",
+   "descripcion": "Wilcoxon de rangos con signo sobre las diferencias por pliegue (25; 10 en KDDCup09)"
+  },
+  {
+   "id": 137,
+   "bloque": "D_adicionales",
+   "dataset": "openml_40701_churn",
+   "metrica": "log_loss",
+   "prueba": "T1",
+   "modelo_a": "RegionalMAPEM",
+   "modelo_b": "hist_gb",
+   "descripcion": "t corregida de Nadeau-Bengio sobre las diferencias por pliegue (25; 10 en KDDCup09)"
+  },
+  {
+   "id": 138,
+   "bloque": "D_adicionales",
+   "dataset": "openml_40701_churn",
+   "metrica": "log_loss",
+   "prueba": "T2",
+   "modelo_a": "RegionalMAPEM",
+   "modelo_b": "hist_gb",
+   "descripcion": "permutación pareada de signos sobre pérdidas por instancia (100 000 permutaciones)"
+  },
+  {
+   "id": 139,
+   "bloque": "D_adicionales",
+   "dataset": "openml_40701_churn",
+   "metrica": "log_loss",
+   "prueba": "T4",
+   "modelo_a": "RegionalMAPEM",
+   "modelo_b": "hist_gb",
+   "descripcion": "Wilcoxon de rangos con signo sobre las diferencias por pliegue (25; 10 en KDDCup09)"
+  },
+  {
+   "id": 140,
+   "bloque": "D_adicionales",
+   "dataset": "openml_40701_churn",
+   "metrica": "log_loss",
+   "prueba": "T1",
+   "modelo_a": "RegionalMAPEM",
+   "modelo_b": "lightgbm",
+   "descripcion": "t corregida de Nadeau-Bengio sobre las diferencias por pliegue (25; 10 en KDDCup09)"
+  },
+  {
+   "id": 141,
+   "bloque": "D_adicionales",
+   "dataset": "openml_40701_churn",
+   "metrica": "log_loss",
+   "prueba": "T2",
+   "modelo_a": "RegionalMAPEM",
+   "modelo_b": "lightgbm",
+   "descripcion": "permutación pareada de signos sobre pérdidas por instancia (100 000 permutaciones)"
+  },
+  {
+   "id": 142,
+   "bloque": "D_adicionales",
+   "dataset": "openml_40701_churn",
+   "metrica": "log_loss",
+   "prueba": "T4",
+   "modelo_a": "RegionalMAPEM",
+   "modelo_b": "lightgbm",
+   "descripcion": "Wilcoxon de rangos con signo sobre las diferencias por pliegue (25; 10 en KDDCup09)"
+  },
+  {
+   "id": 143,
+   "bloque": "D_adicionales",
+   "dataset": "openml_40701_churn",
+   "metrica": "log_loss",
+   "prueba": "T1",
+   "modelo_a": "RegionalMAPEM",
+   "modelo_b": "catboost",
+   "descripcion": "t corregida de Nadeau-Bengio sobre las diferencias por pliegue (25; 10 en KDDCup09)"
+  },
+  {
+   "id": 144,
+   "bloque": "D_adicionales",
+   "dataset": "openml_40701_churn",
+   "metrica": "log_loss",
+   "prueba": "T2",
+   "modelo_a": "RegionalMAPEM",
+   "modelo_b": "catboost",
+   "descripcion": "permutación pareada de signos sobre pérdidas por instancia (100 000 permutaciones)"
+  },
+  {
+   "id": 145,
+   "bloque": "D_adicionales",
+   "dataset": "openml_40701_churn",
+   "metrica": "log_loss",
+   "prueba": "T4",
+   "modelo_a": "RegionalMAPEM",
+   "modelo_b": "catboost",
+   "descripcion": "Wilcoxon de rangos con signo sobre las diferencias por pliegue (25; 10 en KDDCup09)"
+  },
+  {
+   "id": 146,
+   "bloque": "D_adicionales",
+   "dataset": "uci_563_iranian",
+   "metrica": "log_loss",
+   "prueba": "T1",
+   "modelo_a": "RegionalMAPEM",
+   "modelo_b": "knn",
+   "descripcion": "t corregida de Nadeau-Bengio sobre las diferencias por pliegue (25; 10 en KDDCup09)"
+  },
+  {
+   "id": 147,
+   "bloque": "D_adicionales",
+   "dataset": "uci_563_iranian",
+   "metrica": "log_loss",
+   "prueba": "T2",
+   "modelo_a": "RegionalMAPEM",
+   "modelo_b": "knn",
+   "descripcion": "permutación pareada de signos sobre pérdidas por instancia (100 000 permutaciones)"
+  },
+  {
+   "id": 148,
+   "bloque": "D_adicionales",
+   "dataset": "uci_563_iranian",
+   "metrica": "log_loss",
+   "prueba": "T4",
+   "modelo_a": "RegionalMAPEM",
+   "modelo_b": "knn",
+   "descripcion": "Wilcoxon de rangos con signo sobre las diferencias por pliegue (25; 10 en KDDCup09)"
+  },
+  {
+   "id": 149,
+   "bloque": "D_adicionales",
+   "dataset": "uci_563_iranian",
+   "metrica": "log_loss",
+   "prueba": "T1",
+   "modelo_a": "RegionalMAPEM",
+   "modelo_b": "naive_bayes",
+   "descripcion": "t corregida de Nadeau-Bengio sobre las diferencias por pliegue (25; 10 en KDDCup09)"
+  },
+  {
+   "id": 150,
+   "bloque": "D_adicionales",
+   "dataset": "uci_563_iranian",
+   "metrica": "log_loss",
+   "prueba": "T2",
+   "modelo_a": "RegionalMAPEM",
+   "modelo_b": "naive_bayes",
+   "descripcion": "permutación pareada de signos sobre pérdidas por instancia (100 000 permutaciones)"
+  },
+  {
+   "id": 151,
+   "bloque": "D_adicionales",
+   "dataset": "uci_563_iranian",
+   "metrica": "log_loss",
+   "prueba": "T4",
+   "modelo_a": "RegionalMAPEM",
+   "modelo_b": "naive_bayes",
+   "descripcion": "Wilcoxon de rangos con signo sobre las diferencias por pliegue (25; 10 en KDDCup09)"
+  },
+  {
+   "id": 152,
+   "bloque": "D_adicionales",
+   "dataset": "uci_563_iranian",
+   "metrica": "log_loss",
+   "prueba": "T1",
+   "modelo_a": "RegionalMAPEM",
+   "modelo_b": "logistic",
+   "descripcion": "t corregida de Nadeau-Bengio sobre las diferencias por pliegue (25; 10 en KDDCup09)"
+  },
+  {
+   "id": 153,
+   "bloque": "D_adicionales",
+   "dataset": "uci_563_iranian",
+   "metrica": "log_loss",
+   "prueba": "T2",
+   "modelo_a": "RegionalMAPEM",
+   "modelo_b": "logistic",
+   "descripcion": "permutación pareada de signos sobre pérdidas por instancia (100 000 permutaciones)"
+  },
+  {
+   "id": 154,
+   "bloque": "D_adicionales",
+   "dataset": "uci_563_iranian",
+   "metrica": "log_loss",
+   "prueba": "T4",
+   "modelo_a": "RegionalMAPEM",
+   "modelo_b": "logistic",
+   "descripcion": "Wilcoxon de rangos con signo sobre las diferencias por pliegue (25; 10 en KDDCup09)"
+  },
+  {
+   "id": 155,
+   "bloque": "D_adicionales",
+   "dataset": "uci_563_iranian",
+   "metrica": "log_loss",
+   "prueba": "T1",
+   "modelo_a": "RegionalMAPEM",
+   "modelo_b": "decision_tree",
+   "descripcion": "t corregida de Nadeau-Bengio sobre las diferencias por pliegue (25; 10 en KDDCup09)"
+  },
+  {
+   "id": 156,
+   "bloque": "D_adicionales",
+   "dataset": "uci_563_iranian",
+   "metrica": "log_loss",
+   "prueba": "T2",
+   "modelo_a": "RegionalMAPEM",
+   "modelo_b": "decision_tree",
+   "descripcion": "permutación pareada de signos sobre pérdidas por instancia (100 000 permutaciones)"
+  },
+  {
+   "id": 157,
+   "bloque": "D_adicionales",
+   "dataset": "uci_563_iranian",
+   "metrica": "log_loss",
+   "prueba": "T4",
+   "modelo_a": "RegionalMAPEM",
+   "modelo_b": "decision_tree",
+   "descripcion": "Wilcoxon de rangos con signo sobre las diferencias por pliegue (25; 10 en KDDCup09)"
+  },
+  {
+   "id": 158,
+   "bloque": "D_adicionales",
+   "dataset": "uci_563_iranian",
+   "metrica": "log_loss",
+   "prueba": "T1",
+   "modelo_a": "RegionalMAPEM",
+   "modelo_b": "random_forest",
+   "descripcion": "t corregida de Nadeau-Bengio sobre las diferencias por pliegue (25; 10 en KDDCup09)"
+  },
+  {
+   "id": 159,
+   "bloque": "D_adicionales",
+   "dataset": "uci_563_iranian",
+   "metrica": "log_loss",
+   "prueba": "T2",
+   "modelo_a": "RegionalMAPEM",
+   "modelo_b": "random_forest",
+   "descripcion": "permutación pareada de signos sobre pérdidas por instancia (100 000 permutaciones)"
+  },
+  {
+   "id": 160,
+   "bloque": "D_adicionales",
+   "dataset": "uci_563_iranian",
+   "metrica": "log_loss",
+   "prueba": "T4",
+   "modelo_a": "RegionalMAPEM",
+   "modelo_b": "random_forest",
+   "descripcion": "Wilcoxon de rangos con signo sobre las diferencias por pliegue (25; 10 en KDDCup09)"
+  },
+  {
+   "id": 161,
+   "bloque": "D_adicionales",
+   "dataset": "uci_563_iranian",
+   "metrica": "log_loss",
+   "prueba": "T1",
+   "modelo_a": "RegionalMAPEM",
+   "modelo_b": "xgboost",
+   "descripcion": "t corregida de Nadeau-Bengio sobre las diferencias por pliegue (25; 10 en KDDCup09)"
+  },
+  {
+   "id": 162,
+   "bloque": "D_adicionales",
+   "dataset": "uci_563_iranian",
+   "metrica": "log_loss",
+   "prueba": "T2",
+   "modelo_a": "RegionalMAPEM",
+   "modelo_b": "xgboost",
+   "descripcion": "permutación pareada de signos sobre pérdidas por instancia (100 000 permutaciones)"
+  },
+  {
+   "id": 163,
+   "bloque": "D_adicionales",
+   "dataset": "uci_563_iranian",
+   "metrica": "log_loss",
+   "prueba": "T4",
+   "modelo_a": "RegionalMAPEM",
+   "modelo_b": "xgboost",
+   "descripcion": "Wilcoxon de rangos con signo sobre las diferencias por pliegue (25; 10 en KDDCup09)"
+  },
+  {
+   "id": 164,
+   "bloque": "D_adicionales",
+   "dataset": "uci_563_iranian",
+   "metrica": "log_loss",
+   "prueba": "T1",
+   "modelo_a": "RegionalMAPEM",
+   "modelo_b": "svm",
+   "descripcion": "t corregida de Nadeau-Bengio sobre las diferencias por pliegue (25; 10 en KDDCup09)"
+  },
+  {
+   "id": 165,
+   "bloque": "D_adicionales",
+   "dataset": "uci_563_iranian",
+   "metrica": "log_loss",
+   "prueba": "T2",
+   "modelo_a": "RegionalMAPEM",
+   "modelo_b": "svm",
+   "descripcion": "permutación pareada de signos sobre pérdidas por instancia (100 000 permutaciones)"
+  },
+  {
+   "id": 166,
+   "bloque": "D_adicionales",
+   "dataset": "uci_563_iranian",
+   "metrica": "log_loss",
+   "prueba": "T4",
+   "modelo_a": "RegionalMAPEM",
+   "modelo_b": "svm",
+   "descripcion": "Wilcoxon de rangos con signo sobre las diferencias por pliegue (25; 10 en KDDCup09)"
+  },
+  {
+   "id": 167,
+   "bloque": "D_adicionales",
+   "dataset": "uci_563_iranian",
+   "metrica": "log_loss",
+   "prueba": "T1",
+   "modelo_a": "RegionalMAPEM",
+   "modelo_b": "logistic_splines",
+   "descripcion": "t corregida de Nadeau-Bengio sobre las diferencias por pliegue (25; 10 en KDDCup09)"
+  },
+  {
+   "id": 168,
+   "bloque": "D_adicionales",
+   "dataset": "uci_563_iranian",
+   "metrica": "log_loss",
+   "prueba": "T2",
+   "modelo_a": "RegionalMAPEM",
+   "modelo_b": "logistic_splines",
+   "descripcion": "permutación pareada de signos sobre pérdidas por instancia (100 000 permutaciones)"
+  },
+  {
+   "id": 169,
+   "bloque": "D_adicionales",
+   "dataset": "uci_563_iranian",
+   "metrica": "log_loss",
+   "prueba": "T4",
+   "modelo_a": "RegionalMAPEM",
+   "modelo_b": "logistic_splines",
+   "descripcion": "Wilcoxon de rangos con signo sobre las diferencias por pliegue (25; 10 en KDDCup09)"
+  },
+  {
+   "id": 170,
+   "bloque": "D_adicionales",
+   "dataset": "uci_563_iranian",
+   "metrica": "log_loss",
+   "prueba": "T1",
+   "modelo_a": "RegionalMAPEM",
+   "modelo_b": "hist_gb",
+   "descripcion": "t corregida de Nadeau-Bengio sobre las diferencias por pliegue (25; 10 en KDDCup09)"
+  },
+  {
+   "id": 171,
+   "bloque": "D_adicionales",
+   "dataset": "uci_563_iranian",
+   "metrica": "log_loss",
+   "prueba": "T2",
+   "modelo_a": "RegionalMAPEM",
+   "modelo_b": "hist_gb",
+   "descripcion": "permutación pareada de signos sobre pérdidas por instancia (100 000 permutaciones)"
+  },
+  {
+   "id": 172,
+   "bloque": "D_adicionales",
+   "dataset": "uci_563_iranian",
+   "metrica": "log_loss",
+   "prueba": "T4",
+   "modelo_a": "RegionalMAPEM",
+   "modelo_b": "hist_gb",
+   "descripcion": "Wilcoxon de rangos con signo sobre las diferencias por pliegue (25; 10 en KDDCup09)"
+  },
+  {
+   "id": 173,
+   "bloque": "D_adicionales",
+   "dataset": "uci_563_iranian",
+   "metrica": "log_loss",
+   "prueba": "T1",
+   "modelo_a": "RegionalMAPEM",
+   "modelo_b": "lightgbm",
+   "descripcion": "t corregida de Nadeau-Bengio sobre las diferencias por pliegue (25; 10 en KDDCup09)"
+  },
+  {
+   "id": 174,
+   "bloque": "D_adicionales",
+   "dataset": "uci_563_iranian",
+   "metrica": "log_loss",
+   "prueba": "T2",
+   "modelo_a": "RegionalMAPEM",
+   "modelo_b": "lightgbm",
+   "descripcion": "permutación pareada de signos sobre pérdidas por instancia (100 000 permutaciones)"
+  },
+  {
+   "id": 175,
+   "bloque": "D_adicionales",
+   "dataset": "uci_563_iranian",
+   "metrica": "log_loss",
+   "prueba": "T4",
+   "modelo_a": "RegionalMAPEM",
+   "modelo_b": "lightgbm",
+   "descripcion": "Wilcoxon de rangos con signo sobre las diferencias por pliegue (25; 10 en KDDCup09)"
+  },
+  {
+   "id": 176,
+   "bloque": "D_adicionales",
+   "dataset": "uci_563_iranian",
+   "metrica": "log_loss",
+   "prueba": "T1",
+   "modelo_a": "RegionalMAPEM",
+   "modelo_b": "catboost",
+   "descripcion": "t corregida de Nadeau-Bengio sobre las diferencias por pliegue (25; 10 en KDDCup09)"
+  },
+  {
+   "id": 177,
+   "bloque": "D_adicionales",
+   "dataset": "uci_563_iranian",
+   "metrica": "log_loss",
+   "prueba": "T2",
+   "modelo_a": "RegionalMAPEM",
+   "modelo_b": "catboost",
+   "descripcion": "permutación pareada de signos sobre pérdidas por instancia (100 000 permutaciones)"
+  },
+  {
+   "id": 178,
+   "bloque": "D_adicionales",
+   "dataset": "uci_563_iranian",
+   "metrica": "log_loss",
+   "prueba": "T4",
+   "modelo_a": "RegionalMAPEM",
+   "modelo_b": "catboost",
+   "descripcion": "Wilcoxon de rangos con signo sobre las diferencias por pliegue (25; 10 en KDDCup09)"
+  },
+  {
+   "id": 179,
+   "bloque": "D_adicionales",
+   "dataset": "openml_1112_kddcup09_churn",
+   "metrica": "log_loss",
+   "prueba": "T1",
+   "modelo_a": "RegionalMAPEM",
+   "modelo_b": "knn",
+   "descripcion": "t corregida de Nadeau-Bengio sobre las diferencias por pliegue (25; 10 en KDDCup09)"
+  },
+  {
+   "id": 180,
+   "bloque": "D_adicionales",
+   "dataset": "openml_1112_kddcup09_churn",
+   "metrica": "log_loss",
+   "prueba": "T2",
+   "modelo_a": "RegionalMAPEM",
+   "modelo_b": "knn",
+   "descripcion": "permutación pareada de signos sobre pérdidas por instancia (100 000 permutaciones)"
+  },
+  {
+   "id": 181,
+   "bloque": "D_adicionales",
+   "dataset": "openml_1112_kddcup09_churn",
+   "metrica": "log_loss",
+   "prueba": "T4",
+   "modelo_a": "RegionalMAPEM",
+   "modelo_b": "knn",
+   "descripcion": "Wilcoxon de rangos con signo sobre las diferencias por pliegue (25; 10 en KDDCup09)"
+  },
+  {
+   "id": 182,
+   "bloque": "D_adicionales",
+   "dataset": "openml_1112_kddcup09_churn",
+   "metrica": "log_loss",
+   "prueba": "T1",
+   "modelo_a": "RegionalMAPEM",
+   "modelo_b": "naive_bayes",
+   "descripcion": "t corregida de Nadeau-Bengio sobre las diferencias por pliegue (25; 10 en KDDCup09)"
+  },
+  {
+   "id": 183,
+   "bloque": "D_adicionales",
+   "dataset": "openml_1112_kddcup09_churn",
+   "metrica": "log_loss",
+   "prueba": "T2",
+   "modelo_a": "RegionalMAPEM",
+   "modelo_b": "naive_bayes",
+   "descripcion": "permutación pareada de signos sobre pérdidas por instancia (100 000 permutaciones)"
+  },
+  {
+   "id": 184,
+   "bloque": "D_adicionales",
+   "dataset": "openml_1112_kddcup09_churn",
+   "metrica": "log_loss",
+   "prueba": "T4",
+   "modelo_a": "RegionalMAPEM",
+   "modelo_b": "naive_bayes",
+   "descripcion": "Wilcoxon de rangos con signo sobre las diferencias por pliegue (25; 10 en KDDCup09)"
+  },
+  {
+   "id": 185,
+   "bloque": "D_adicionales",
+   "dataset": "openml_1112_kddcup09_churn",
+   "metrica": "log_loss",
+   "prueba": "T1",
+   "modelo_a": "RegionalMAPEM",
+   "modelo_b": "logistic",
+   "descripcion": "t corregida de Nadeau-Bengio sobre las diferencias por pliegue (25; 10 en KDDCup09)"
+  },
+  {
+   "id": 186,
+   "bloque": "D_adicionales",
+   "dataset": "openml_1112_kddcup09_churn",
+   "metrica": "log_loss",
+   "prueba": "T2",
+   "modelo_a": "RegionalMAPEM",
+   "modelo_b": "logistic",
+   "descripcion": "permutación pareada de signos sobre pérdidas por instancia (100 000 permutaciones)"
+  },
+  {
+   "id": 187,
+   "bloque": "D_adicionales",
+   "dataset": "openml_1112_kddcup09_churn",
+   "metrica": "log_loss",
+   "prueba": "T4",
+   "modelo_a": "RegionalMAPEM",
+   "modelo_b": "logistic",
+   "descripcion": "Wilcoxon de rangos con signo sobre las diferencias por pliegue (25; 10 en KDDCup09)"
+  },
+  {
+   "id": 188,
+   "bloque": "D_adicionales",
+   "dataset": "openml_1112_kddcup09_churn",
+   "metrica": "log_loss",
+   "prueba": "T1",
+   "modelo_a": "RegionalMAPEM",
+   "modelo_b": "decision_tree",
+   "descripcion": "t corregida de Nadeau-Bengio sobre las diferencias por pliegue (25; 10 en KDDCup09)"
+  },
+  {
+   "id": 189,
+   "bloque": "D_adicionales",
+   "dataset": "openml_1112_kddcup09_churn",
+   "metrica": "log_loss",
+   "prueba": "T2",
+   "modelo_a": "RegionalMAPEM",
+   "modelo_b": "decision_tree",
+   "descripcion": "permutación pareada de signos sobre pérdidas por instancia (100 000 permutaciones)"
+  },
+  {
+   "id": 190,
+   "bloque": "D_adicionales",
+   "dataset": "openml_1112_kddcup09_churn",
+   "metrica": "log_loss",
+   "prueba": "T4",
+   "modelo_a": "RegionalMAPEM",
+   "modelo_b": "decision_tree",
+   "descripcion": "Wilcoxon de rangos con signo sobre las diferencias por pliegue (25; 10 en KDDCup09)"
+  },
+  {
+   "id": 191,
+   "bloque": "D_adicionales",
+   "dataset": "openml_1112_kddcup09_churn",
+   "metrica": "log_loss",
+   "prueba": "T1",
+   "modelo_a": "RegionalMAPEM",
+   "modelo_b": "random_forest",
+   "descripcion": "t corregida de Nadeau-Bengio sobre las diferencias por pliegue (25; 10 en KDDCup09)"
+  },
+  {
+   "id": 192,
+   "bloque": "D_adicionales",
+   "dataset": "openml_1112_kddcup09_churn",
+   "metrica": "log_loss",
+   "prueba": "T2",
+   "modelo_a": "RegionalMAPEM",
+   "modelo_b": "random_forest",
+   "descripcion": "permutación pareada de signos sobre pérdidas por instancia (100 000 permutaciones)"
+  },
+  {
+   "id": 193,
+   "bloque": "D_adicionales",
+   "dataset": "openml_1112_kddcup09_churn",
+   "metrica": "log_loss",
+   "prueba": "T4",
+   "modelo_a": "RegionalMAPEM",
+   "modelo_b": "random_forest",
+   "descripcion": "Wilcoxon de rangos con signo sobre las diferencias por pliegue (25; 10 en KDDCup09)"
+  },
+  {
+   "id": 194,
+   "bloque": "D_adicionales",
+   "dataset": "openml_1112_kddcup09_churn",
+   "metrica": "log_loss",
+   "prueba": "T1",
+   "modelo_a": "RegionalMAPEM",
+   "modelo_b": "xgboost",
+   "descripcion": "t corregida de Nadeau-Bengio sobre las diferencias por pliegue (25; 10 en KDDCup09)"
+  },
+  {
+   "id": 195,
+   "bloque": "D_adicionales",
+   "dataset": "openml_1112_kddcup09_churn",
+   "metrica": "log_loss",
+   "prueba": "T2",
+   "modelo_a": "RegionalMAPEM",
+   "modelo_b": "xgboost",
+   "descripcion": "permutación pareada de signos sobre pérdidas por instancia (100 000 permutaciones)"
+  },
+  {
+   "id": 196,
+   "bloque": "D_adicionales",
+   "dataset": "openml_1112_kddcup09_churn",
+   "metrica": "log_loss",
+   "prueba": "T4",
+   "modelo_a": "RegionalMAPEM",
+   "modelo_b": "xgboost",
+   "descripcion": "Wilcoxon de rangos con signo sobre las diferencias por pliegue (25; 10 en KDDCup09)"
+  },
+  {
+   "id": 197,
+   "bloque": "D_adicionales",
+   "dataset": "openml_1112_kddcup09_churn",
+   "metrica": "log_loss",
+   "prueba": "T1",
+   "modelo_a": "RegionalMAPEM",
+   "modelo_b": "svm",
+   "descripcion": "t corregida de Nadeau-Bengio sobre las diferencias por pliegue (25; 10 en KDDCup09)"
+  },
+  {
+   "id": 198,
+   "bloque": "D_adicionales",
+   "dataset": "openml_1112_kddcup09_churn",
+   "metrica": "log_loss",
+   "prueba": "T2",
+   "modelo_a": "RegionalMAPEM",
+   "modelo_b": "svm",
+   "descripcion": "permutación pareada de signos sobre pérdidas por instancia (100 000 permutaciones)"
+  },
+  {
+   "id": 199,
+   "bloque": "D_adicionales",
+   "dataset": "openml_1112_kddcup09_churn",
+   "metrica": "log_loss",
+   "prueba": "T4",
+   "modelo_a": "RegionalMAPEM",
+   "modelo_b": "svm",
+   "descripcion": "Wilcoxon de rangos con signo sobre las diferencias por pliegue (25; 10 en KDDCup09)"
+  },
+  {
+   "id": 200,
+   "bloque": "D_adicionales",
+   "dataset": "openml_1112_kddcup09_churn",
+   "metrica": "log_loss",
+   "prueba": "T1",
+   "modelo_a": "RegionalMAPEM",
+   "modelo_b": "logistic_splines",
+   "descripcion": "t corregida de Nadeau-Bengio sobre las diferencias por pliegue (25; 10 en KDDCup09)"
+  },
+  {
+   "id": 201,
+   "bloque": "D_adicionales",
+   "dataset": "openml_1112_kddcup09_churn",
+   "metrica": "log_loss",
+   "prueba": "T2",
+   "modelo_a": "RegionalMAPEM",
+   "modelo_b": "logistic_splines",
+   "descripcion": "permutación pareada de signos sobre pérdidas por instancia (100 000 permutaciones)"
+  },
+  {
+   "id": 202,
+   "bloque": "D_adicionales",
+   "dataset": "openml_1112_kddcup09_churn",
+   "metrica": "log_loss",
+   "prueba": "T4",
+   "modelo_a": "RegionalMAPEM",
+   "modelo_b": "logistic_splines",
+   "descripcion": "Wilcoxon de rangos con signo sobre las diferencias por pliegue (25; 10 en KDDCup09)"
+  },
+  {
+   "id": 203,
+   "bloque": "D_adicionales",
+   "dataset": "openml_1112_kddcup09_churn",
+   "metrica": "log_loss",
+   "prueba": "T1",
+   "modelo_a": "RegionalMAPEM",
+   "modelo_b": "hist_gb",
+   "descripcion": "t corregida de Nadeau-Bengio sobre las diferencias por pliegue (25; 10 en KDDCup09)"
+  },
+  {
+   "id": 204,
+   "bloque": "D_adicionales",
+   "dataset": "openml_1112_kddcup09_churn",
+   "metrica": "log_loss",
+   "prueba": "T2",
+   "modelo_a": "RegionalMAPEM",
+   "modelo_b": "hist_gb",
+   "descripcion": "permutación pareada de signos sobre pérdidas por instancia (100 000 permutaciones)"
+  },
+  {
+   "id": 205,
+   "bloque": "D_adicionales",
+   "dataset": "openml_1112_kddcup09_churn",
+   "metrica": "log_loss",
+   "prueba": "T4",
+   "modelo_a": "RegionalMAPEM",
+   "modelo_b": "hist_gb",
+   "descripcion": "Wilcoxon de rangos con signo sobre las diferencias por pliegue (25; 10 en KDDCup09)"
+  },
+  {
+   "id": 206,
+   "bloque": "D_adicionales",
+   "dataset": "openml_1112_kddcup09_churn",
+   "metrica": "log_loss",
+   "prueba": "T1",
+   "modelo_a": "RegionalMAPEM",
+   "modelo_b": "lightgbm",
+   "descripcion": "t corregida de Nadeau-Bengio sobre las diferencias por pliegue (25; 10 en KDDCup09)"
+  },
+  {
+   "id": 207,
+   "bloque": "D_adicionales",
+   "dataset": "openml_1112_kddcup09_churn",
+   "metrica": "log_loss",
+   "prueba": "T2",
+   "modelo_a": "RegionalMAPEM",
+   "modelo_b": "lightgbm",
+   "descripcion": "permutación pareada de signos sobre pérdidas por instancia (100 000 permutaciones)"
+  },
+  {
+   "id": 208,
+   "bloque": "D_adicionales",
+   "dataset": "openml_1112_kddcup09_churn",
+   "metrica": "log_loss",
+   "prueba": "T4",
+   "modelo_a": "RegionalMAPEM",
+   "modelo_b": "lightgbm",
+   "descripcion": "Wilcoxon de rangos con signo sobre las diferencias por pliegue (25; 10 en KDDCup09)"
+  },
+  {
+   "id": 209,
+   "bloque": "D_adicionales",
+   "dataset": "openml_1112_kddcup09_churn",
+   "metrica": "log_loss",
+   "prueba": "T1",
+   "modelo_a": "RegionalMAPEM",
+   "modelo_b": "catboost",
+   "descripcion": "t corregida de Nadeau-Bengio sobre las diferencias por pliegue (25; 10 en KDDCup09)"
+  },
+  {
+   "id": 210,
+   "bloque": "D_adicionales",
+   "dataset": "openml_1112_kddcup09_churn",
+   "metrica": "log_loss",
+   "prueba": "T2",
+   "modelo_a": "RegionalMAPEM",
+   "modelo_b": "catboost",
+   "descripcion": "permutación pareada de signos sobre pérdidas por instancia (100 000 permutaciones)"
+  },
+  {
+   "id": 211,
+   "bloque": "D_adicionales",
+   "dataset": "openml_1112_kddcup09_churn",
+   "metrica": "log_loss",
+   "prueba": "T4",
+   "modelo_a": "RegionalMAPEM",
+   "modelo_b": "catboost",
+   "descripcion": "Wilcoxon de rangos con signo sobre las diferencias por pliegue (25; 10 en KDDCup09)"
+  },
+  {
+   "id": 212,
+   "bloque": "E_entre_conjuntos",
+   "dataset": "4_conjuntos",
+   "metrica": "rango_log_loss",
+   "prueba": "friedman_iman_davenport",
+   "modelo_a": "todos",
+   "modelo_b": "todos",
+   "descripcion": "Friedman con Iman-Davenport sobre rangos por conjunto (12 modelos x 4 conjuntos)"
+  },
+  {
+   "id": 213,
+   "bloque": "E_entre_conjuntos",
+   "dataset": "4_conjuntos",
+   "metrica": "log_loss",
+   "prueba": "wilcoxon",
+   "modelo_a": "RegionalMAPEM",
+   "modelo_b": "knn",
+   "descripcion": "Wilcoxon por pares entre conjuntos (n = 4; potencia muy baja, se reporta)"
+  },
+  {
+   "id": 214,
+   "bloque": "E_entre_conjuntos",
+   "dataset": "4_conjuntos",
+   "metrica": "log_loss",
+   "prueba": "wilcoxon",
+   "modelo_a": "RegionalMAPEM",
+   "modelo_b": "naive_bayes",
+   "descripcion": "Wilcoxon por pares entre conjuntos (n = 4; potencia muy baja, se reporta)"
+  },
+  {
+   "id": 215,
+   "bloque": "E_entre_conjuntos",
+   "dataset": "4_conjuntos",
+   "metrica": "log_loss",
+   "prueba": "wilcoxon",
+   "modelo_a": "RegionalMAPEM",
+   "modelo_b": "logistic",
+   "descripcion": "Wilcoxon por pares entre conjuntos (n = 4; potencia muy baja, se reporta)"
+  },
+  {
+   "id": 216,
+   "bloque": "E_entre_conjuntos",
+   "dataset": "4_conjuntos",
+   "metrica": "log_loss",
+   "prueba": "wilcoxon",
+   "modelo_a": "RegionalMAPEM",
+   "modelo_b": "decision_tree",
+   "descripcion": "Wilcoxon por pares entre conjuntos (n = 4; potencia muy baja, se reporta)"
+  },
+  {
+   "id": 217,
+   "bloque": "E_entre_conjuntos",
+   "dataset": "4_conjuntos",
+   "metrica": "log_loss",
+   "prueba": "wilcoxon",
+   "modelo_a": "RegionalMAPEM",
+   "modelo_b": "random_forest",
+   "descripcion": "Wilcoxon por pares entre conjuntos (n = 4; potencia muy baja, se reporta)"
+  },
+  {
+   "id": 218,
+   "bloque": "E_entre_conjuntos",
+   "dataset": "4_conjuntos",
+   "metrica": "log_loss",
+   "prueba": "wilcoxon",
+   "modelo_a": "RegionalMAPEM",
+   "modelo_b": "xgboost",
+   "descripcion": "Wilcoxon por pares entre conjuntos (n = 4; potencia muy baja, se reporta)"
+  },
+  {
+   "id": 219,
+   "bloque": "E_entre_conjuntos",
+   "dataset": "4_conjuntos",
+   "metrica": "log_loss",
+   "prueba": "wilcoxon",
+   "modelo_a": "RegionalMAPEM",
+   "modelo_b": "svm",
+   "descripcion": "Wilcoxon por pares entre conjuntos (n = 4; potencia muy baja, se reporta)"
+  },
+  {
+   "id": 220,
+   "bloque": "E_entre_conjuntos",
+   "dataset": "4_conjuntos",
+   "metrica": "log_loss",
+   "prueba": "wilcoxon",
+   "modelo_a": "RegionalMAPEM",
+   "modelo_b": "logistic_splines",
+   "descripcion": "Wilcoxon por pares entre conjuntos (n = 4; potencia muy baja, se reporta)"
+  },
+  {
+   "id": 221,
+   "bloque": "E_entre_conjuntos",
+   "dataset": "4_conjuntos",
+   "metrica": "log_loss",
+   "prueba": "wilcoxon",
+   "modelo_a": "RegionalMAPEM",
+   "modelo_b": "hist_gb",
+   "descripcion": "Wilcoxon por pares entre conjuntos (n = 4; potencia muy baja, se reporta)"
+  },
+  {
+   "id": 222,
+   "bloque": "E_entre_conjuntos",
+   "dataset": "4_conjuntos",
+   "metrica": "log_loss",
+   "prueba": "wilcoxon",
+   "modelo_a": "RegionalMAPEM",
+   "modelo_b": "lightgbm",
+   "descripcion": "Wilcoxon por pares entre conjuntos (n = 4; potencia muy baja, se reporta)"
+  },
+  {
+   "id": 223,
+   "bloque": "E_entre_conjuntos",
+   "dataset": "4_conjuntos",
+   "metrica": "log_loss",
+   "prueba": "wilcoxon",
+   "modelo_a": "RegionalMAPEM",
+   "modelo_b": "catboost",
+   "descripcion": "Wilcoxon por pares entre conjuntos (n = 4; potencia muy baja, se reporta)"
+  }
+ ]
+}
