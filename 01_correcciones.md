@@ -6,19 +6,24 @@ comprobar. Cuando una corrección alteró resultados, las tablas y pruebas que d
 
 ## Observaciones del entregable anterior
 
+La retroalimentación del entregable anterior (nota 4,2) reconoció el trabajo metodológico y señaló cinco descuentos. La
+primera columna los cita tal como los escribió el docente.
+
 | # | Observación del docente | Acción realizada | Ubicación en el libro | Evidencia |
 |---|---|---|---|---|
-| 1 | Las probabilidades de los finalistas con SMOTE no estaban calibradas (ECE cercana a 0,11) | Calibración isotónica de las 560 unidades de la realización principal, comparada con Platt dentro de la validación anidada | Modelamiento avanzado, sección de calibración | `complementos/calibracion_isotonica.py`; `resultados_modelado/complementarios/calibracion_isotonica/` |
-| 2 | Faltaba una técnica de optimización multifidelidad | Successive Halving dentro de la validación anidada, con el mismo presupuesto en evaluaciones completas | Modelamiento avanzado, sección de multifidelidad | `complementos/multifidelidad.py`; `multifidelidad_por_fold.csv` |
-| 3 | Las optimizaciones computacionales no medían su aceleración | Aceleración medida, escalamiento en $n$ y $p$, paralelismo y perfilamiento | Modelamiento avanzado, sección computacional | `complementos/optimizacion_computacional.py` |
-| 4 | Las comparaciones no reportaban tamaños del efecto | δ de Cliff, $d_z$ y correlación biserial de rangos en todas las comparaciones | Modelamiento avanzado, sección estadística | Tablas de comparaciones con su tamaño del efecto |
-| 5 | La reproducibilidad dependía de pasos manuales | `requirements.txt` completo, `verificar_reproduccion.py`, apéndice con el código del entrenamiento y resultados complementarios versionados | Apéndice: código del experimento; Guía del repositorio | `verificar_reproduccion.py`; `CODIGO_EXPERIMENTO.ipynb`; `notebooks.sha256` |
+| 1 | "no hay multifidelidad" | Successive Halving dentro de la validación anidada para Random Forest, XGBoost y SVM con SMOTE, comparado con una búsqueda aleatoria a fidelidad completa, con el mismo pipeline, las mismas semillas y los mismos pliegues internos | Modelamiento avanzado, sección 2.5 | `complementos/multifidelidad.py`; `resultados_modelado/complementarios/multifidelidad/` |
+| 2 | "ni optimizaciones computacionales aplicadas ni mediciones de aceleración" | Optimizaciones aplicadas con aceleración medida, escalamiento en $n$ y $p$, paralelismo y perfilamiento | Modelamiento avanzado, secciones 2.4 y 2.6 | `complementos/optimizacion_computacional.py`; `resultados_modelado/complementarios/optimizacion_computacional/` |
+| 3 | "no se reporta tamaño del efecto" | δ de Cliff, $d_z$ y correlación biserial de rangos en las comparaciones | Modelamiento avanzado, sección 3.1 | Tablas de comparaciones con su tamaño del efecto |
+| 4 | "la calibración usa solo Platt" | Calibración isotónica de las 560 unidades de la realización principal, comparada con Platt | Modelamiento avanzado, secciones 1.7 y 1.8 | `complementos/calibracion_isotonica.py`; `resultados_modelado/complementarios/calibracion_isotonica/` |
+| 5 | "Tampoco se entregan los resultados guardados ni `requirements.txt`, por lo que no se puede verificar la reproducción" | Resultados versionados, `requirements.txt` con versiones exactas, script que verifica la reproducción y apéndice con el código del entrenamiento | Modelamiento avanzado, sección 1.2; Apéndice: código del entrenamiento; Guía del repositorio | `resultados_modelado/`; `requirements.txt`; `verificar_reproduccion.py`; `CODIGO_EXPERIMENTO.ipynb` |
 
 ## Criterios del docente para el modelo original
 
-| # | Observación del docente | Acción realizada | Ubicación en el libro | Evidencia |
+El docente fijó estos criterios por correo; la primera columna los resume.
+
+| # | Criterio del docente | Acción realizada | Ubicación en el libro | Evidencia |
 |---|---|---|---|---|
-| 6 | La novedad puede estar en la regla de combinación, si se diferencia de la mezcla de expertos con compuerta EM, la selección dinámica, el stacking con pesos locales y los ensambles ponderados | Revisión de literatura con búsqueda por citación y tabla de diferenciación de 11 trabajos en 7 familias | Capítulo 4, tabla 4.3 | `experiments/literatura/` |
+| 6 | La novedad puede estar en la regla de combinación, si se diferencia de la mezcla de expertos con compuerta EM, la selección dinámica, el stacking con pesos locales y los ensambles ponderados | Revisión de literatura con búsqueda por citación y matriz de novedad con búsqueda en bases institucionales y abiertas, y tabla de diferenciación con diez familias de métodos | Capítulo 4, tabla 4.3 | `experiments/literatura/` |
 | 7 | La demostración de convergencia debe enunciar sus supuestos | Proposición de concavidad, ascenso monótono y óptimo global, con los supuestos S1 a S4 y el caso de borde | Modelo propio, sección 5 | `tests/test_original_model.py` verifica el ascenso monótono |
 | 8 | El log-loss vale como métrica principal si se pre-registra declarando que se eligió después de los pilotos | Log-loss fijado en el protocolo con esa declaración, antes del tag | Capítulo 6, tabla del protocolo | `experiments/protocolo.md`, sección 3; tag `protocolo-v1` |
 | 9 | Los benchmarks deben tener el mismo presupuesto y calibración (Platt o isotónica) dentro del bucle interno | 30 evaluaciones de TPE para todos, con Platt dentro del bucle interno y sin SMOTE; presupuesto consumido reportado | Capítulo 6, tabla 6.1 | `experiments/espacios.json`; `tablas/costos_por_pliegue.csv` |

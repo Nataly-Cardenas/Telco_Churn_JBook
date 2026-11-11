@@ -21,6 +21,7 @@ exclude_patterns:
   - "EDA.ipynb"
   - "MODEL_CARD.md"
   - "DATA_STATEMENT.md"
+  - "PENDIENTES_LAURA.md"
 
 html:
   extra_css:
