@@ -11,6 +11,7 @@ parts:
       - file: MODELO_PROPIO
       - file: 06_validacion
       - file: 07_evaluacion_ampliada
+      - file: 08_dashboard
       - file: 09_conclusiones
       - file: 10_reproducibilidad
   - caption: Apéndices
