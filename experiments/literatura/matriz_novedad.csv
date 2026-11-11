@@ -1,0 +1,47 @@
+Fecha,Base de datos,Modelo candidato,Cadena de búsqueda,Resultados,Revisados,Relevantes,Observación
+2026-10-30,WoS,Proceso gaussiano,"Conjuntos B y B2 de WoS (hoja Busquedas) + términos: ""gaussian process""",1,1,0,Sin aplicación a churn.
+2026-10-30,Scopus,Proceso gaussiano,"Conjuntos B y B2 de Scopus (hoja Busquedas) + términos: ""gaussian process""",2,2,0,Sin aplicación a churn.
+2026-10-30,WoS,Twin SVM,"Conjuntos B y B2 de WoS (hoja Busquedas) + términos: ""twin support vector"", TWSVM, TSVM",0,0,0,Sin aplicación a churn.
+2026-10-30,Scopus,Twin SVM,"Conjuntos B y B2 de Scopus (hoja Busquedas) + términos: ""twin support vector"", TWSVM, TSVM",0,0,0,Sin aplicación a churn.
+2026-10-30,WoS,RVM,"Conjuntos B y B2 de WoS (hoja Busquedas) + términos: ""relevance vector machine"", RVM",0,0,0,Sin aplicación a churn.
+2026-10-30,Scopus,RVM,"Conjuntos B y B2 de Scopus (hoja Busquedas) + términos: ""relevance vector machine"", RVM",0,0,0,Sin aplicación a churn.
+2026-10-30,WoS,Árboles óptimos (MIP),"Conjuntos B y B2 de WoS (hoja Busquedas) + términos: ""optimal classification tree"", ""optimal decision tree""",0,0,0,Sin aplicación a churn.
+2026-10-30,Scopus,Árboles óptimos (MIP),"Conjuntos B y B2 de Scopus (hoja Busquedas) + términos: ""optimal classification tree"", ""optimal decision tree""",0,0,0,Sin aplicación a churn.
+2026-10-30,WoS,Árboles oblicuos,"Conjuntos B y B2 de WoS (hoja Busquedas) + términos: ""oblique tree"", ""oblique decision tree""",0,0,0,Sin aplicación a churn.
+2026-10-30,Scopus,Árboles oblicuos,"Conjuntos B y B2 de Scopus (hoja Busquedas) + términos: ""oblique tree"", ""oblique decision tree""",0,0,0,Sin aplicación a churn.
+2026-10-30,WoS,Tsetlin Machine,"Conjuntos B y B2 de WoS (hoja Busquedas) + términos: ""tsetlin machine""",0,0,0,Sin aplicación a churn.
+2026-10-30,Scopus,Tsetlin Machine,"Conjuntos B y B2 de Scopus (hoja Busquedas) + términos: ""tsetlin machine""",1,1,0,Sin aplicación a churn.
+2026-10-30,WoS,Minimax Probability Machine,"Conjuntos B y B2 de WoS (hoja Busquedas) + términos: ""minimax probability machine""",0,0,0,Sin aplicación a churn.
+2026-10-30,Scopus,Minimax Probability Machine,"Conjuntos B y B2 de Scopus (hoja Busquedas) + términos: ""minimax probability machine""",0,0,0,Sin aplicación a churn.
+2026-10-30,WoS,BART,"Conjuntos B y B2 de WoS (hoja Busquedas) + términos: ""bayesian additive regression tree"", BART",0,0,0,Sin aplicación a churn.
+2026-10-30,Scopus,BART,"Conjuntos B y B2 de Scopus (hoja Busquedas) + términos: ""bayesian additive regression tree"", BART",0,0,0,Sin aplicación a churn.
+2026-10-30,Google Scholar,Proceso gaussiano,"churn ""Gaussian process""",~1.320,—,1,"DESCARTADO: Lazreg y Granmo, A Churn Prediction Model Based on Gaussian Processes; Lu et al. (2022)"
+2026-10-30,arXiv,Proceso gaussiano,"churn ""Gaussian process"" (cs)",0,0,0,Sin resultados
+2026-10-30,Google Scholar,Twin SVM,"churn ""twin support vector""",~147,—,1,DESCARTADO: Adhikary y Gupta (2021) más de 100 clasificadores para churn telecom (incluye TWSVM)
+2026-10-30,arXiv,Twin SVM,"churn ""twin support vector"" (cs)",0,0,0,Sin resultados
+2026-10-30,Google Scholar,RVM,"churn ""relevance vector machine""",~83,—,1,DESCARTADO: Lessmann y Voß (2010) benchmark de clasificadores centrado en el cliente (incluye RVM)
+2026-10-30,arXiv,RVM,—,—,—,—,No ejecutada (el candidato ya quedó descartado en Google Scholar)
+2026-10-30,Google Scholar,Árboles óptimos (MIP),"churn ""optimal classification tree"" / ""optimal decision tree""",16 / ~95,—,1,"DESCARTADO: Höppner et al. (2020, EJOR) ProfTree para churn"
+2026-10-30,arXiv,Árboles óptimos (MIP),—,—,—,—,No ejecutada (descartado en Google Scholar)
+2026-10-30,Google Scholar,Árboles oblicuos,"churn ""oblique decision tree"" / ""oblique random forest""",39 / 11,—,2,DESCARTADO: Mahdi (2020) projection pursuit RF en churn telecom; Colot et al. (2021) bosques en churn móvil
+2026-10-30,arXiv,Árboles oblicuos,—,—,—,—,No ejecutada (descartado en Google Scholar)
+2026-10-30,Google Scholar,Tsetlin Machine,"churn ""Tsetlin machine""",14,14,1,DESCARTADO: Erkus et al. (2025) LatentGraph evaluada en Telco Customer Churn
+2026-10-30,arXiv,Tsetlin Machine,—,—,—,—,No ejecutada (descartado en Google Scholar)
+2026-10-30,Google Scholar,Minimax Probability Machine,"churn ""minimax probability machine""",~49,—,1,"DESCARTADO: Maldonado, López y Vairetti (2020, EJOR) churn basado en beneficio con MPM"
+2026-10-30,arXiv,Minimax Probability Machine,—,—,—,—,No ejecutada (descartado en Google Scholar)
+2026-10-30,Google Scholar,BART,"churn ""Bayesian additive regression trees""",~100,—,2,DESCARTADO: Moura y Fossaluza (2018); Rößler y Schoder
+2026-10-30,arXiv,BART,—,—,—,—,No ejecutada (descartado en Google Scholar)
+2026-11-03,WoS,Ponderación por regiones con MAP-EM (propio),[churn] AND mezcla de expertos / compuerta (W-P1-1103),1,1,0,"Phishing, no churn"
+2026-11-03,WoS,Ponderación por regiones con MAP-EM (propio),[churn] AND selección dinámica / región de competencia (W-P2-1103),1,1,1,"Xiao et al. (2012) DCEID: selección dinámica dura, no pesos MAP-EM"
+2026-11-03,WoS,Ponderación por regiones con MAP-EM (propio),[churn] AND stacking local / ensambles ponderados (W-P3-1103),7,7,4,Solo pesos globales (Khoh 2023; MetaLight-ChurnNet 2026; votación 2023; híbrido 2018)
+2026-11-03,WoS,Ponderación por regiones con MAP-EM (propio),[churn] AND EM / pooling / Dirichlet (W-P4-1103),18,15,0,EM solo en clustering/LDA; ninguno combina clasificadores
+2026-11-03,Scopus,Ponderación por regiones con MAP-EM (propio),[churn] AND mezcla de expertos (S-P1-1103),5,5,1,"Yan et al. (2001) MoE neuronal con compuerta entrenada; difiere en expertos fijos no neuronales, regiones fijas y prior Dirichlet"
+2026-11-03,Scopus,Ponderación por regiones con MAP-EM (propio),[churn] AND selección dinámica (S-P2-1103),3,3,2,"Xiao et al. 2012 y 2014: selección dinámica, no pesos MAP-EM"
+2026-11-03,Scopus,Ponderación por regiones con MAP-EM (propio),[churn] AND stacking local / ensambles ponderados (S-P3-1103),17,17,8,Solo pesos globales
+2026-11-03,Scopus,Ponderación por regiones con MAP-EM (propio),[churn] AND EM / pooling / Dirichlet (S-P4-1103),27,27,1,Lobo et al. (2024) mezcla bayesiana de caducidad (no ensamble)
+2026-11-03,Scopus AI,Ponderación por regiones con MAP-EM (propio),Pregunta en lenguaje natural (SAI-1-1103),9,9,0,"Sin estudios con pesos locales EM/MAP-EM, MoE con expertos fijos ni prior Dirichlet en churn"
+2026-11-03,Google Scholar,Ponderación por regiones con MAP-EM (propio),"Scholar: ""customer churn"" ""mixture of experts"" (G-P1-1103)",97,10,4,Yan 2001 y MMoE (neuronales); LRMoE por EM en seguros (no predice churn)
+2026-11-03,Google Scholar,Ponderación por regiones con MAP-EM (propio),"Scholar: ""customer churn"" selección dinámica (G-P2-1103)",101,10,5,"Xiao et al.; LESTARI (2025) pesos por instancia pero para compras prepago, no churn"
+2026-11-03,Google Scholar,Ponderación por regiones con MAP-EM (propio),"Scholar: ""customer churn"" stacking local / pesos locales (G-P3-1103)",10,10,0,Sin aplicación
+2026-11-03,Google Scholar,Ponderación por regiones con MAP-EM (propio),"Scholar: ""customer churn"" EM / Dirichlet pesos de ensamble (G-P4-1103)",470,10,2,Pesos globales o votación; EM/Dirichlet solo por LDA
+2026-11-03,Declaración,Ponderación por regiones con MAP-EM (propio),—,—,—,—,"VIABLE para R1: al mejor de nuestro conocimiento y según la búsqueda descrita (WoS, Scopus, Scopus AI, Google Scholar; 2026-11-03), no se encontraron estudios que apliquen la ponderación por regiones de clasificadores aprendida con MAP-EM (prior de Dirichlet) a la predicción de churn. Más cercanos: Yan et al. 2001 (MoE neuronal), Xiao et al. 2012/2014 (selección dinámica), Khoh et al. 2023 (pesos globales), LESTARI 2025 (pesos por instancia, otra tarea)"

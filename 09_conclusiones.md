@@ -64,8 +64,8 @@ el modelo gana en media al mejor benchmark, el stacking logístico rinde todaví
   expertos para predecir: unos 23 MB serializados y el tiempo de inferencia de Random Forest y SVM.
 - **Robustez sobre una repetición.** Los estudios exploratorios usan los 5 pliegues de la repetición 0, sin volver a
   optimizar.
-- **Revisión de literatura.** Las búsquedas por citación en Web of Science y en Google Académico, y la lectura a texto
-  completo de los dos trabajos de 2010 y 2012, son las que fijan el alcance de la novedad (capítulo 4).
+- **Revisión de literatura.** La búsqueda por citación se hizo en OpenAlex y los dos trabajos de 2010 y 2012 se analizaron
+  a partir de sus resúmenes, lo que limita el alcance de la declaración de novedad (capítulo 4).
 
 ## Riesgos de uso
 
