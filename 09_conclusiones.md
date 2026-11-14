@@ -99,5 +99,6 @@ borradores de varios capítulos a partir de los resultados. Todas sus propuestas
 resultados numéricos salen de la ejecución del código del repositorio, no de la herramienta, y ninguna cifra del libro
 se escribió sin verificarla contra las tablas versionadas. La herramienta no tuvo acceso al hold-out antes de su
 evaluación única, que se hizo después de sellar el análisis confirmatorio.
+Además, usamos Claude (Anthropic), como herramienta de apoyo científico, para una validación breve del manuscrito y de la investigación bibliográfica: contrastar el texto con las tablas versionadas y localizar y verificar referencias. Los hallazgos se comprobaron contra las fuentes antes de incorporarlos. Este trabajo no recibió ningún tipo de financiación.
 
 La declaración firmada por el equipo está al final del capítulo 10.

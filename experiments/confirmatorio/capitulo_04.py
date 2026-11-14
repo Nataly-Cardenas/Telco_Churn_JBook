@@ -19,7 +19,7 @@ espacio de clientes) ya existe en churn, y que lo nuevo es la regla con la que n
 | Mapa de modelos usados en churn | 2026-10-30 | Web of Science, Scopus, IEEE Xplore y arXiv | Dos conjuntos por base: A, clasificación con ML con *novel*, *improved*, *enhanced* o *hybrid* en el título, y B, churn con ML, ambos sin redes neuronales; además B2, churn amplio, como control. En Web of Science y Scopus suman 27 313 registros. De ahí salieron ocho modelos candidatos, verificados después en Google Académico y arXiv |
 | Búsqueda del mecanismo propio | 2026-11-03 | Web of Science, Scopus, Scopus AI y Google Académico | Cadenas que combinan la definición de churn con cada familia afín: mezcla de expertos, selección dinámica, stacking local y ensambles ponderados, EM y agregación de probabilidades, y calibración. También se repitieron A, B y B2 en Web of Science |
 | Índices abiertos y citación | 2026-11-08 | OpenAlex y arXiv | Cadenas adicionales, una de ellas en español, y búsqueda por citación hacia atrás y hacia adelante desde cinco trabajos semilla |
-| Repositorios de código | 2026-11-10 | GitHub | Búsqueda por nombre, descripción, README y contenido del código, con lectura de los repositorios más cercanos |
+| Repositorios de código | 2026-11-13 | GitHub | Búsqueda por nombre, descripción, README y contenido del código, con lectura de los repositorios más cercanos |
 
 La definición de churn combina el término en inglés con sus sinónimos en inglés y, en Web of Science, en español: *customer
 defection*, *customer attrition*, "fuga de clientes", "abandono de clientes" y "deserción de clientes". Las cadenas exactas,
@@ -59,7 +59,7 @@ combinar clasificadores. Scopus AI, consultado en lenguaje natural, tampoco devo
 con EM o MAP-EM.
 
 Los antecedentes que obligan a acotar la novedad aparecieron en la cadena de selección dinámica de OpenAlex: dos artículos
-sobre churn en telecomunicaciones, de 2010 y 2012, que se discuten abajo.
+sobre churn en telecomunicaciones, de 2010 y 2012 {cite}`xia2010,xia2012`, que se discuten abajo.
 """),
 code(r"""
 # Búsqueda por citación desde los trabajos semilla
@@ -82,7 +82,7 @@ tabla 4.3 reúne diez familias y precisa, para cada una, qué conserva nuestra p
 |---|---|---|---|
 | **Mezcla de expertos con compuerta EM:** Jacobs et al. (1991); Jordan y Jacobs (1994) {cite}`jordan1994`; Yan et al. (2001); LRMoE, Fung et al. (2019) | Sí, pero neuronal (Yan, 2001; MMoE de Ziadi et al.). LRMoE se usa en tarificación de seguros, no para predecir churn | Mezcla convexa con pesos que dependen de $x$, estimada por EM | La compuerta se fija antes de estimar los pesos y los expertos no se reentrenan. Por eso el objetivo es cóncavo y el EM llega al óptimo global; cuando compuerta y expertos se entrenan juntos, el EM solo garantiza un óptimo local |
 | **Selección dinámica:** Woods et al. (1997); Ko et al. (2008); Cruz et al. (2015); DES-Clustering, Soares et al. (2006) {cite}`soares2006`; Xiao et al. (2012, 2014) {cite}`xiao2012` | Sí (Xiao et al.) | La competencia de cada modelo varía en el espacio de entrada; DES-Clustering obtiene regiones por clustering | Selección dura de clasificadores frente a pesos continuos estimados por máxima posterior con un prior de Dirichlet |
-| **Integración dinámica por subáreas** (2010 y 2012; dos artículos en chino sobre telecomunicaciones) | Sí | Combinar clasificadores según la zona del espacio de clientes | Regiones duras de k-means, un clasificador nuevo por subárea y pesos por metaheurística sin garantía de óptimo. Aquí las regiones son suaves, los expertos fijos y los pesos salen de MAP-EM con objetivo cóncavo |
+| **Integración dinámica por subáreas** (Xia 2010 y 2012; dos artículos en chino sobre telecomunicaciones) {cite}`xia2010,xia2012` | Sí | Combinar clasificadores según la zona del espacio de clientes | Regiones duras de k-means, un clasificador nuevo por subárea y pesos por metaheurística sin garantía de óptimo. Aquí las regiones son suaves, los expertos fijos y los pesos salen de MAP-EM con objetivo cóncavo |
 | **Modelos por segmento:** logit leaf model, De Caigny et al. (2018) {cite}`decaigny2018`; extensiones (De Caigny et al., 2021; Hendriks, 2022; Idbenjra et al., 2024) | Sí | Tratar distinto a cada segmento de clientes | Segmentos duros de un árbol supervisado, con un modelo nuevo por hoja. Aquí no se entrena nada nuevo: se reponderan benchmarks fijos |
 | **Clustering con ensambles globales:** Bilal et al. (2022) | Sí | Combinar clustering y clasificadores | Votación, stacking y AdaBoost globales, sin pesos por clúster ni EM |
 | **Stacking y ensambles con pesos globales:** Wolpert (1992); Breiman (1996); Khoh et al. (2023); Jiang et al. (2024) | Sí | Usar predicciones fuera de pliegue para ajustar una combinación ponderada | Un solo vector de pesos, frente a pesos por región con un prior hacia los globales |
@@ -111,6 +111,23 @@ Esa regla tiene una consecuencia que no comparte ninguno de los métodos de la t
 cóncavo sobre un producto de símplex, así que el EM sube en cada iteración y converge al óptimo global (capítulo 5). Los
 resultados de los capítulos 6 y 7 muestran que esa garantía no se traduce en una ventaja predictiva en Telco, pero la novedad
 del mecanismo no depende de que gane.
+
+## Una propuesta anterior que descartamos: SVM+ (LUPI)
+
+Antes de llegar a RegionalMAPEM probamos otro mecanismo: SVM+, de la familia del aprendizaje con información privilegiada
+(LUPI). La búsqueda de la etapa del 3 de noviembre no encontró antecedentes en churn: la cadena que reúne "privileged
+information", LUPI y otros seis candidatos devolvió cero resultados en Web of Science y en Scopus (tabla 4.4, filas
+W-P6-1103 y S-P6-1103). Aun así lo descartamos, por tres razones que quedaron registradas como piloto 1 en la sección 11 del
+protocolo y en la sección 10 del capítulo 5:
+
+- **No mejoró.** Con CLTV y Churn Score como información privilegiada, el F1 fue de 0,35, frente a 0,58 sin ella.
+- **Riesgo de fuga.** Churn Score es la salida de un modelo de IBM: usarla como información privilegiada es casi darle al
+  modelo la respuesta.
+- **No pertenece a nuestros datos.** CLTV y Churn Score solo vienen en la versión extendida de IBM, no en el dataset del
+  proyecto (versión de Kaggle), que es el que usa el dashboard y la comparación con los benchmarks.
+
+El profesor estuvo de acuerdo en descartar Churn Score como variable privilegiada y en que bastaba documentar el piloto y
+el motivo, que es lo que hace esta sección.
 
 ## Alcance de la búsqueda
 

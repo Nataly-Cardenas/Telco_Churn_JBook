@@ -37,6 +37,7 @@ sphinx:
       default_mode: "dark"
     html_extra_path:
       - paper/paper.pdf
+      - paper/paper_regionalmapem.pdf
     html_static_path:
       - style
     html_css_files:
@@ -59,5 +60,5 @@ bibtex_bibfiles:
   - references.bib
 
 repository:
-  url: https://github.com/Nataly-Cardenas/Telco_Churn_Entregable
+  url: https://github.com/Nataly-Cardenas/Telco_Churn_JBook
   branch: main

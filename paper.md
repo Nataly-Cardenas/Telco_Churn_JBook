@@ -33,9 +33,16 @@ Random Forest + SMOTE: F1 = 0.638 · AUC-ROC = 0.844
 📥 Descargar paper (PDF)
 ```
 
+```{button-link} paper_regionalmapem.pdf
+:color: secondary
+:shadow:
+
+📥 Descargar manuscrito del modelo propuesto (PDF)
+```
+
 ```{admonition} Estado del documento
-:class: warning
-Esta versión del manuscrito presenta la comparación de los modelos de referencia. Las secciones del modelo propuesto (5 a 7) permanecen en construcción y se publicarán aquí conforme avance el trabajo.
+:class: note
+Las secciones 1 a 4 presentan la comparación de los modelos de referencia. Las secciones 5 a 7 resumen el modelo propuesto, RegionalMAPEM, con los resultados de la evaluación pre-registrada. El manuscrito completo del modelo propuesto, con la revisión de literatura, la demostración y todas las tablas, está en el PDF aparte; ese manuscrito sigue en preparación para la plantilla Springer Nature (sn-jnl).
 ```
 
 ````{tab-set}
@@ -455,7 +462,7 @@ Los ensambles de churn suelen combinar sus modelos con un único vector de pesos
 
 $$p(y=1\mid x)=\sum_{k=1}^{K} r_k(x)\sum_{m=1}^{M}\pi_{km}\,p_m(x),\qquad \pi_k\sim\mathrm{Dirichlet}(1+c\,g).$$
 
-Las pertenencias suaves $r_k(x)$ salen de un GMM sobre dos componentes principales de las variables continuas, y $g$ son los pesos globales. Los expertos no se reentrenan por región. Con las regiones fijas, la log-posterior es cóncava sobre un producto de símplex, de modo que el MAP-EM asciende en cada iteración y converge al óptimo global. La novedad está en esta regla de combinación: integrar clasificadores por zonas del espacio de clientes ya tiene antecedentes en churn. La formulación, la demostración y las pruebas unitarias están en el capítulo 5 del libro, y la revisión de literatura en el capítulo 4.
+Las pertenencias suaves $r_k(x)$ salen de un GMM sobre dos componentes principales de los puntajes normales de las variables continuas, y $g$ son los pesos globales. Los expertos no se reentrenan por región. Con las regiones fijas, la log-posterior es cóncava sobre un producto de símplex, de modo que el MAP-EM asciende en cada iteración y converge al óptimo global de los pesos; la garantía no cubre el ajuste del GMM, que se hace antes y sin usar la etiqueta. La novedad está en esta regla de combinación: integrar clasificadores por zonas del espacio de clientes ya tiene antecedentes en churn. La formulación, la demostración y las pruebas unitarias están en el capítulo 5 del libro, y la revisión de literatura en el capítulo 4.
 
 ## 6. Configuración experimental del modelo propuesto
 
@@ -470,7 +477,7 @@ La ablación explica el resultado: quitar las regiones no empeora el modelo (los
 ## Declaraciones
 
 - Disponibilidad de datos: el conjunto Telco Customer Churn es público y puede descargarse desde [Kaggle](https://www.kaggle.com/datasets/blastchar/telco-customer-churn).
-- Disponibilidad de código: los notebooks de EDA, preprocesamiento y modelamiento avanzado están disponibles en [GitHub](https://github.com/Nataly-Cardenas/Telco_Churn_Entregable).
+- Disponibilidad de código: los notebooks de EDA, preprocesamiento y modelamiento avanzado están disponibles en [GitHub](https://github.com/Nataly-Cardenas/Telco_Churn_JBook).
 - Disponibilidad de JBOOK: los notebooks de EDA, preprocesamiento y modelamiento avanzado están disponibles en este [Jupyter Book](https://nataly-cardenas.github.io/Telco_Churn_JBook/intro.html).
 - Contribución de las autoras: N. Cárdenas y L. Rivera participaron conjuntamente en el ETL, el análisis exploratorio, el modelado y los experimentos, así como en la redacción del manuscrito.
 - Conflicto de intereses: las autoras declaran no tener conflictos de interés.
