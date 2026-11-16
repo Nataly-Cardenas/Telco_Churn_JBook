@@ -479,6 +479,7 @@ La ablación explica el resultado: quitar las regiones no empeora el modelo (los
 - Disponibilidad de datos: el conjunto Telco Customer Churn es público y puede descargarse desde [Kaggle](https://www.kaggle.com/datasets/blastchar/telco-customer-churn).
 - Disponibilidad de código: los notebooks de EDA, preprocesamiento y modelamiento avanzado están disponibles en [GitHub](https://github.com/Nataly-Cardenas/Telco_Churn_JBook).
 - Disponibilidad de JBOOK: los notebooks de EDA, preprocesamiento y modelamiento avanzado están disponibles en este [Jupyter Book](https://nataly-cardenas.github.io/Telco_Churn_JBook/intro.html).
+- Archivo permanente: la versión definitiva del repositorio está archivada en Zenodo con DOI [10.5281/zenodo.24268653](https://doi.org/10.5281/zenodo.24268653).
 - Contribución de las autoras: N. Cárdenas y L. Rivera participaron conjuntamente en el ETL, el análisis exploratorio, el modelado y los experimentos, así como en la redacción del manuscrito.
 - Conflicto de intereses: las autoras declaran no tener conflictos de interés.
 
