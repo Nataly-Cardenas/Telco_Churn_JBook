@@ -3,6 +3,7 @@
 [![Python 3.12](https://img.shields.io/badge/Python-3.12-3776AB?style=for-the-badge&logo=python&logoColor=white)](https://www.python.org/)
 [![Jupyter Book](https://img.shields.io/badge/Jupyter_Book-0.15-F37626?style=for-the-badge&logo=jupyter&logoColor=white)](https://nataly-cardenas.github.io/Telco_Churn_Entregable/)
 [![Dataset](https://img.shields.io/badge/Dataset-Kaggle-20BEFF?style=for-the-badge&logo=kaggle&logoColor=white)](https://www.kaggle.com/datasets/blastchar/telco-customer-churn)
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.24268653.svg)](https://doi.org/10.5281/zenodo.24268653)
 
 > Resumen del proyecto: este proyecto predice el abandono de clientes (*churn*) de una empresa de telecomunicaciones a partir del conjunto público Telco Customer Churn de IBM (7,043 clientes, 21 columnas y 26.5 % de abandono). El flujo abarca la limpieza y transformación de los datos (ETL), un análisis exploratorio realizado solo sobre el conjunto de entrenamiento, un preprocesamiento sin fuga de información y un diseño experimental de 112 configuraciones: 7 modelos × 4 técnicas de balanceo × 4 métodos de optimización de hiperparámetros, evaluadas con validación cruzada anidada (5 folds externos × 3 internos).
 >

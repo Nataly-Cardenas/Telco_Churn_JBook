@@ -14,6 +14,7 @@ $\pi_{km}$ se estiman por máxima posterior con EM, con un prior que los encoge 
 |---|---|
 | Autoras | Laura S. Rivera Figueredo y Natalý A. Cárdenas Izaquita (Universidad del Norte) |
 | Versión | `protocolo-v1` (protocolo congelado el 2026-11-08) |
+| DOI (Zenodo) | [10.5281/zenodo.24268653](https://doi.org/10.5281/zenodo.24268653), release `v1.0.0` |
 | Código | `src/original_model.py`, clase `RegionalMAPEM` (interfaz de scikit-learn) |
 | Pruebas | `tests/test_original_model.py` (12 pruebas) |
 | Hiperparámetros propios | $K \in [1, 8]$, $c \in [0{,}01;\,200]$ (escala log), covarianza `diag` o `full` |
