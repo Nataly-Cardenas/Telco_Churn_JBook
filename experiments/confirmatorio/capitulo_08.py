@@ -17,8 +17,8 @@ RAIZ = Path(__file__).resolve().parents[2]
 sys.path.insert(0, str(RAIZ))
 from src.presentacion import NOMBRES, numero, tabla_html  # noqa: E402
 
-DASH_REPO = "https://github.com/Nataly-Cardenas/Dash_Telco_Churn"
-URL_RENDER = "https://dash-telco-churn.onrender.com/"
+DASH_REPO = "https://github.com/lauraformore/Dash_Telco_Churn_ML"
+URL_RENDER = "https://telco-churn-dashboard-hom3.onrender.com/"
 COPIA = RAIZ / "experiments" / "resultados" / "tablas" / "libro" / "artefactos_dashboard.csv"
 ORDEN = ["RegionalMAPEM", "logistic_splines", "lightgbm", "hist_gb", "logistic", "xgboost", "catboost", "random_forest",
          "svm", "knn", "decision_tree", "naive_bayes"]
@@ -59,7 +59,7 @@ def capitulo(A):
         ("Figuras", "src/plots.py, src/ui.py", "Paleta, plantilla común y funciones que construyen cada figura y componente"),
         ("Artefactos", "artifacts/<modelo>/modelo.joblib y metadata.json", "Los 12 modelos finales, de solo lectura"),
         ("Construcción", "scripts/construir_artefactos.py, scripts/preparar_resultados.py", "Reentrenamiento y copia de resultados; nunca corren en el servidor"),
-        ("Calidad", "tests/, .github/workflows/pytest.yml", "73 pruebas que GitHub Actions ejecuta en cada push"),
+        ("Calidad", "tests/, .github/workflows/pytest.yml", "75 pruebas que GitHub Actions ejecuta en cada push"),
     ], columns=["Capa", "Archivos", "Responsabilidad"])
     tabla_capas = tabla_html(capas, "Tabla 8.1. Capas del dashboard", buscar=False)
     url = (f"[{URL_RENDER}]({URL_RENDER})" if URL_RENDER else
@@ -69,7 +69,7 @@ def capitulo(A):
 
 El dashboard pone el proyecto en manos de alguien que no va a leer el libro: explica el problema, deja explorar los datos
 y usa los doce modelos finales para predecir el riesgo de abandono de un cliente. Está construido con Dash y Plotly, se
-publica en Render y su código está en [Dash_Telco_Churn]({DASH_REPO}).
+publica en Render y su código está en [Dash_Telco_Churn_ML]({DASH_REPO}).
 
 - **URL pública:** {url}
 - **Repositorio:** [{DASH_REPO}]({DASH_REPO})
@@ -264,7 +264,7 @@ artefacto con otra versión de scikit-learn puede cambiar sus predicciones, por 
 **Pasos.**
 
 1. Verificar en local: `python app.py`, abrir las tres páginas y correr `python -m pytest -q`.
-2. Subir el repositorio a GitHub. Cada push ejecuta las 73 pruebas en GitHub Actions.
+2. Subir el repositorio a GitHub. Cada push ejecuta las 75 pruebas en GitHub Actions.
 3. En Render, crear un *Blueprint* desde el repositorio. `render.yaml` define un servicio web con
    `pip install -r requirements.txt` como construcción y
    `gunicorn app:server --bind 0.0.0.0:$PORT --workers 1 --threads 4 --timeout 180` como inicio, y `/healthz` como
@@ -280,7 +280,7 @@ opcional: sin ella, el asistente del dashboard responde con su base de conocimie
 
 ## Pruebas e integración continua
 
-Las 73 pruebas cubren tres frentes: los artefactos (ida y vuelta, metadata completa y coherente con el experimento,
+Las 75 pruebas cubren tres frentes: los artefactos (ida y vuelta, metadata completa y coherente con el experimento,
 validación de entradas, SHAP que suma la predicción), las 12 pruebas del modelo original y el tablero (las tres páginas
 y sus rutas, cada callback con filtros extremos, la tabla de líderes, los errores claros ante entradas inválidas, la
 cobertura conforme, las traducciones, la ausencia de emojis, la paleta y que el servidor no entrene). El flujo

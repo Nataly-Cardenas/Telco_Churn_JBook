@@ -26,7 +26,7 @@ EDA · Modelado avanzado · Modelo original · Validación estadística
 
 ::::
 
-**Dashboard desplegado:** [https://dash-telco-churn.onrender.com/](https://dash-telco-churn.onrender.com/)
+**Dashboard desplegado:** [https://telco-churn-dashboard-hom3.onrender.com/](https://telco-churn-dashboard-hom3.onrender.com/)
 
 ## Resumen ejecutivo
 

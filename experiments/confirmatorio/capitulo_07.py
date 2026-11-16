@@ -283,7 +283,7 @@ tabla(pd.DataFrame({"Modelo": MEM.modelo.map(NOMBRES), "Ajuste en Telco (s)": ME
 md(r"""
 La parte propia del modelo cuesta entre 0,6 y 2 segundos y casi no depende de $p$, porque las regiones se construyen sobre
 dos componentes principales. El costo total del modelo, en cambio, es el de los once expertos más ese poco: en
-producción, Random Forest y CatBoost dominan el tiempo y el tamaño, y un ensamble de este tipo pesa unos 23 MB
+producción, Random Forest y CatBoost dominan el tiempo y el tamaño, y un ensamble de este tipo pesa unos 6 MB comprimidos (23 MB sin comprimir)
 serializado.
 
 ## Cambio de distribución

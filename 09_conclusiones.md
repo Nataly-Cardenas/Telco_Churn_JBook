@@ -61,7 +61,7 @@ el modelo gana en media al mejor benchmark, el stacking logístico rinde todaví
   continuas. Otra elección (variables categóricas, más componentes, regiones supervisadas) podría encontrar
   heterogeneidad que esta no ve, pero probarla ahora sería ajustar el modelo a los resultados.
 - **El costo en producción es el de once modelos.** La parte propia es barata, pero el modelo necesita a todos los
-  expertos para predecir: unos 23 MB serializados y el tiempo de inferencia de Random Forest y SVM.
+  expertos para predecir: unos 6 MB comprimidos (23 MB sin comprimir) y el tiempo de inferencia de Random Forest y SVM.
 - **Robustez sobre una repetición.** Los estudios exploratorios usan los 5 pliegues de la repetición 0, sin volver a
   optimizar.
 - **Revisión de literatura.** La búsqueda por citación se hizo en OpenAlex y los dos trabajos de 2010 y 2012 se analizaron
