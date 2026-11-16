@@ -154,7 +154,7 @@ Publicación: al actualizar la rama `main`, GitHub Actions construye el libro y 
 
 ## Recursos relacionados
 
-- 📊 Dashboard interactivo (Plotly Dash): [Dash_Telco_Churn](https://github.com/Nataly-Cardenas/Dash_Telco_Churn)
+- 📊 Dashboard interactivo (Plotly Dash): [Dash_Telco_Churn_ML](https://github.com/lauraformore/Dash_Telco_Churn_ML)
 - 📄 Paper: [`paper/paper.pdf`](paper/paper.pdf)
 - 🗂️ Conjunto de datos: [Kaggle — Telco Customer Churn](https://www.kaggle.com/datasets/blastchar/telco-customer-churn)
 

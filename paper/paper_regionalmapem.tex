@@ -341,7 +341,7 @@ La superioridad se declara solo si se cumplen a la vez cuatro condiciones: (1) e
 \subsection{Desviaciones del protocolo y reproducibilidad}\label{sec:desviaciones}
 Declaramos cinco desviaciones y limitaciones del protocolo, entre ellas que el log-loss se fijó tras los pilotos y que el hold-out se había usado antes, por lo que se reporta como evidencia suplementaria; el detalle y el entorno de ejecución están en el Apéndice~\ref{app:desviaciones}.
 
-El código, el protocolo, las tablas de resultados y los scripts que reproducen cada tabla y figura de este artículo (\texttt{paper/figures/make\_figures.py} y \texttt{paper/tables/make\_tables.py}) están en \url{https://github.com/Nataly-Cardenas/Telco_Churn_JBook}, el libro con el detalle de cada capítulo en \url{https://nataly-cardenas.github.io/Telco_Churn_JBook/intro.html} y el tablero en \url{https://dash-telco-churn.onrender.com/} (código en \url{https://github.com/Nataly-Cardenas/Dash_Telco_Churn}). Los datos son públicos; las sumas SHA-256 de los conjuntos adicionales están en \url{experiments/datos/}.
+El código, el protocolo, las tablas de resultados y los scripts que reproducen cada tabla y figura de este artículo (\texttt{paper/figures/make\_figures.py} y \texttt{paper/tables/make\_tables.py}) están en \url{https://github.com/Nataly-Cardenas/Telco_Churn_JBook}, el libro con el detalle de cada capítulo en \url{https://nataly-cardenas.github.io/Telco_Churn_JBook/intro.html} y el tablero en \url{https://telco-churn-dashboard-hom3.onrender.com/} (código en \url{https://github.com/lauraformore/Dash_Telco_Churn_ML}). Los datos son públicos; las sumas SHA-256 de los conjuntos adicionales están en \url{experiments/datos/}.
 
 %% ===================================================================== 5
 \section{Resultados}\label{sec:results}
@@ -531,7 +531,7 @@ En cuanto a la calibración, la Figura~\ref{fig:cal} muestra que RegionalMAPEM y
 \label{fig:cal}
 \end{figure}
 
-Por último, en términos de eficiencia, la Tabla~\ref{tab:costo} reporta el costo por pliegue externo en Telco. La parte propia del modelo cuesta poco en predicción (0,006 s por cada 1\,000 clientes), pero su búsqueda de $K$, $c$ y la covarianza tarda 658 s, porque cada ensayo reajusta la mezcla gaussiana y el MAP-EM en tres pliegues internos y el EM con pesos cercanos a cero converge de forma lenta. Como RegionalMAPEM necesita a los once expertos, su costo real es la suma: unos 3\,877 s de búsqueda de los expertos más los 658 s propios, 2,9 s por cada 1\,000 clientes en predicción y unos 23 MB serializados. La logística con splines, con la que empata, busca en 55 s, predice en 0,11 s y ocupa 0,04 MB. En Telco, la mejora no compensa el costo.
+Por último, en términos de eficiencia, la Tabla~\ref{tab:costo} reporta el costo por pliegue externo en Telco. La parte propia del modelo cuesta poco en predicción (0,006 s por cada 1\,000 clientes), pero su búsqueda de $K$, $c$ y la covarianza tarda 658 s, porque cada ensayo reajusta la mezcla gaussiana y el MAP-EM en tres pliegues internos y el EM con pesos cercanos a cero converge de forma lenta. Como RegionalMAPEM necesita a los once expertos, su costo real es la suma: unos 3\,877 s de búsqueda de los expertos más los 658 s propios, 2,9 s por cada 1\,000 clientes en predicción y unos 6 MB comprimidos (23 MB sin comprimir). La logística con splines, con la que empata, busca en 55 s, predice en 0,11 s y ocupa 0,04 MB. En Telco, la mejora no compensa el costo.
 
 \begin{table}[t]
 \centering
@@ -624,7 +624,7 @@ Etapa & Contenido & Resultado principal \\
 2. Modelado avanzado & 112 configuraciones (siete modelos, cuatro técnicas de balanceo, cuatro optimizadores) con validación cruzada anidada; calibración, Friedman, Nemenyi y DeLong; SHAP y LIME sobre los finalistas & Mejor F1 medio de 0,638 (Random Forest con SMOTE); el balanceo eleva el ECE medio de 0,06 a 0,15; finalistas explicados con SHAP y LIME \\
 3. Literatura y novedad & Búsqueda en Web of Science, Scopus, IEEE Xplore y arXiv (más de 36\,000 registros), verificación en Google Académico, búsqueda por citación y tabla de diferenciación & Ocho modelos candidatos descartados por tener antecedentes en churn; hipótesis de ponderación por regiones \\
 4. Modelo propio y protocolo & RegionalMAPEM con demostración y 12 pruebas unitarias; protocolo congelado (\texttt{protocolo-v1}); 25 pliegues externos, 223 comparaciones, tres conjuntos adicionales y hold-out de una sola evaluación & Empate con la mejor referencia; supera a siete de once modelos de referencia; resultado negativo documentado \\
-5. Difusión y reproducibilidad & Libro (Jupyter Book), tablero Dash desplegado con doce modelos, 73 pruebas automáticas, semillas derivadas, sumas SHA-256 y declaración de uso de IA & Todas las cifras del artículo salen de tablas versionadas del repositorio \\
+5. Difusión y reproducibilidad & Libro (Jupyter Book), tablero Dash desplegado con doce modelos, 75 pruebas automáticas, semillas derivadas, sumas SHA-256 y declaración de uso de IA & Todas las cifras del artículo salen de tablas versionadas del repositorio \\
 \bottomrule
 \end{tabular}
 \end{table}

@@ -2,10 +2,10 @@
 
 El dashboard pone el proyecto en manos de alguien que no va a leer el libro: explica el problema, deja explorar los datos
 y usa los doce modelos finales para predecir el riesgo de abandono de un cliente. Está construido con Dash y Plotly, se
-publica en Render y su código está en [Dash_Telco_Churn](https://github.com/Nataly-Cardenas/Dash_Telco_Churn).
+publica en Render y su código está en [Dash_Telco_Churn_ML](https://github.com/lauraformore/Dash_Telco_Churn_ML).
 
-- **URL pública:** [https://dash-telco-churn.onrender.com/](https://dash-telco-churn.onrender.com/)
-- **Repositorio:** [https://github.com/Nataly-Cardenas/Dash_Telco_Churn](https://github.com/Nataly-Cardenas/Dash_Telco_Churn)
+- **URL pública:** [https://telco-churn-dashboard-hom3.onrender.com/](https://telco-churn-dashboard-hom3.onrender.com/)
+- **Repositorio:** [https://github.com/lauraformore/Dash_Telco_Churn_ML](https://github.com/lauraformore/Dash_Telco_Churn_ML)
 - **Ejecución local:** `pip install -r requirements.txt` y `python app.py` (http://localhost:8050)
 
 ## Arquitectura
@@ -13,7 +13,7 @@ publica en Render y su código está en [Dash_Telco_Churn](https://github.com/Na
 La aplicación es multipágina (`use_pages=True`), con una página por sección: **Contexto** (`/`), **EDA** (`/eda`) y
 **Modelos** (`/modelos`). La interfaz, la lógica de datos y los artefactos de modelo están separados:
 
-<div class="eda-table" id="tabla-res-2"><span class="eda-table-title">Tabla 8.1. Capas del dashboard</span><input hidden><table class="dataframe"><thead><tr><th>Capa</th><th>Archivos</th><th>Responsabilidad</th></tr></thead><tbody><tr><td style="white-space:nowrap !important">Interfaz</td><td style="min-width:190px">app.py, pages/contexto.py, pages/eda.py, pages/modelos.py, assets/</td><td style="min-width:190px">Barra de navegación, idioma, tema, layout y callbacks de cada página</td></tr><tr><td style="white-space:nowrap !important">Datos</td><td style="white-space:nowrap !important">src/data.py, data/</td><td style="min-width:190px">Carga única del conjunto, de los índices de la partición y de las tablas copiadas del experimento</td></tr><tr><td style="white-space:nowrap !important">Modelos</td><td style="min-width:190px">src/modelos.py, src/pipeline_telco.py, src/original_model.py</td><td style="min-width:190px">Carga de artefactos, validación de entradas, predicción, conformal y SHAP</td></tr><tr><td style="white-space:nowrap !important">Figuras</td><td style="white-space:nowrap !important">src/plots.py, src/ui.py</td><td style="min-width:190px">Paleta, plantilla común y funciones que construyen cada figura y componente</td></tr><tr><td style="white-space:nowrap !important">Artefactos</td><td style="min-width:190px">artifacts/&lt;modelo&gt;/modelo.joblib y metadata.json</td><td style="min-width:190px">Los 12 modelos finales, de solo lectura</td></tr><tr><td style="white-space:nowrap !important">Construcción</td><td style="min-width:190px">scripts/construir_artefactos.py, scripts/preparar_resultados.py</td><td style="min-width:190px">Reentrenamiento y copia de resultados; nunca corren en el servidor</td></tr><tr><td style="white-space:nowrap !important">Calidad</td><td style="min-width:190px">tests/, .github/workflows/pytest.yml</td><td style="min-width:190px">73 pruebas que GitHub Actions ejecuta en cada push</td></tr></tbody></table></div><script>(function(){const root=document.getElementById('tabla-res-2');
+<div class="eda-table" id="tabla-res-2"><span class="eda-table-title">Tabla 8.1. Capas del dashboard</span><input hidden><table class="dataframe"><thead><tr><th>Capa</th><th>Archivos</th><th>Responsabilidad</th></tr></thead><tbody><tr><td style="white-space:nowrap !important">Interfaz</td><td style="min-width:190px">app.py, pages/contexto.py, pages/eda.py, pages/modelos.py, assets/</td><td style="min-width:190px">Barra de navegación, idioma, tema, layout y callbacks de cada página</td></tr><tr><td style="white-space:nowrap !important">Datos</td><td style="white-space:nowrap !important">src/data.py, data/</td><td style="min-width:190px">Carga única del conjunto, de los índices de la partición y de las tablas copiadas del experimento</td></tr><tr><td style="white-space:nowrap !important">Modelos</td><td style="min-width:190px">src/modelos.py, src/pipeline_telco.py, src/original_model.py</td><td style="min-width:190px">Carga de artefactos, validación de entradas, predicción, conformal y SHAP</td></tr><tr><td style="white-space:nowrap !important">Figuras</td><td style="white-space:nowrap !important">src/plots.py, src/ui.py</td><td style="min-width:190px">Paleta, plantilla común y funciones que construyen cada figura y componente</td></tr><tr><td style="white-space:nowrap !important">Artefactos</td><td style="min-width:190px">artifacts/&lt;modelo&gt;/modelo.joblib y metadata.json</td><td style="min-width:190px">Los 12 modelos finales, de solo lectura</td></tr><tr><td style="white-space:nowrap !important">Construcción</td><td style="min-width:190px">scripts/construir_artefactos.py, scripts/preparar_resultados.py</td><td style="min-width:190px">Reentrenamiento y copia de resultados; nunca corren en el servidor</td></tr><tr><td style="white-space:nowrap !important">Calidad</td><td style="min-width:190px">tests/, .github/workflows/pytest.yml</td><td style="min-width:190px">75 pruebas que GitHub Actions ejecuta en cada push</td></tr></tbody></table></div><script>(function(){const root=document.getElementById('tabla-res-2');
 const body=root.querySelector('tbody'),input=root.querySelector('input');
 input.addEventListener('input',()=>{for(const r of body.rows)r.hidden=!r.textContent.toLowerCase().includes(input.value.toLowerCase());});
 root.querySelectorAll('thead th').forEach((h,i)=>{let asc=true;h.tabIndex=0;h.title='Ordenar columna';
@@ -243,7 +243,7 @@ pruebas del protocolo (capítulo 6 del libro). En los conjuntos adicionales es e
 
 ### Limitaciones
 
-- Necesita a los 11 expertos para predecir: unos 23 MB serializados y el costo de inferencia de Random Forest y SVM.
+- Necesita a los 11 expertos para predecir: unos 6 MB comprimidos (23 MB sin comprimir) y el costo de inferencia de Random Forest y SVM.
 - En Telco las regiones no aportan frente a los pesos globales; el modelo se comporta como un ensamble ponderado.
 - Las probabilidades se evaluaron en un solo operador y una sola época; con otra población hay que volver a validarlo.
 - Al 90 % de cobertura, un tercio de los clientes recibe un conjunto conforme con las dos clases: el modelo no tiene
@@ -265,7 +265,7 @@ artefacto con otra versión de scikit-learn puede cambiar sus predicciones, por 
 **Pasos.**
 
 1. Verificar en local: `python app.py`, abrir las tres páginas y correr `python -m pytest -q`.
-2. Subir el repositorio a GitHub. Cada push ejecuta las 73 pruebas en GitHub Actions.
+2. Subir el repositorio a GitHub. Cada push ejecuta las 75 pruebas en GitHub Actions.
 3. En Render, crear un *Blueprint* desde el repositorio. `render.yaml` define un servicio web con
    `pip install -r requirements.txt` como construcción y
    `gunicorn app:server --bind 0.0.0.0:$PORT --workers 1 --threads 4 --timeout 180` como inicio, y `/healthz` como
@@ -281,7 +281,7 @@ opcional: sin ella, el asistente del dashboard responde con su base de conocimie
 
 ## Pruebas e integración continua
 
-Las 73 pruebas cubren tres frentes: los artefactos (ida y vuelta, metadata completa y coherente con el experimento,
+Las 75 pruebas cubren tres frentes: los artefactos (ida y vuelta, metadata completa y coherente con el experimento,
 validación de entradas, SHAP que suma la predicción), las 12 pruebas del modelo original y el tablero (las tres páginas
 y sus rutas, cada callback con filtros extremos, la tabla de líderes, los errores claros ante entradas inválidas, la
 cobertura conforme, las traducciones, la ausencia de emojis, la paleta y que el servidor no entrene). El flujo

@@ -45,7 +45,7 @@ pruebas del protocolo (capítulo 6 del libro). En los conjuntos adicionales es e
 
 ## Limitaciones
 
-- Necesita a los 11 expertos para predecir: unos 23 MB serializados y el costo de inferencia de Random Forest y SVM.
+- Necesita a los 11 expertos para predecir: unos 6 MB comprimidos (23 MB sin comprimir) y el costo de inferencia de Random Forest y SVM.
 - En Telco las regiones no aportan frente a los pesos globales; el modelo se comporta como un ensamble ponderado.
 - Las probabilidades se evaluaron en un solo operador y una sola época; con otra población hay que volver a validarlo.
 - Al 90 % de cobertura, un tercio de los clientes recibe un conjunto conforme con las dos clases: el modelo no tiene
