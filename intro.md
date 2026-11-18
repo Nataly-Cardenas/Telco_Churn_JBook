@@ -4,7 +4,8 @@
 
 Laura S. Rivera Figueredo y Natalý A. Cárdenas Izaquita  
 Departamento de Matemáticas, Física y Ciencia de Datos, Universidad del Norte, Barranquilla, Colombia  
-`sriveral@uninorte.edu.co` · `nizaquita@uninorte.edu.co`
+`sriveral@uninorte.edu.co`  
+`nizaquita@uninorte.edu.co`
 
 ::::{grid} 1 1 3 3
 :gutter: 2
@@ -16,12 +17,12 @@ Visualización de Datos y Machine Learning
 
 :::{grid-item-card} Conjunto de datos
 :class-card: meta-card
-Telco Customer Churn (IBM) · 7,043 clientes · 26.5 % de abandono
+Telco Customer Churn (IBM), 7,043 clientes y 26.5 % de abandono
 :::
 
 :::{grid-item-card} Metodología
 :class-card: meta-card
-EDA · Modelado avanzado · Modelo original · Validación estadística
+EDA, modelado avanzado, modelo original y validación estadística
 :::
 
 ::::

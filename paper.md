@@ -4,7 +4,8 @@
 
 Natalý Cárdenas y Laura Rivera  
 Departamento de Matemáticas, Física y Ciencia de Datos, Universidad del Norte, Barranquilla, Colombia  
-`nizaquita@uninorte.edu.co` · `sriveral@uninorte.edu.co`
+`nizaquita@uninorte.edu.co`  
+`sriveral@uninorte.edu.co`
 
 ::::{grid} 1 1 3 3
 :gutter: 2
@@ -21,7 +22,7 @@ Plantilla Springer Nature (sn-jnl)
 
 :::{grid-item-card} Resultado principal
 :class-card: meta-card
-Random Forest + SMOTE: F1 = 0.638 · AUC-ROC = 0.844
+Random Forest + SMOTE: F1 = 0.638, AUC-ROC = 0.844
 :::
 
 ::::
@@ -60,7 +61,7 @@ Si el visor no carga en tu navegador, usa el botón Descargar paper (PDF).
 
 El abandono de clientes (*churn*) en telecomunicaciones genera pérdidas recurrentes de ingresos, y detectarlo a tiempo permite focalizar acciones de retención. Este trabajo aborda la clasificación binaria del abandono sobre el conjunto público Telco Customer Churn. Se diseñó un protocolo reproducible con preprocesamiento sin fuga de información y validación cruzada anidada (5 particiones externas y 3 internas), en el que se compararon siete familias de modelos (KNN, Naive Bayes gaussiano, regresión logística, árbol de decisión, Random Forest, XGBoost y SVM), cuatro estrategias de balanceo y cuatro optimizadores de hiperparámetros (Grid, Random, TPE y algoritmo genético), para un total de 112 configuraciones. Random Forest con SMOTE obtuvo el mayor F1-score de la clase de abandono (0.638 ± 0.023), seguido de cerca por XGBoost (0.638) y la regresión logística (0.634), con un AUC-ROC de 0.844 en el test histórico. Las diferencias entre los tres mejores modelos fueron pequeñas y no detectables estadísticamente, mientras que SMOTE mejoró el F1-score en seis de las siete familias frente a no balancear, y Random Forest fue el modelo de mayor costo de búsqueda. SHAP identificó el tipo de contrato, el servicio de internet y la antigüedad como las variables más influyentes. Los resultados de esta etapa corresponden a la comparación de modelos de referencia y sirven como base para la posterior formulación del modelo propuesto.
 
-Palabras clave: Predicción de abandono de clientes · Validación cruzada anidada · Desbalance de clases · Optimización de hiperparámetros · F1-score
+Palabras clave: Predicción de abandono de clientes, validación cruzada anidada, desbalance de clases, optimización de hiperparámetros, F1-score
 
 ## 1. Introducción
 
@@ -177,7 +178,7 @@ El marco experimental de esta etapa es un protocolo controlado para comparar las
 
 En KNN, árbol de decisión y Random Forest, los cuatro optimizadores agotan el mismo espacio discreto de 24 candidatos; cuando existe empate a precisión numérica, se conserva el identificador de configuración definido por el protocolo. Por ello, la etiqueta TPE que aparece en la configuración seleccionada de estas familias no debe interpretarse como una ventaja estadística del optimizador.
 
-```{admonition} Algoritmo 1 — Validación cruzada anidada con balanceo y optimización de hiperparámetros
+```{admonition} Algoritmo 1. Validación cruzada anidada con balanceo y optimización de hiperparámetros
 :class: tip
 Requiere: datos de desarrollo $D$, configuración (familia, balanceo, optimizador), 5 folds externos, 3 internos, presupuesto $B = 24$.
 Produce: predicciones fuera de muestra y métricas por fold externo.
@@ -200,7 +201,7 @@ $$
 \text{Precision} = \frac{TP}{TP + FP}, \qquad \text{Recall} = \frac{TP}{TP + FN}, \qquad F_1 = \frac{2\,TP}{2\,TP + FP + FN}.
 $$
 
-```{admonition} Algoritmo 2 — Reajuste final de los tres modelos finalistas y evaluación histórica
+```{admonition} Algoritmo 2. Reajuste final de los tres modelos finalistas y evaluación histórica
 :class: tip
 Requiere: conjunto de desarrollo $D$, tres configuraciones congeladas, presupuesto $B = 24$, tres folds internos.
 Produce: modelos finales, predicciones y métricas sobre el test histórico.
@@ -220,7 +221,7 @@ El F1 se definió antes de ejecutar la comparación y se utilizó como único ob
 
 El diseño factorial cubre 7 familias × 4 balanceos × 4 optimizadores = 112 configuraciones, cada una con 3 realizaciones algorítmicas derivadas de la semilla raíz 42 y 5 folds externos, para 1,680 unidades externas. Las realizaciones reutilizan las mismas particiones, pero modifican las semillas asociadas al optimizador, al modelo y al remuestreo. Esta variación mide sensibilidad algorítmica con particiones fijas; no representa tres muestras independientes de clientes.
 
-La validación externa utilizó cinco particiones estratificadas y la selección de hiperparámetros tres particiones internas. El presupuesto fue de 24 evaluaciones únicas por optimizador y configuración. Para los tres modelos finalistas —Random Forest–SMOTE–TPE, XGBoost–SMOTE–Random y regresión logística–SMOTE–Grid— se realizó posteriormente una selección adicional sobre todo el conjunto de desarrollo, con tres folds internos y 24 evaluaciones. Esto implica $3 \times (24 \times 3 + 1) = 219$ ajustes adicionales: 216 ajustes internos y tres reajustes finales. Estos 219 ajustes se registraron por separado y no amplían las 112 configuraciones ni alteran sus resultados externos originales.
+La validación externa utilizó cinco particiones estratificadas y la selección de hiperparámetros tres particiones internas. El presupuesto fue de 24 evaluaciones únicas por optimizador y configuración. Para los tres modelos finalistas (Random Forest–SMOTE–TPE, XGBoost–SMOTE–Random y regresión logística–SMOTE–Grid) se realizó posteriormente una selección adicional sobre todo el conjunto de desarrollo, con tres folds internos y 24 evaluaciones. Esto implica $3 \times (24 \times 3 + 1) = 219$ ajustes adicionales: 216 ajustes internos y tres reajustes finales. Estos 219 ajustes se registraron por separado y no amplían las 112 configuraciones ni alteran sus resultados externos originales.
 
 En el test histórico se calcularon intervalos de confianza percentiles del 95% mediante 2,000 remuestreos pareados y estratificados, utilizando los mismos índices para los tres modelos. Las diferencias de AUC se compararon mediante DeLong y se aplicó la corrección de Holm a los tres pares. No se ajustó el umbral de decisión usando el test. Las probabilidades se recalibraron con dos métodos, sigmoide de Platt y regresión isotónica, ajustados con las mismas tres particiones dentro de cada entrenamiento externo, y se evaluaron con Brier y ECE en diez intervalos uniformes.
 

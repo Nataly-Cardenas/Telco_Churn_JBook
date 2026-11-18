@@ -459,7 +459,7 @@ D = pd.read_csv(TAB / "combinaciones_dashboard.csv")
 g = D.groupby(["modelo", "combinacion"])[["log_loss", "f1", "auc", "brier", "ece"]].mean().reset_index()
 cal = RESUMEN[RESUMEN.conjunto == "telco"].set_index("modelo")
 g["ll_cal"] = g.modelo.map(cal.log_loss_media); g["ece_cal"] = g.modelo.map(cal.ece_media)
-tabla(pd.DataFrame({"Modelo": g.modelo.map(NOMBRES), "Combinación del entregable anterior": g.combinacion.str.replace("__", " · "),
+tabla(pd.DataFrame({"Modelo": g.modelo.map(NOMBRES), "Combinación del entregable anterior": g.combinacion.str.replace("__", ", "),
                     "Log-loss": g.log_loss, "F1": g.f1, "AUC": g.auc, "ECE": g.ece,
                     "Log-loss de la versión calibrada": g.ll_cal, "ECE de la versión calibrada": g.ece_cal}).sort_values("Log-loss"),
       "Tabla 7.16. Combinaciones del dashboard frente a las versiones reajustadas y calibradas (Telco, 25 pliegues)", decimales=4, buscar=False,

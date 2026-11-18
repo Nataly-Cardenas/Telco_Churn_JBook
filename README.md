@@ -156,13 +156,13 @@ Publicación: al actualizar la rama `main`, GitHub Actions construye el libro y 
 
 - 📊 Dashboard interactivo (Plotly Dash): [Dash_Telco_Churn_ML](https://github.com/lauraformore/Dash_Telco_Churn_ML)
 - 📄 Paper: [`paper/paper.pdf`](paper/paper.pdf)
-- 🗂️ Conjunto de datos: [Kaggle — Telco Customer Churn](https://www.kaggle.com/datasets/blastchar/telco-customer-churn)
+- 🗂️ Conjunto de datos: [Kaggle: Telco Customer Churn](https://www.kaggle.com/datasets/blastchar/telco-customer-churn)
 
 ---
 
 ## Autoras
 
-- Laura S. Rivera Figueredo — `sriveral@uninorte.edu.co`
-- Natalý A. Cárdenas Izaquita — `nizaquita@uninorte.edu.co`
+- Laura S. Rivera Figueredo (`sriveral@uninorte.edu.co`)
+- Natalý A. Cárdenas Izaquita (`nizaquita@uninorte.edu.co`)
 
 Departamento de Matemáticas, Física y Ciencia de Datos, Universidad del Norte, Barranquilla, Colombia.
